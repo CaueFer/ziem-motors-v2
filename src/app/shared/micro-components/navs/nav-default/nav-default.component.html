@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navigation fixed-top sticky" (window:scroll)="windowScroll()" id="navbar">
+    <div class="container">
+        <a class="navbar-logo d-flex " routerLink="/">
+            <img [src]="isSticky? 'assets/images/logos/logoCar.png' : 'assets/images/logos/logoCar.png'" alt="logo"  height="40px">
+        </a>
+
+        <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item" data-toggle="collapse"
+            data-target="#topnav-menu-content" (click)="toggleMenu()">
+            <i class="fa fa-fw fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="topnav-menu-content">
+            <ul class="navbar-nav ms-auto" id="topnav-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'home'"
+                        [ngClass]="{'active':currentSection === 'home'}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript: void(0);" 
+                        [ngClass]="{'active':currentSection === 'beneficios'}">Showroom</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript: void(0);"
+                        [ngClass]="{'active':currentSection === 'planos'}">Lojas</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>

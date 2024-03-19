@@ -1,0 +1,22 @@
+// 
+// _footer.scss
+// 
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(255, 238, 220);
+    color: black;
+
+    @media (max-width: 991.98px) {
+        left: 0;
+    }
+}
+
+.footerLeft{
+    .footer {
+        left: 0 !important;
+    }
+}

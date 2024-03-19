@@ -1,0 +1,89 @@
+// 
+// _nav.scss
+//
+
+#navbar{
+  position: fixed;
+  width: 100%;
+  padding: 20px 10px;
+
+  background-color: transparent;
+  color: white!important;
+
+  transition: all .3s ease-in-out;
+}
+
+#navbar.nav-sticky{
+  top: 0;
+  width: 100%;
+  padding: 10px 10px;
+
+  z-index: 1000;
+  background-color: white;
+  color: black;
+}
+
+.nav-tabs,.nav-pills {
+    > li {
+        > a {
+            color: black;
+            font-weight: 500;
+        }
+    }
+  }
+  
+  .nav-pills {
+    > a {
+        color: black; 
+        font-weight: 500;
+    }
+  }
+  
+  
+  .nav-tabs-custom {
+    border-bottom: 2px solid black;
+  
+    .nav-item {
+      position: relative;
+      color: black;
+      .nav-link {
+        border: none;
+  
+        &::after {
+          content: "";
+          background: #556ee6;
+          height: 2px;
+          position: absolute;
+          width: 100%;
+          left: 0;
+          bottom: -1px;
+          transition: all 250ms ease 0s;
+          transform: scale(0);
+        }
+  
+        &.active{
+          color: #556ee6;
+          &:after{
+            transform: scale(1);
+          }
+        }
+  
+      }
+    }
+  }
+  
+  
+  // vertical nav
+  
+  .vertical-nav{
+    .nav{
+        .nav-link{
+            padding: 24px 16px;
+            text-align: center;
+            margin-bottom: 8px;
+            .nav-icon{
+                font-size: 24px;
+            }
+        }
+    }
+  }
