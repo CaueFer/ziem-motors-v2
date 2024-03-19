@@ -1,0 +1,21 @@
+.client-images {
+    img {
+        max-height: 124px;
+        width: auto !important;
+        margin: 12px auto;
+        opacity: 0.7;
+        transition: all 0.4s;
+    }
+}
+
+.features{
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.smoothScroll{
+    .owl-stage{
+        transition: all 1s linear!important;
+        transition-timing-function: linear !important;
+    }
+}

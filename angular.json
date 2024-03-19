@@ -38,6 +38,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/assets/scss/geral.scss",
               "node_modules/animate.css/animate.min.css"
             ],
             "scripts": [],
