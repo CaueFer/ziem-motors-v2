@@ -5,6 +5,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { AccountModule } from '../account/account.module';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     PagesRoutingModule,
     SharedModule,
     CarouselModule,
+    AccountModule,
   ],
   providers: [
 
