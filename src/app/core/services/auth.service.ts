@@ -10,10 +10,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-
   async registerUser(user: User): Promise<any> {
     try{
-      const response = this.http.post<any>(this.url + 'adduser', user);
+      const response =  this.http.post<any>(this.url + 'adduser', user);
       return response;
     }catch (error) {
       throw error;
