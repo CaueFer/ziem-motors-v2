@@ -18,6 +18,23 @@
   }
 }
 
+#navbar.dark{
+  a{  
+    color: black;
+  }
+}
+
+#navbar.nav-sticky.slow{
+  background-color: transparent;
+
+
+  a{  
+    color: black;
+    transition: color 0s ease .3s;
+  }
+
+}
+
 #navbar.nav-sticky{
   top: 0;
   padding: 20px 10px;
@@ -78,6 +95,8 @@
       }
     }
   }
+
+
   
   
   // vertical nav

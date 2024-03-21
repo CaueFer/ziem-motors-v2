@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-nav-default',
@@ -9,6 +9,9 @@ import { Component } from '@angular/core';
 export class NavDefaultComponent {
   currentSection:any = 'home';
   isSticky: boolean = false;
+
+  @Input  () variant: string = '';
+
 
   constructor() { }
 
