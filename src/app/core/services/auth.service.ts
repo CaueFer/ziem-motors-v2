@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../models/user.model';
+import { UserModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,31 +10,14 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  async registerUser(user: User): Promise<any> {
-    try{
-      const response =  this.http.post<any>(this.url + 'adduser', user);
-      return response;
-    }catch (error) {
-      throw error;
-    }
-  }
+  async registerUser(email: string, password: string){
 
-  async getAllUser(){
-    try {
-      const response = this.http.get<any>(this.url + 'getallusers');
-      return response;
-    } catch (error) {
-      throw error;
-    }
-  }
+    const userData: UserModel = {email: email, password: password}
 
-  async verifyEmail(email: User["email"]): Promise<any> {
-    try{
-      const response = this.http.post<any>(this.url + 'verifyemail', email);
-      return response;
-    } catch (error) {
-      throw error;
-    }
+    this.http.post(this.url+'signin', userData).subscribe(data =>{
+      console.log(data);
+    })
+
   }
   
 }

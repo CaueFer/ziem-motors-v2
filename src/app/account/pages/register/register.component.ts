@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
-import { User } from '../../../core/models/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -13,12 +12,6 @@ export class RegisterComponent {
   year: number = new Date().getFullYear();
   users: any = [];
 
-  newUser: User = {
-    name: '',
-    email: '',
-    password: '',
-  };
-
   registerForm: FormGroup;
   successmsg: string = '';
   errormsg: string = '';
@@ -26,6 +19,7 @@ export class RegisterComponent {
   hidePassword: boolean = true;
   isSubmited: boolean = false;
   scroolled: boolean = false;
+  isButtonDisabled: any;
 
   constructor( private _authService: AuthService, private formBuilder: FormBuilder) {
 
@@ -67,38 +61,39 @@ export class RegisterComponent {
 
   resetForms() {
     this.registerForm.reset();
+
+    [this.errormsg, this.successmsg, this.isSubmited] = ['', '', false];
   }
 
-  async registerUser(user: User) {
-    try {
-      await this._authService.registerUser(user);
-      this.successmsg = "Registro concluido.";
-    } catch (error) {
-      console.error(error);
-      this.errormsg = "Erro ao registrar usuário:";
-    }
+  onSubmitBtnClick() {
+    this.isButtonDisabled = true;
+    setTimeout(() => { 
+      this.isButtonDisabled = false; 
+    }, 1500);
   }
 
   submitSignIn(){
     this.isSubmited = true;
 
     if(this.registerForm.invalid){
-      this.errormsg = 'Campos invalidos.'
+
+      this.errormsg = 
+      this.f['email'].invalid && this.f['password'].invalid && this.f['passwordConfirm'].invalid ? 'Campos inválidos.' :
+      this.f['email'].invalid && this.f['password'].valid && this.f['passwordConfirm'].valid ? 'Email inválido.' :
+      this.f['email'].valid && (this.f['password'].invalid || this.f['passwordConfirm'].invalid) ? 'Senhas inválidas.' :
+        'Campos inválidos.';
+
       return;
     }
 
     if(this.f['password'].value != this.f['passwordConfirm'].value){
-      this.errormsg = 'Senha não coIncidem.'
+      this.errormsg = 'Senhas não coIncidem.';
+      this.f['password'].setErrors({ 'passwordMismatch': true });
+      this.f['passwordConfirm'].setErrors({ 'passwordMismatch': true });
       return;
     } 
 
-    this.newUser.name = ' ';
-    this.newUser.email = this.registerForm.controls['email'].value;
-    this.newUser.password = this.registerForm.controls['password'].value;
-
-    this.registerUser(this.newUser);
-
-    console.log(this._authService.getAllUser());
+    this._authService.registerUser(this.registerForm.value.email, this.registerForm.value.password);
     
     this.isSubmited = false;
   }

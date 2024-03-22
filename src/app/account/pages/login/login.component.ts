@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { User } from '../../../core/models/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -60,14 +59,6 @@ export class LoginComponent {
     this.loginForm.reset();
   }
 
-  async verifyLogin(email: User["email"]){
-    try{
-      await this._authService.verifyEmail(email);
-    }catch (error) {
-      console.error(error);
-      this.errormsg = "Email sem conta cadastrada.";
-    }
-  }
 
   submitLogin(){
     this.isSubmited = true;

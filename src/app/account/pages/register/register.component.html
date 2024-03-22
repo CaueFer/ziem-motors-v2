@@ -76,9 +76,12 @@
             </div>
 
               <div class="my-4 d-grid d-flex flex-column align-items-center">
-                <button class="btn btn-dark w-50 shadow-none d-flex justify-content-center" type="submit">
-                    <span >Avançar</span>
-
+                <button 
+                  class="btn btn-dark w-50 shadow-none d-flex justify-content-center" 
+                  type="submit" 
+                  [disabled]="isButtonDisabled ? 'disabled' : null"
+                  (click)="onSubmitBtnClick()">
+                  <span>Avançar</span>
                 </button>
                 
               </div>
