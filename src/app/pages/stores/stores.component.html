@@ -1,0 +1,26 @@
+<section class="section" id="mapSection">
+
+    <div class="container  d-flex">
+        <div class="formLojas col-4">
+            <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
+                <div class="input-group dropdown">
+                    <input type="text" class="form-control col-8 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" formControlName="cityName" id="cidadeInput" (input)="onInput($event)" autocomplete="off">  
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item text-black" *ngFor="let item of returnedCitys">{{item}}</a>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+
+        <div class="col-8" style="height: 550px;"
+            leaflet 
+            [leafletOptions]="mapOptions"
+            [leafletLayersControl]="mapLayersControl">
+    
+            <div *ngIf="selectedCity === 'joinville'" [leafletLayers]="layersJvl"></div>
+            <div *ngIf="selectedCity === 'curitiba'" [leafletLayers]="layersCwb"></div>
+        </div>
+    </div>  
+
+</section>

@@ -6,16 +6,22 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AccountModule } from '../account/account.module';
+import { StoresComponent } from './stores/stores.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [LandingPageComponent],
+  declarations: [LandingPageComponent, StoresComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,
     SharedModule,
     CarouselModule,
     AccountModule,
+    LeafletModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
 
