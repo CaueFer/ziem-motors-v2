@@ -8,7 +8,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AccountModule } from '../account/account.module';
 import { StoresComponent } from './stores/stores.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 @NgModule({

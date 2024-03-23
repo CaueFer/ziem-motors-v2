@@ -7,6 +7,7 @@ import { ScrollToModule, ScrollToService } from '@andrei4ik/ngx-scroll-to';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
 import { MapComponent } from './micro-components/map/map.component';
+import { MapsModule } from '@syncfusion/ej2-angular-maps';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MapComponent } from './micro-components/map/map.component';
     ScrollToModule,
     CarouselModule,
     RouterLink,
+    MapsModule,
   ],
   providers: [
     ScrollToService,
