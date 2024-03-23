@@ -6,12 +6,14 @@ import { NavDefaultComponent } from './micro-components/navs/nav-default/nav-def
 import { ScrollToModule, ScrollToService } from '@andrei4ik/ngx-scroll-to';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
+import { MapComponent } from './micro-components/map/map.component';
 
 
 @NgModule({
   declarations: [
     FooterDefaultComponent,
     NavDefaultComponent,
+    MapComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { RouterLink } from '@angular/router';
   exports: [
     FooterDefaultComponent,
     NavDefaultComponent,
+    MapComponent,
   ]
 })
 export class SharedModule { }

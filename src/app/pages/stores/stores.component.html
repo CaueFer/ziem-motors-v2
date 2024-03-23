@@ -1,25 +1,19 @@
 <section class="section" id="mapSection">
 
     <div class="container  d-flex">
-        <div class="formLojas col-4">
-            <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
+        <div class="formLojas col-4 px-3">
+            <form [formGroup]="cityForm">
+                <span class="fs-5 tex-black">Cidade</span>
                 <div class="input-group dropdown">
-                    <input type="text" class="form-control col-8 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" formControlName="cityName" id="cidadeInput" (input)="onInput($event)" autocomplete="off">  
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item text-black" *ngFor="let item of returnedCitys">{{item}}</a>
+                    <input type="text" class="form-control col-8" aria-expanded="false" formControlName="cityName" id="cidadeInput" (input)="onInput($event)" autocomplete="off">  
+                    <div class="dropdown-menu mt-5" [ngClass]="{ 'show': inputValue.length > 2 }">
+                        <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0">Nenhum encontrado.</span>
+                        <a class="dropdown-item text-black" *ngFor="let item of returnedCitys" (click)="onSelectCity($event)" >{{item}}</a>
                     </div>
                 </div>
             </form>
-            
-        </div>
 
-        <div class="col-8" style="height: 550px;"
-            leaflet 
-            [leafletOptions]="mapOptions"
-            [leafletLayersControl]="mapLayersControl">
-    
-            <div *ngIf="selectedCity === 'joinville'" [leafletLayers]="layersJvl"></div>
-            <div *ngIf="selectedCity === 'curitiba'" [leafletLayers]="layersCwb"></div>
+            <span class="fs-5 px-2" >Nenhum encontrado.</span>
         </div>
     </div>  
 

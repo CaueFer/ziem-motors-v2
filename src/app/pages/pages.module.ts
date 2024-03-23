@@ -7,8 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AccountModule } from '../account/account.module';
 import { StoresComponent } from './stores/stores.component';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 @NgModule({
@@ -19,7 +19,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     CarouselModule,
     AccountModule,
-    LeafletModule,
     FormsModule,
     ReactiveFormsModule,
   ],
