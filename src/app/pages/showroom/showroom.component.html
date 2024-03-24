@@ -1,23 +1,51 @@
 <app-nav-default [variant]="['light', 'transparent']"></app-nav-default>
-<section class="" id="showroom">
+<section class="" id="showroom" (window:scroll)="windowScroll()">
     
-    <div id="3dshowroom" style="height: 100vb; width: 100vw;"></div>
+    <div id="showroomCar" style="height: 100vb; width: 100vw;">
+        <div  class="w-100 h-100 bg-black position-absolute z-3 d-flex justify-content-center align-items-center" style="top: 0; left: 0;" id="loadingDiv">
+            <div class="loader">
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+            </div>
+        </div>>
+    </div>
 
     <div class="section position-relative">
 
-        <div class="container carOptions z-3">
+        <div class="container carOptions z-1" id="carOptionsId">
             <div class="row p-2 rounded-pill bg-white cardOptionsItems">
-                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 px-3 border-end cardOptionsItem">
-                    <span>Cavalos de Potencia</span>
-                    <i class="bi bi-arrow-down-short fs-4"></i>
+                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center border-end my-2 cardOptionsItem">
+                    <span class="position-absolute z-2 ps-3">Tipo de Motor</span>
+                    <select class="form-select p-3 z-3 bg-transparent" aria-label="" id="selectMotor">
+                        <option value="0" selected></option>
+                        <option value="1">Combustão</option>
+                        <option value="2">Híbrido</option>
+                        <option value="3">Elétrico</option>
+                    </select>
                 </div>
-                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 px-3 border-end cardOptionsItem">
-                    <span>Tipo de Cambio</span>
-                    <i class="bi bi-arrow-down-short fs-4"></i>
+                
+                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 border-end cardOptionsItem">
+                    <span class="position-absolute z-2">Tipo de Cambio</span>
+                    <select class="form-select p-3 z-3 bg-transparent w-100 bg-danger" aria-label="" id="selectCambio">      
+                        <option value="0" selected></option>
+                        <option value="1">Manual</option>
+                        <option value="2">Automático</option>
+                        <option value="3">Sequencial</option>
+                    </select>
                 </div>
-                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 px-3 border-end cardOptionsItem">
-                    <span>Quilometragem</span>
-                    <i class="bi bi-arrow-down-short fs-4"></i>
+                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 border-end cardOptionsItem">
+                    <span class="position-absolute z-2">Quilometragem</span>
+                    <select class="form-select p-3 z-3 bg-transparent" aria-label="" id="selectKm">
+                        <option value="0" selected></option>
+                        <option value="1">0 km</option>
+                        <option value="2">Semi-usado</option>
+                        <option value="3">Usado</option>
+                    </select>
                 </div>
                 <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 px-3 cardOptionsItem position-relative">
                     <input type="text" id="searchInput" placeholder="Pesquisar...">
@@ -29,4 +57,4 @@
         <h1>SLA PORRA</h1>
     </div>
 </section>
-<app-cube-test></app-cube-test>
+<app-cube-test (isLoading)="showLoader($event)" [scrolldown]="this.scrollDown" ></app-cube-test>

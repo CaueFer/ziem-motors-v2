@@ -1,4 +1,4 @@
-import { Component, NgZone, afterNextRender } from '@angular/core';
+import { Component, EventEmitter, Input, NgZone, Output, afterNextRender } from '@angular/core';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as TWEEN from '@tweenjs/tween.js';
@@ -15,64 +15,116 @@ import { VOXLoader } from 'three/examples/jsm/loaders/VOXLoader';
 })
 
 export class CubeTestComponent {
+  @Output() isLoading = new EventEmitter<boolean>();
+  isScrolled: boolean = false;
+
+  @Input()
+  set scrolldown(value: boolean) {
+    //console.log('Novo valor de scrolldown:', value);
+
+    this.scrollDownAnimation(value);
+  }
+  private executeNow: boolean = false;
+
+  public renderer: THREE.WebGLRenderer;
+  public camera: THREE.PerspectiveCamera;
+  public scene: THREE.Scene;
+  public orbitControls: OrbitControls;
 
   constructor(){
-     const renderer = new THREE.WebGLRenderer({ antialias: true });
+    this.renderer = new THREE.WebGLRenderer({ antialias: true });
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    this.camera = new THREE.PerspectiveCamera(70, width / height, 0.01, 15);
+    this.scene = new THREE.Scene();
+    this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
 
     afterNextRender(() => {
       const width = window.innerWidth;
       const height = window.innerHeight;
 
       // RENDER
-      renderer.setSize(width, height);
-      renderer.shadowMap.enabled = true;
+      this.renderer.setSize(width, height);
+      this.renderer.shadowMap.enabled = true;
 
-      const parentEl = document.getElementById('3dshowroom');
+      const parentEl = document.getElementById('showroomCar');
       if (parentEl) {
-        var rendererDomElement = renderer.domElement;
+        var rendererDomElement = this.renderer.domElement;
         
         if (parentEl.firstChild) {
             parentEl.insertBefore(rendererDomElement, parentEl.firstChild);
         } else {
             parentEl.appendChild(rendererDomElement);
         }
-    }
+      }
   
       // CAMERA 
-      const camera = new THREE.PerspectiveCamera(70, width / height, 0.01, 15);
-      camera.position.set(0, 1, 5);
-  
-      const scene = new THREE.Scene();
-
+      this.camera.position.set(0, 5, 0);
+      this.camera.lookAt(0, 1, 0);
       const axesHelper = new THREE.AxesHelper(5);
       //scene.add(axesHelper);
 
-      const orbitControls = new OrbitControls(camera, renderer.domElement);
-      orbitControls.update();
-      orbitControls.minDistance = 3;
-      orbitControls.maxDistance = 6.5;
-      orbitControls.enablePan = false;
+      this.orbitControls.update();
+      this.orbitControls.minDistance = 3;
+      this.orbitControls.maxDistance = 6.5;
+      this.orbitControls.enablePan = false;
+      this.orbitControls.enableZoom = false;
 
       window.addEventListener('mouseup', (event) => {
-        const mouseWithinRenderer = renderer.domElement.contains(event.target as Node);
+        const mouseWithinRenderer = this.renderer.domElement.contains(event.target as Node);
 
         if (mouseWithinRenderer) {
-          const startPosition = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
-          const targetPosition = { x: 0, y: 1, z: 5 };
-      
-          // Cria uma nova animação Tween
-          new TWEEN.Tween(startPosition)
-            .to(targetPosition, 1000) // TEMPO 1000ms
-            .easing(TWEEN.Easing.Quadratic.InOut) // TIPO DE TRANSICAO
-            .onUpdate(() => {
-              camera.position.set(startPosition.x, startPosition.y, startPosition.z);
-              camera.lookAt(0, 1, 0);
-              orbitControls.update(); 
-            })
-            .start(); // Inicia a animação
+
+          const startPosition = { x: this.camera.position.x, y: this.camera.position.y, z: this.camera.position.z };
+          if(!this.isScrolled){
+            const targetPosition = { x: 0.00, y: 1.00, z: 4.00 };
+        
+            new TWEEN.Tween(startPosition)
+              .to(targetPosition, 1000) 
+              .easing(TWEEN.Easing.Quadratic.InOut) 
+              .onUpdate(() => {
+                this.camera.position.set(startPosition.x, startPosition.y, startPosition.z);
+                this.orbitControls.target.set(0, 1, 0);
+                this.orbitControls.update();
+              })
+              .start(); 
+          } else {
+            const endPosition1 = { x: -4, y: 1.00, z: 1 };
+            
+            new TWEEN.Tween(startPosition)
+              .to(endPosition1, 1000)
+              .easing(TWEEN.Easing.Quadratic.InOut)
+              .onUpdate(() => {
+                this.camera.position.set(startPosition.x, startPosition.y, startPosition.z);
+                this.orbitControls.target.set(0, 1, 0);
+                this.orbitControls.update();
+              })
+              .start();
+          }
+  
         }
       });
 
+      window.addEventListener("keydown", (event) => {
+        if (event.key === 'Shift') {
+          console.log(event.key)
+          if(this.orbitControls){
+            this.orbitControls.enableZoom = true;
+            this.orbitControls.enableRotate = true;
+            window.scrollTo({ left: 0, behavior: 'smooth' });     
+          }
+        }
+      });
+
+      window.addEventListener("keyup", (event) => {
+        if (event.key === 'Shift') {
+          if(this.orbitControls){
+            this.orbitControls.enableZoom = false;
+          }
+        }
+      });
 
       // LUZ 
       const spotLightCenter = new THREE.SpotLight(0xffffff, 2);
@@ -83,21 +135,20 @@ export class CubeTestComponent {
       spotLightCenter.decay = 1; // Atenuação da luz com a distância
       spotLightCenter.distance = 10; // Distância máxima que a luz alcança
       spotLightCenter.target.position.set(0, 1, 0); // Define o alvo da luz
-      scene.add(spotLightCenter);
+      this.scene.add(spotLightCenter);
 
       const spotLightHelper = new THREE.SpotLightHelper(spotLightCenter);
       //scene.add(spotLightHelper);
 
       const spotLightFollowCamera = new THREE.SpotLight(0xff0000, 1);
-      spotLightFollowCamera.position.copy(camera.position);
-      spotLightFollowCamera.position.z += 2;
+      spotLightFollowCamera.position.set(0, 1, 7);
       spotLightFollowCamera.castShadow = true;
       spotLightFollowCamera.angle = THREE.MathUtils.degToRad(15); 
       spotLightFollowCamera.penumbra = 0.5; 
       spotLightFollowCamera.decay = 1; 
       spotLightFollowCamera.distance = 15;
       spotLightFollowCamera.target.position.set(0, 1, 0); 
-      scene.add(spotLightFollowCamera);
+      this.scene.add(spotLightFollowCamera);
 
       const spotLitHelper = new THREE.SpotLightHelper(spotLightFollowCamera);
       //scene.add(spotLitHelper);
@@ -109,7 +160,7 @@ export class CubeTestComponent {
       const ground = new THREE.Mesh(groundGeometry, groundMaterial);
       ground.rotation.x = -Math.PI / 2; // ROTACIONA 90 graus
       ground.receiveShadow = true;
-      scene.add(ground);
+      this.scene.add(ground);
 
 
       // LOADER DO MODELO 3D
@@ -120,24 +171,45 @@ export class CubeTestComponent {
         gltfScene.scene.position.set(0, 0.65, 0);
         gltfScene.scene.receiveShadow = true;
 
-        scene.add(gltfScene.scene);
+        this.scene.add(gltfScene.scene);
+
+         // ANIMAO ENTRADA
+         
+        setTimeout(() =>{
+          this.isLoading.emit(false);
+
+          const startPosition = { x: 0, y: 5, z: 0 };
+          const endPosition = { x: 0.00, y: 1.00, z: 4 }; 
+          new TWEEN.Tween(startPosition)
+              .to(endPosition, 2000)
+              .easing(TWEEN.Easing.Quadratic.InOut)
+              .onUpdate(() => {
+                this.camera.position.set(startPosition.x, startPosition.y, startPosition.z);
+                this.orbitControls.target.set(0, 1, 0);
+                this.orbitControls.update();
+              })
+              .start();
+        }, 1500)
       });
-  
+      
+      // ANIMACOES GERAIS
+
       const animate = () => {
         const minY = 1;
-        if (camera.position.y <= minY) camera.position.y = minY;
+        if (this.camera.position.y <= minY) this.camera.position.y = minY;
 
-        // ANIMAR AQUI
+        //console.log(this.camera.getWorldDirection(new THREE.Vector3()));
+        //console.log(this.camera.position.x, this.camera.position.y, this.camera.position.z);
 
         requestAnimationFrame(animate);
         TWEEN.update();
-        renderer.render(scene, camera);
+        this.renderer.render(this.scene, this.camera);
       };
 
-       const resizeTela = () =>{
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight)
+      const resizeTela = () =>{
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(window.innerWidth, window.innerHeight)
       };
 
       animate();
@@ -148,15 +220,52 @@ export class CubeTestComponent {
 
       window.onbeforeunload = () => {
 
-        if (renderer) {
-          renderer.dispose();
+        if (this.renderer) {
+          this.renderer.dispose();
         }
-        if (scene) {
-          scene.remove();
+        if (this.scene) {
+          this.scene.remove();
         }
       };
+
     });
+  };
 
-  }
+  private scrollDownAnimation(startAnimation: boolean): void {
 
-} 
+    if(this.executeNow){
+      if(startAnimation){
+        this.isScrolled = true;
+
+        const startPosition1 = { x: this.camera.position.x, y: this.camera.position.y, z: this.camera.position.z };
+        const endPosition1 = { x: -4, y: 1.00, z: 1 };
+        
+        const tween1 = new TWEEN.Tween(startPosition1)
+          .to(endPosition1, 1000)
+          .easing(TWEEN.Easing.Quadratic.InOut)
+          .onUpdate(() => {
+            this.camera.position.set(startPosition1.x, startPosition1.y, startPosition1.z);
+            this.orbitControls.target.set(0, 1, 0);
+            this.orbitControls.update();
+          });
+        tween1.start();
+      } else {
+        this.isScrolled = false;
+
+        const startPosition = { x: this.camera.position.x, y: this.camera.position.y, z: this.camera.position.z };
+        const endPosition = { x: 0, y: 1, z: 4 };
+        new TWEEN.Tween(startPosition)
+          .to(endPosition, 2000)
+          .easing(TWEEN.Easing.Quadratic.InOut)
+          .onUpdate(() => {
+            this.camera.position.set(startPosition.x, startPosition.y, startPosition.z);
+            this.orbitControls.target.set(0, 1, 0);
+            this.orbitControls.update();
+          })
+          .start();
+      };
+    } else this.executeNow = true;
+
+  };
+
+}
