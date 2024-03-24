@@ -10,7 +10,7 @@ export class NavDefaultComponent {
   currentSection:any = 'home';
   isSticky: boolean = false;
 
-  @Input  () variant: string = '';
+  @Input  () variant: string[] = [];
 
 
   constructor() { }

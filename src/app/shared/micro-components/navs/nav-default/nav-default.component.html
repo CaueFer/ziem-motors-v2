@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navigation fixed-top sticky" (window:scroll)="windowScroll()" id="navbar" [ngClass]="{'dark': variant === 'dark', 'slow': variant === 'slow'}">
+<nav class="navbar navbar-expand-lg navigation fixed-top sticky" (window:scroll)="windowScroll()" id="navbar" [ngClass]="{'dark': variant[0] === 'dark', 'slow': variant[1] === 'slow', 'transparent': variant[1] === 'transparent'}">
     <div class="container">
         <a class="navbar-logo d-flex " routerLink="/">
-            <img [src]="isSticky || variant === 'dark' ? 'assets/images/logos/logoCar-black.png' : 'assets/images/logos/logoCar-white.png'" alt="logo"  height="40px" style="max-width: 140px;">
+            <img [src]="isSticky || variant[0] === 'dark' ? 'assets/images/logos/logoCar-black.png' : 'assets/images/logos/logoCar-white.png'" alt="logo"  height="40px" style="max-width: 140px;">
         </a>
 
         <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item" data-toggle="collapse"
@@ -16,7 +16,7 @@
                         [ngClass]="{'active':currentSection === 'home'}">Home</a>
                 </li>
                 <li class="nav-item me-3">
-                    <a class="nav-link" href="javascript: void(0);" routerLink=""
+                    <a class="nav-link" href="javascript: void(0);" routerLink="/showroom"
                         [ngClass]="{'active':currentSection === 'beneficios'}">Showroom</a>
                 </li>
                 <li class="nav-item me-3">

@@ -18,23 +18,6 @@
   }
 }
 
-#navbar.dark{
-  a{  
-    color: black;
-  }
-}
-
-#navbar.nav-sticky.slow{
-  background-color: transparent;
-
-
-  a{  
-    color: black;
-    transition: color 0s ease .3s;
-  }
-
-}
-
 #navbar.nav-sticky{
   top: 0;
   padding: 20px 10px;
@@ -47,6 +30,33 @@
   }
 }
 
+  // CUSTOM STYLES NAVS
+
+  #navbar {
+
+    &.nav-sticky.transparent{
+      background-color: transparent;
+
+    }
+
+    &.nav-sticky.slow {
+      background-color: transparent;
+
+      a{  
+        color: black;
+        transition: color 0s ease .3s;
+      }
+    }
+
+    &.dark{
+      a{  
+        color: black;
+      }
+    }
+  }
+
+
+  // NAV CUSTOM LINK & DROPDOWNS
 .nav-tabs,.nav-pills {
     > li {
         > a {
@@ -98,7 +108,6 @@
 
 
   
-  
   // vertical nav
   
   .vertical-nav{
@@ -113,3 +122,4 @@
         }
     }
   }
+
