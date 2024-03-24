@@ -1,0 +1,28 @@
+.carOptions{
+    position: absolute;
+
+    margin: 0 auto;
+
+    top: -36px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .cardOptionsItems{
+        box-shadow:  2px 2px 0px #d3d3d3;
+
+        .cardOptionsItem{
+            cursor: pointer;
+        }
+    }
+}
+
+#searchInput{
+    outline: none;
+    border: none;
+
+    &::placeholder{
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        color: black;
+    }
+}

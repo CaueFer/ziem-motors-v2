@@ -15,19 +15,28 @@ import { VOXLoader } from 'three/examples/jsm/loaders/VOXLoader';
 })
 
 export class CubeTestComponent {
-  private renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer;
 
   constructor(){
-    this.renderer = new THREE.WebGLRenderer({ antialias: true });
+     const renderer = new THREE.WebGLRenderer({ antialias: true });
 
     afterNextRender(() => {
       const width = window.innerWidth;
       const height = window.innerHeight;
 
       // RENDER
-      this.renderer.setSize(width, height);
-      this.renderer.shadowMap.enabled = true;
-      document.body.appendChild(this.renderer.domElement);
+      renderer.setSize(width, height);
+      renderer.shadowMap.enabled = true;
+
+      const parentEl = document.getElementById('3dshowroom');
+      if (parentEl) {
+        var rendererDomElement = renderer.domElement;
+        
+        if (parentEl.firstChild) {
+            parentEl.insertBefore(rendererDomElement, parentEl.firstChild);
+        } else {
+            parentEl.appendChild(rendererDomElement);
+        }
+    }
   
       // CAMERA 
       const camera = new THREE.PerspectiveCamera(70, width / height, 0.01, 15);
@@ -38,14 +47,14 @@ export class CubeTestComponent {
       const axesHelper = new THREE.AxesHelper(5);
       //scene.add(axesHelper);
 
-      const orbitControls = new OrbitControls(camera, this.renderer.domElement);
+      const orbitControls = new OrbitControls(camera, renderer.domElement);
       orbitControls.update();
       orbitControls.minDistance = 3;
       orbitControls.maxDistance = 6.5;
       orbitControls.enablePan = false;
 
       window.addEventListener('mouseup', (event) => {
-        const mouseWithinRenderer = this.renderer.domElement.contains(event.target as Node);
+        const mouseWithinRenderer = renderer.domElement.contains(event.target as Node);
 
         if (mouseWithinRenderer) {
           const startPosition = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
@@ -122,13 +131,13 @@ export class CubeTestComponent {
 
         requestAnimationFrame(animate);
         TWEEN.update();
-        this.renderer.render(scene, camera);
+        renderer.render(scene, camera);
       };
 
        const resizeTela = () =>{
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-        this.renderer.setSize(window.innerWidth, window.innerHeight)
+        renderer.setSize(window.innerWidth, window.innerHeight)
       };
 
       animate();
@@ -137,7 +146,17 @@ export class CubeTestComponent {
         resizeTela();
       });
 
+      window.onbeforeunload = () => {
+
+        if (renderer) {
+          renderer.dispose();
+        }
+        if (scene) {
+          scene.remove();
+        }
+      };
     });
-    
+
   }
+
 } 

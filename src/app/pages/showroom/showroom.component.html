@@ -1,8 +1,32 @@
 <app-nav-default [variant]="['light', 'transparent']"></app-nav-default>
 <section class="" id="showroom">
-    <div class="container">
-        <div class="3dCad">
-            <app-cube-test></app-cube-test>
+    
+    <div id="3dshowroom" style="height: 100vb; width: 100vw;"></div>
+
+    <div class="section position-relative">
+
+        <div class="container carOptions z-3">
+            <div class="row p-2 rounded-pill bg-white cardOptionsItems">
+                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 px-3 border-end cardOptionsItem">
+                    <span>Cavalos de Potencia</span>
+                    <i class="bi bi-arrow-down-short fs-4"></i>
+                </div>
+                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 px-3 border-end cardOptionsItem">
+                    <span>Tipo de Cambio</span>
+                    <i class="bi bi-arrow-down-short fs-4"></i>
+                </div>
+                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 px-3 border-end cardOptionsItem">
+                    <span>Quilometragem</span>
+                    <i class="bi bi-arrow-down-short fs-4"></i>
+                </div>
+                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 px-3 cardOptionsItem position-relative">
+                    <input type="text" id="searchInput" placeholder="Pesquisar...">
+                    <span class="rounded-circle bg-primary d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; font-size: 18px;"><i class="bi bi-search text-white"></i></span>
+                </div>
+            </div>
         </div>
+
+        <h1>SLA PORRA</h1>
     </div>
 </section>
+<app-cube-test></app-cube-test>
