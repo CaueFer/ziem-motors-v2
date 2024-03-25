@@ -215,3 +215,19 @@
         animation-delay: -10s;
        }
 }
+
+.cardCarros{
+
+    .card {
+        transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+
+        .cardItem{
+            background-color: transparent;
+        }
+
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
+   
+}

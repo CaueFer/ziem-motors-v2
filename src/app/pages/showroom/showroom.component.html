@@ -43,7 +43,7 @@
                     <select class="form-select p-3 z-3 bg-transparent" aria-label="" id="selectKm">
                         <option value="0" selected></option>
                         <option value="1">0 km</option>
-                        <option value="2">Semi-usado</option>
+                        <option value="2">Semi-novo</option>
                         <option value="3">Usado</option>
                     </select>
                 </div>
@@ -54,7 +54,82 @@
             </div>
         </div>
 
-        <h1>SLA PORRA</h1>
+        <section class="section">
+            <div class="container">       
+                <h1>Encontre seu carro dos sonhos</h1>
+                <p>Descubra o poder da liberdade sobre quatro rodas na nossa loja de carros - onde os sonhos ganham velocidade e a jornada se torna uma aventura!</p>
+
+
+                <div class="cardCarros">
+                    <div class="row gap-3">
+                        <div class="card p-4" style="width: 18rem;">
+                            <h5 class="text-center justify-content-center align-items-center m-0">Porsche Carrera</h5>
+                            <div class="cardImg w-100 d-flex justify-content-center" style="height: 180px;">
+                                <img src="assets/images/imgCarros/porsche-718/esquerda.png" class="card-img-top py-5 object-fit-contain" alt="...">
+                            </div>
+                            <div class="card-body row">
+                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
+                                    <i class="bi bi-fuel-pump fs-5"></i>
+                                    <span style="font-size: 13px;">Combustão</span>
+                                </div>
+                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
+                                    <i class="bi bi-tools fs-5"></i>
+                                    <span style="font-size: 13px;">Manual</span>
+                                </div>
+                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
+                                    <i class="bi bi-speedometer fs-5"></i>
+                                    <span class="" style="font-size: 13px;">Semi-novo</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card p-4" style="width: 18rem;">
+                            <h5 class="text-center justify-content-center align-items-center m-0">Lambo Huracan</h5>
+                            <div class="cardImg w-100 d-flex justify-content-center" style="height: 180px;">
+                                <img src="assets/images/imgCarros/lambo-huracan/esquerda.png" class="card-img-top py-5 object-fit-contain" alt="...">
+                            </div>
+                            <div class="card-body row">
+                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
+                                    <i class="bi bi-fuel-pump fs-5"></i>
+                                    <span style="font-size: 13px;">Combustão</span>
+                                </div>
+                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
+                                    <i class="bi bi-tools fs-5"></i>
+                                    <span style="font-size: 13px;">Manual</span>
+                                </div>
+                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
+                                    <i class="bi bi-speedometer fs-5"></i>
+                                    <span class="" style="font-size: 13px;">Novo</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card p-4" style="width: 18rem;">
+                            <h5 class="text-center justify-content-center align-items-center m-0">Mclaren GT</h5>
+                            <div class="cardImg w-100 d-flex justify-content-center" style="height: 180px;">
+                                <img src="assets/images/imgCarros/mclaren-gt/esquerda.png" class="card-img-top py-5 object-fit-contain" alt="...">
+                            </div>
+                            <div class="card-body row">
+                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
+                                    <i class="bi bi-fuel-pump fs-5"></i>
+                                    <span style="font-size: 13px;">Combustão</span>
+                                </div>
+                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
+                                    <i class="bi bi-tools fs-5"></i>
+                                    <span style="font-size: 13px;">Manual</span>
+                                </div>
+                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
+                                    <i class="bi bi-speedometer fs-5"></i>
+                                    <span class="" style="font-size: 13px;">Novo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
     </div>
 </section>
 <app-cube-test (isLoading)="showLoader($event)" [scrolldown]="this.scrollDown" ></app-cube-test>
+<app-footer-default/>
