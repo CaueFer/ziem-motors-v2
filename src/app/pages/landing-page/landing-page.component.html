@@ -9,12 +9,24 @@
     </owl-carousel-o>
 
     <div class="container features d-flex flex-column">
-      <div class="text d-flex flex-column">
-        <h1 class="fw-bold">Nossa empresa traz exclusividade e luxo aos nossos clientes</h1>
-        <h4>Todos os carros são verificados e autenticados pelas marcas originais.</h4>
+      <div class="text row d-flex flex-row">
+        <div class="col">
+            <h1 class="fw-bold pt-3 ps-3" style="font-size: 56px;">PREMIUM CARS</h1>
+            <p class="pt-5 pb-3 ps-3 fs-3 m-0">Exclusividade e luxo aos nossos clientes</p>
+            <p class="pb-4 ps-3 fs-3 m-0">Todos os carros são verificados e autenticados pelas marcas originais.</p>
+            
+            <hr>
+
+            <div class="btnHome ps-3 pt-4">
+                <button type="button" class="btn btn-dark px-4 py-3 fs-4">Ver carros.</button>
+            </div>
+        </div>
+        <div class="col position-relative" style="height: 470px; width: 50%;">
+            <img src="assets/images/imgCarros/landing2.jpg" class="object-fit-cover w-100 h-100" alt="carImg">
+        </div>
       </div>
 
-      <div class="carouselMarcas row py-5 smoothScroll">
+      <div class="carouselMarcas row py-5 my-5 smoothScroll">
         <owl-carousel-o [options]="brandsOption" class="events navs-carousel">
           <ng-template carouselSlide>
               <div class="item">
@@ -73,6 +85,24 @@
               </div>
           </ng-template>
       </owl-carousel-o>
+      </div>
+
+      <div class="text row d-flex flex-row">
+         <div class="col position-relative" style="height: 470px; width: 50%;">
+            <img src="assets/images/imgCarros/landing2.jpg" class="object-fit-cover w-100 h-100" alt="carImg">
+        </div>
+
+        <div class="col">
+            <h1 class="fw-bold pt-3 ps-3 text-end" style="font-size: 56px;">FIND CARS</h1>
+            <p class="pt-5 pb-3 ps-3 fs-3 m-0 text-end">Utilize nossa plataforma FIND CARS para encontrar a loja mais perto de você</p>
+            
+            <hr>
+
+            <div class="btnHome ps-3 pt-4 d-flex justify-content-end">
+                <button type="button" class="btn btn-dark px-4 py-3 fs-4">Encontrar.</button>
+            </div>
+        </div>
+       
       </div>
     </div>
   </section>
