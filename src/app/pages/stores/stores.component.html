@@ -2,7 +2,7 @@
 <section class="section" id="mapSection">
 
     <div class="container  d-flex">
-        <div class="formLojas col-4 px-3">
+        <div class="formLojas col-5 px-3">
             <form [formGroup]="cityForm">
                 <span class="fs-5 tex-black">Cidade</span>
                 <div class="input-group dropdown">
@@ -15,6 +15,9 @@
             </form>
 
             <span class="fs-5 px-2" >Nenhum encontrado.</span>
+        </div>
+        <div class="formLojas col-7 px-3 position-relative" style="height: 450px;">
+            <app-map [selectedCity]="selectedCity" [newCenter]="selectedCityLoc"></app-map>
         </div>
     </div>  
 </section>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeonameService } from '../../core/services/geoname.service';
+import { LatLng, latLng } from 'leaflet';
 
 
 @Component({
@@ -12,8 +13,9 @@ export class StoresComponent {
 
   inputValue: string = '';
   selectedCity: string = '';
+  selectedCityLoc: LatLng = latLng(-23.5615,-46.6328);
   returnedCitys: string[] = [];
-  locations: string[] = [];
+  locations: LatLng[]  = [];
   cityForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private _geonameService: GeonameService) {
@@ -36,7 +38,7 @@ export class StoresComponent {
 
     if(this.inputValue.length > 1 && this.cityForm.controls['cityName'].valid){
       this._geonameService.getCities(this.inputValue)
-      .subscribe((data: { name: string, location: string }[]) => {
+      .subscribe((data: { name: string, location: LatLng }[]) => {
         this.returnedCitys = data.map(city => city.name);
         this.locations = data.map(city => city.location);
       });
@@ -59,8 +61,9 @@ export class StoresComponent {
   
         
         if (cityLocation) {
-          const [lat, lng] = cityLocation.split(',').map(coord => Number(coord.trim()));
-          console.log(lat, lng)
+          this.selectedCity = newValue;
+          //console.log(cityLocation)
+          this.selectedCityLoc = latLng(cityLocation);
 
         } else {
           console.error(`Não foi possível encontrar a localização de ${newValue}`);

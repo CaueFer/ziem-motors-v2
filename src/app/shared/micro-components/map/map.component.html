@@ -1,0 +1,10 @@
+<div style="" id="map" class="w-100 h-100"
+     leaflet 
+     [leafletOptions]="options"
+     [leafletLayersControl]="layersControl"
+     [(leafletCenter)]="newCenter">
+
+     <div *ngIf="selectedCity === 'joinville, sc'" [leafletLayers]="layerJvll"></div>
+     <div *ngIf="selectedCity === 'curitiba, pr'" [leafletLayers]="layerCwb"></div>
+     <div *ngIf="selectedCity === 'sao-paulo, sp'" [leafletLayers]="layerSP"></div>
+</div>

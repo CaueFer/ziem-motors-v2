@@ -9,6 +9,8 @@ import { NavDefaultComponent } from './micro-components/navs/nav-default/nav-def
 import { FooterDefaultComponent } from './micro-components/footers/footer-default/footer-default.component';
 import { MapComponent } from './micro-components/map/map.component';
 import { CubeTestComponent } from './micro-components/3d/cube-test/cube-test.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { CubeTestComponent } from './micro-components/3d/cube-test/cube-test.com
     ScrollToModule,
     CarouselModule,
     RouterLink,
+    LeafletModule,
+    ReactiveFormsModule,
   ],
   providers: [
     ScrollToService,
