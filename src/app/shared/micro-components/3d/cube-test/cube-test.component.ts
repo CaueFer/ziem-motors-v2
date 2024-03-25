@@ -42,7 +42,7 @@ export class CubeTestComponent {
     this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
 
     afterNextRender(() => {
-      const width = window.innerWidth;
+      const width = (window.innerWidth-15);
       const height = window.innerHeight;
 
       // RENDER
@@ -109,7 +109,7 @@ export class CubeTestComponent {
 
       window.addEventListener("keydown", (event) => {
         if (event.key === 'Shift') {
-          console.log(event.key)
+          //console.log(event.key)
           if(this.orbitControls){
             this.orbitControls.enableZoom = true;
             this.orbitControls.enableRotate = true;

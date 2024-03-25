@@ -17,3 +17,20 @@ $primary: #556ee6;
 * {
     font-family: 'Poppins', sans-serif;
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .skeleton-loader.pulse {
+        animation: _ngcontent-ng-c279018362_pulse 1.5s cubic-bezier(.4,0,.2,1) infinite!important;
+        animation-delay: .5s!important;
+    
+    }
+    .skeleton-loader.progress-dark{
+        
+    }
+    .skeleton-loader.custom-content{
+
+    }
+    .skeleton-loader.progress:before {
+
+    }
+  }

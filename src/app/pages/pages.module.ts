@@ -9,6 +9,7 @@ import { AccountModule } from '../account/account.module';
 import { StoresComponent } from './stores/stores.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowroomComponent } from './showroom/showroom.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ShowroomComponent } from './showroom/showroom.component';
     AccountModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxSkeletonLoaderModule,
   ],
   providers: [
 

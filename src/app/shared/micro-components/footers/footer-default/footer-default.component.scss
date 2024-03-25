@@ -6,12 +6,17 @@
     position: relative;
     bottom: 0;
     width: 100%;
-    padding: 20px;
-    background-color: rgb(255, 238, 220);
+    padding: 4px 20px;
+    background-color: rgb(255, 255, 255);
     color: black;
 
     @media (max-width: 991.98px) {
         left: 0;
+    }
+
+    .container-fluid{
+        padding: 20px 0px;
+        border-top: 1px solid rgb(117, 117, 117);
     }
 }
 
