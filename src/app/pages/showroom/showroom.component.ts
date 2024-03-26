@@ -1,5 +1,5 @@
+import { ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-showroom',
   templateUrl: './showroom.component.html',
@@ -21,10 +21,11 @@ export class ShowroomComponent {
     }, 1500)
   }
 
-  constructor(){
+  constructor(private viewportScroller: ViewportScroller){
   }
 
   ngOnInit(){
+    this.viewportScroller.scrollToPosition([0, 0]);
 
     const selects = document.querySelectorAll('.form-select');
 

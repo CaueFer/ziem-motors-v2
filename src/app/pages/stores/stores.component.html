@@ -14,7 +14,7 @@
                 </div>
             </form>
 
-            <span class="fs-5 px-2" >Nenhum encontrado.</span>
+            <span class="fs-5 px-2" *ngIf="selectedCity !== ''">Nenhuma loja nesta cidade.</span>
         </div>
         <div class="formLojas col-7 px-3 position-relative" style="height: 450px;">
             <app-map [selectedCity]="selectedCity" [newCenter]="selectedCityLoc"></app-map>

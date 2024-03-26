@@ -18,15 +18,15 @@
             <hr>
 
             <div class="btnHome ps-3 pt-4">
-                <button type="button" class="btn btn-dark px-4 py-3 fs-4">Ver carros.</button>
+                <button type="button" class="btn btn-dark px-4 py-3 fs-4"  routerLink="/showroom">Ver carros</button>
             </div>
         </div>
         <div class="col position-relative" style="height: 470px; width: 50%;">
-            <img src="assets/images/imgCarros/landing2.jpg" class="object-fit-cover w-100 h-100" alt="carImg">
+            <img src="assets/images/landing/landing2.jpg" class="object-fit-cover w-100 h-100 position-absolute" alt="carImg" style="top: 80px;left: 60px;">
         </div>
       </div>
 
-      <div class="carouselMarcas row py-5 my-5 smoothScroll">
+      <div class="carouselMarcas row my-5 smoothScroll" style="padding: 120px 0px">
         <owl-carousel-o [options]="brandsOption" class="events navs-carousel">
           <ng-template carouselSlide>
               <div class="item">
@@ -89,7 +89,7 @@
 
       <div class="text row d-flex flex-row">
          <div class="col position-relative" style="height: 470px; width: 50%;">
-            <img src="assets/images/imgCarros/landing2.jpg" class="object-fit-cover w-100 h-100" alt="carImg">
+            <img src="assets/images/landing/findCar.png" class="object-fit-cover w-100 h-100 position-absolute" alt="carImg" style="top: -60px;left: -40px;">
         </div>
 
         <div class="col">
@@ -99,7 +99,7 @@
             <hr>
 
             <div class="btnHome ps-3 pt-4 d-flex justify-content-end">
-                <button type="button" class="btn btn-dark px-4 py-3 fs-4">Encontrar.</button>
+                <button type="button" class="btn btn-dark px-4 py-3 fs-4" routerLink="/stores">Encontrar</button>
             </div>
         </div>
        
