@@ -1,22 +1,43 @@
-<app-nav-default [variant]="['dark']"></app-nav-default>
+<app-nav-default [variant]="['']" class="z-3"></app-nav-default>
 
-<section class="section" id="mapSection" style="padding-top: 120px;">
-    <div class="container  d-flex">
-        <div class="formLojas col-5 px-3">
-            <form [formGroup]="cityForm">
-                <span class="fs-5 tex-black">Cidade</span>
-                <div class="input-group dropdown">
-                    <input type="text" class="form-control col-8" aria-expanded="false" formControlName="cityName" id="cidadeInput" (input)="onInput($event)" autocomplete="off" placeholder="Digite o nome da cidaide">  
-                    <div class="dropdown-menu mt-5" [ngClass]="{ 'show': inputValue.length > 2 }">
-                        <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0">Nenhum encontrado.</span>
-                        <a class="dropdown-item text-black" *ngFor="let item of returnedCitys" (click)="onSelectCity($event)" >{{item}}</a>
-                    </div>
-                </div>
-            </form>
+<section class="section" id="mapSection" style="padding: 0px;">
 
-            <span class="fs-5 px-2" *ngIf="selectedCity !== ''">Nenhuma loja nesta cidade.</span>
+    <div class="section headerStores bg-danger position-relative" style="height: 100vh;">
+        <img src="assets/animations/gifs/mapLocation.gif" alt="">
+    </div>
+
+    <div class="container p-5 d-flex bg-dark" style="border-radius: 48px; margin-top: 80px; margin-bottom: 80px;">
+        <div class="formLojas col-5 pe-3">
+
+            <div class="upper text-white">
+                <h1 class="fw-bold py-3 text-start m-0 ">FIND CARS</h1>
+                <p class=" fs-5 m-0 text-start">Encontre a loja mais perto de você</p>
+                <form [formGroup]="cityForm" class="pt-5 pb-4 d-flex flex-row gap-3">
+                        <span class="fs-5 text-black d-flex align-items-center gap-2 text-white"><i class="bi bi-search"></i> Procurar</span>
+                        <div class="input">
+                            <input type="text" class="form-control" aria-expanded="false" formControlName="cityName" id="cidadeInput" (input)="onInput($event)" placeholder="digite o nome da cidade..." autocomplete="off" >  
+                            <div class="dropdown-menu mt-1" >
+                                <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0">Nenhum encontrado.</span>
+                                <a class="dropdown-item text-black" *ngFor="let item of returnedCitys" (click)="onSelectCity($event)" >{{item}}</a>
+                            </div>
+                        </div>
+
+                </form>
+
+                <span class="fs-5 px-2 py-3" *ngIf="selectedCity !== '' && !cidadesDisponiveis.includes(selectedCity.toLowerCase())"><i class="bi bi-emoji-tear-fill"></i> Nenhuma loja nesta cidade.</span>
+            
+            </div>
+
+            <hr class="border-white">
+            
+            <div class="lower">
+                <p class="fs-5 text-black d-flex align-items-center gap-2 pt-3 text-white"><i class="bi bi-graph-up"></i>Recomendações</p>
+                <p class="fs-6 ps-2 text-black text-white" role="button">Curitiba, PR</p>
+
+            </div>
+
         </div>
-        <div class="formLojas col-7 px-3 position-relative" style="height: 450px;">
+        <div class="formLojas col-7 ps-3 position-relative" style="height: 450px;">
             <app-map [selectedCity]="selectedCity" [newCenter]="selectedCityLoc"></app-map>
         </div>
     </div>  

@@ -1,0 +1,33 @@
+#cidadeInput{
+    outline: none;
+    box-shadow: none;
+    border: none;
+
+    border-bottom: 1px solid white;
+    border-radius: 0px;
+    background-color: transparent;
+    color: white;
+
+    width: auto;
+
+    &::placeholder{
+        color: rgba(255, 255, 255, 0.527);
+        text-align: start;
+    }
+
+    &:focus{
+        +.dropdown-menu {
+            display: block;
+        }
+    }
+}
+
+.headerStores{
+    img{
+        width: 100%; /* Ocupa toda a largura da div pai */
+        height: 100%; /* Ocupa toda a altura da div pai */
+        position: absolute; /* Para que a imagem ocupe todo o espaço da div pai */
+        top: 0; /* Alinha a imagem ao topo da div pai */
+        left: 0;
+    }
+}

@@ -18,6 +18,8 @@ export class StoresComponent {
   locations: LatLng[]  = [];
   cityForm: FormGroup;
 
+  cidadesDisponiveis: string[] = ['joinville, sc', 'curitiba, pr', 'sao paulo, sp'];
+
   constructor(private formBuilder: FormBuilder, private _geonameService: GeonameService) {
     this.cityForm = this.formBuilder.group({
       cityName: ['', Validators.required]
@@ -44,7 +46,7 @@ export class StoresComponent {
       });
 
       return;
-    }
+    } else this,this.returnedCitys.length = 0;
   }
 
   onSelectCity(event: any){
