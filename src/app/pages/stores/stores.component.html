@@ -1,12 +1,12 @@
-<app-nav-default></app-nav-default>
-<section class="section" id="mapSection">
+<app-nav-default [variant]="['dark']"></app-nav-default>
 
+<section class="section" id="mapSection" style="padding-top: 120px;">
     <div class="container  d-flex">
         <div class="formLojas col-5 px-3">
             <form [formGroup]="cityForm">
                 <span class="fs-5 tex-black">Cidade</span>
                 <div class="input-group dropdown">
-                    <input type="text" class="form-control col-8" aria-expanded="false" formControlName="cityName" id="cidadeInput" (input)="onInput($event)" autocomplete="off">  
+                    <input type="text" class="form-control col-8" aria-expanded="false" formControlName="cityName" id="cidadeInput" (input)="onInput($event)" autocomplete="off" placeholder="Digite o nome da cidaide">  
                     <div class="dropdown-menu mt-5" [ngClass]="{ 'show': inputValue.length > 2 }">
                         <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0">Nenhum encontrado.</span>
                         <a class="dropdown-item text-black" *ngFor="let item of returnedCitys" (click)="onSelectCity($event)" >{{item}}</a>
@@ -21,4 +21,5 @@
         </div>
     </div>  
 </section>
+
 <app-footer-default></app-footer-default>

@@ -42,9 +42,8 @@ export class LandingPageComponent {
       },
     },
     autoplay: true,
-    slideTransition: 'linear',  
     autoplayTimeout: 2000,
-    autoplaySpeed: 1500,
-    autoplayHoverPause: false,
+    autoplaySpeed: 1000,
+    autoplayHoverPause: true,
   }
 }
