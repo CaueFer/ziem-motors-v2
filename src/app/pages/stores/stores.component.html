@@ -2,8 +2,21 @@
 
 <section class="section" id="mapSection" style="padding: 0px;">
 
-    <div class="section headerStores bg-danger position-relative" style="height: 100vh;">
+    <div class="section headerStores bg-danger position-relative" style="height: 60vh;">
         <img src="assets/animations/gifs/mapLocation.gif" alt="">
+
+        <div class="container position-relative" style="top: 70%;">
+            <div class="storesHeaderMenu w-100 bg-white d-flex flex-row justify-content-between align-items-center p-3 " style="height: 70px;">
+               <h3 class="text-black" >FIND CAR</h3>
+               <div class=" d-flex flex-row align-items-center gap-3">
+                    <div class="input input-group fs-4">
+                        <i class="bi bi-search input-group-text"></i>
+                        <input type="text" class="form-control input" aria-expanded="false" id="cidadeInputFake" placeholder="digite o nome da cidade..." autocomplete="off">
+                    </div>
+                    <button class="btn btn-dark">Pesquisar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="container p-5 d-flex bg-dark" style="border-radius: 48px; margin-top: 80px; margin-bottom: 80px;">
@@ -12,16 +25,16 @@
             <div class="upper text-white">
                 <h1 class="fw-bold py-3 text-start m-0 ">FIND CARS</h1>
                 <p class=" fs-5 m-0 text-start">Encontre a loja mais perto de você</p>
-                <form [formGroup]="cityForm" class="pt-5 pb-4 d-flex flex-row gap-3">
-                        <span class="fs-5 text-black d-flex align-items-center gap-2 text-white"><i class="bi bi-search"></i> Procurar</span>
-                        <div class="input">
+                <form [formGroup]="cityForm" class="pt-5 pb-4 d-flex flex-column gap-3">
+                        <span class="fs-5 text-black d-flex align-items-center gap-2 text-white">Procurar</span>
+                        <div class="input input-group d-flex flex-row">
                             <input type="text" class="form-control" aria-expanded="false" formControlName="cityName" id="cidadeInput" (input)="onInput($event)" placeholder="digite o nome da cidade..." autocomplete="off" >  
-                            <div class="dropdown-menu mt-1" >
+                            <div class="dropdown-menu mt-5" id="dropdownCidadeinput">
                                 <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0">Nenhum encontrado.</span>
                                 <a class="dropdown-item text-black" *ngFor="let item of returnedCitys" (click)="onSelectCity($event)" >{{item}}</a>
                             </div>
+                            <i class="bi bi-search input-group-text" style="border-radius: 0px var(--bs-border-radius) var(--bs-border-radius) 0px;"></i>
                         </div>
-
                 </form>
 
                 <span class="fs-5 px-2 py-3" *ngIf="selectedCity !== '' && !cidadesDisponiveis.includes(selectedCity.toLowerCase())"><i class="bi bi-emoji-tear-fill"></i> Nenhuma loja nesta cidade.</span>

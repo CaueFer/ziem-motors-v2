@@ -36,23 +36,36 @@ export class StoresComponent {
   }
 
   onInput(event: any){
+    const target = document.getElementById('dropdownCidadeinput');
+    
+
     this.inputValue = event.target.value;
 
     if(this.inputValue.length > 1 && this.cityForm.controls['cityName'].valid){
+      target?.classList.add('show');
+
       this._geonameService.getCities(this.inputValue)
       .subscribe((data: { name: string, location: LatLng }[]) => {
         this.returnedCitys = data.map(city => city.name);
         this.locations = data.map(city => city.location);
       });
-
+      
       return;
-    } else this,this.returnedCitys.length = 0;
+    } else {
+      target?.classList.remove('show');
+
+      this.returnedCitys.length = 0;
+    } 
+
+
   }
 
   onSelectCity(event: any){
+    const target = document.getElementById('dropdownCidadeinput');
     const newValue = event.currentTarget.innerText;
 
     if(newValue && newValue != ''){
+      target?.classList.remove('show');
       
       const cityIndex = this.returnedCitys.findIndex(city => city === newValue);
       if (cityIndex !== -1) {
