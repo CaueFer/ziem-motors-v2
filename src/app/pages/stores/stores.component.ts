@@ -18,7 +18,7 @@ export class StoresComponent {
   locations: LatLng[]  = [];
   cityForm: FormGroup;
 
-  cidadesDisponiveis: string[] = ['joinville, sc', 'curitiba, pr', 'sao paulo, sp'];
+  cidadesDisponiveis: string[] = [];
 
   constructor(private formBuilder: FormBuilder, private _geonameService: GeonameService) {
     this.cityForm = this.formBuilder.group({
@@ -30,39 +30,56 @@ export class StoresComponent {
   ngOnInit(){
   }
 
+  eventRecepter(event: any){
+    this.cidadesDisponiveis = event;
+    console.log(this.cidadesDisponiveis);
+  }
 
   resetForms(){
     this.cityForm.reset();
   }
 
-  onInput(event: any){
+  onInput(event?: any, customCity?: string){
     const target = document.getElementById('dropdownCidadeinput');
+
+    if(event !== null){
+      this.inputValue = event.target.value;
+
+      if(this.inputValue.length > 1 && this.cityForm.controls['cityName'].valid){
+        target?.classList.add('show');
+  
+        this._geonameService.getCities(this.inputValue)
+        .subscribe((data: { name: string, location: LatLng }[]) => {
+          this.returnedCitys = data.map(city => city.name);
+          this.locations = data.map(city => city.location);
+        });
+        
+        return;
+      } else target?.classList.remove('show');
+    }
+
+    if(customCity){
+      let onlyCityName = customCity.split(',')[0].trim().toLowerCase();
+      console.log(onlyCityName)
+
+      this._geonameService.getCities(onlyCityName)
+        .subscribe((data: { name: string, location: LatLng }[]) => {
+          this.returnedCitys = data.map(city => city.name);
+          this.locations = data.map(city => city.location);
+
+          this.onSelectCity(null, customCity);
+        });
+
+    } else this.returnedCitys.length = 0;
     
-
-    this.inputValue = event.target.value;
-
-    if(this.inputValue.length > 1 && this.cityForm.controls['cityName'].valid){
-      target?.classList.add('show');
-
-      this._geonameService.getCities(this.inputValue)
-      .subscribe((data: { name: string, location: LatLng }[]) => {
-        this.returnedCitys = data.map(city => city.name);
-        this.locations = data.map(city => city.location);
-      });
-      
-      return;
-    } else {
-      target?.classList.remove('show');
-
-      this.returnedCitys.length = 0;
-    } 
-
-
   }
 
-  onSelectCity(event: any){
+  onSelectCity(event?: any, customCity?: string){
     const target = document.getElementById('dropdownCidadeinput');
-    const newValue = event.currentTarget.innerText;
+    let newValue = '';
+
+    if(event) newValue = event.currentTarget.innerText;
+    if(customCity) newValue = customCity;
 
     if(newValue && newValue != ''){
       target?.classList.remove('show');
@@ -77,9 +94,9 @@ export class StoresComponent {
         
         if (cityLocation) {
           this.selectedCity = newValue;
-          //console.log(cityLocation)
           this.selectedCityLoc = latLng(cityLocation);
 
+          //console.log(cityLocation)
         } else {
           console.error(`Não foi possível encontrar a localização de ${newValue}`);
         }

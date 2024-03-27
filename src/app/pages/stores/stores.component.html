@@ -6,15 +6,9 @@
         <img src="assets/animations/gifs/mapLocation.gif" alt="">
 
         <div class="container position-relative" style="top: 70%;">
-            <div class="storesHeaderMenu w-100 bg-white d-flex flex-row justify-content-between align-items-center p-3 " style="height: 70px;">
-               <h3 class="text-black" >FIND CAR</h3>
-               <div class=" d-flex flex-row align-items-center gap-3">
-                    <div class="input input-group fs-4">
-                        <i class="bi bi-search input-group-text"></i>
-                        <input type="text" class="form-control input" aria-expanded="false" id="cidadeInputFake" placeholder="digite o nome da cidade..." autocomplete="off">
-                    </div>
-                    <button class="btn btn-dark">Pesquisar</button>
-                </div>
+            <div class="storesHeaderMenu w-100 bg-transparent d-flex flex-column justify-content-center align-items-center p-3 text-white" style="height: 70px;">
+               <h1 class="" >A AVENTURA COMEÇA AQUI</h1>
+               <h3 >encontre seu carro dos sonhos</h3>
             </div>
         </div>
     </div>
@@ -25,9 +19,12 @@
             <div class="upper text-white">
                 <h1 class="fw-bold py-3 text-start m-0 ">FIND CARS</h1>
                 <p class=" fs-5 m-0 text-start">Encontre a loja mais perto de você</p>
-                <form [formGroup]="cityForm" class="pt-5 pb-4 d-flex flex-column gap-3">
-                        <span class="fs-5 text-black d-flex align-items-center gap-2 text-white">Procurar</span>
-                        <div class="input input-group d-flex flex-row">
+                <form [formGroup]="cityForm" class="pt-5 pb-4 d-flex flex-column gap-3" id="formGrupStores">
+                        <div class="d-flex align-items-center gap-1 text-center fs-5 text-white">
+                            <span class="">Procurar</span>
+                            <i class="bi bi-arrow-down-short fs-3 iconCenter"></i>
+                        </div>
+                        <div class="input input-group d-flex flex-row" style="width: 60%;">
                             <input type="text" class="form-control" aria-expanded="false" formControlName="cityName" id="cidadeInput" (input)="onInput($event)" placeholder="digite o nome da cidade..." autocomplete="off" >  
                             <div class="dropdown-menu mt-5" id="dropdownCidadeinput">
                                 <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0">Nenhum encontrado.</span>
@@ -37,21 +34,23 @@
                         </div>
                 </form>
 
-                <span class="fs-5 px-2 py-3" *ngIf="selectedCity !== '' && !cidadesDisponiveis.includes(selectedCity.toLowerCase())"><i class="bi bi-emoji-tear-fill"></i> Nenhuma loja nesta cidade.</span>
+                <span class="fs-5 px-2 py-3" *ngIf="selectedCity !== '' && !cidadesDisponiveis.includes(selectedCity)"><i class="bi bi-emoji-tear-fill"></i> Nenhuma loja nesta cidade.</span>
             
             </div>
 
             <hr class="border-white">
             
             <div class="lower">
-                <p class="fs-5 text-black d-flex align-items-center gap-2 pt-3 text-white"><i class="bi bi-graph-up"></i>Recomendações</p>
-                <p class="fs-6 ps-2 text-black text-white" role="button">Curitiba, PR</p>
+                <p class="fs-5 text-black d-flex align-items-center gap-1 pt-3 text-white">Recomendações <i class="bi bi-arrow-down-short fs-3 iconCenter"></i></p>
+                <p class="fs-6 ps-2 text-black text-white" role="button" (click)="onInput(null, 'Petrópolis, RJ')" ><i class="bi bi-geo-alt-fill pe-2"></i>Petrópolis, RJ</p>
+                <p class="fs-6 ps-2 text-black text-white" role="button" (click)="onInput(null, 'Joinville, SC')" ><i class="bi bi-geo-alt-fill pe-2"></i>Joinville, SC</p>
+                <p class="fs-6 ps-2 text-black text-white" role="button" (click)="onInput(null, 'Campinas, SP')" ><i class="bi bi-geo-alt-fill pe-2"></i>Campinas, SP</p>
 
             </div>
 
         </div>
         <div class="formLojas col-7 ps-3 position-relative" style="height: 450px;">
-            <app-map [selectedCity]="selectedCity" [newCenter]="selectedCityLoc"></app-map>
+            <app-map [selectedCity]="selectedCity" [newCenter]="selectedCityLoc" (temLojas)="eventRecepter($event)"></app-map>
         </div>
     </div>  
 </section>

@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, Input, PLATFORM_ID, afterNextRender } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output, PLATFORM_ID, afterNextRender } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LatLng, Layer, MapOptions, latLng, marker, tileLayer } from 'leaflet';
 
@@ -12,10 +12,12 @@ export class MapComponent {
   options!: MapOptions;
   layersControl: any; 
   layerJvll: any;
-  layerCwb: any;
-  layerSP: any;
+  layerPetro: any;
+  layerCampinas: any;
 
   private _selectedCity: string = '';
+
+  @Output() temLojas = new EventEmitter<string[]>();
 
   @Input()
   get selectedCity(): string {
@@ -53,23 +55,25 @@ export class MapComponent {
         }
       };
 
+      this.temLojas.emit(['Joinville, SC', 'Petrópolis, RJ', 'Campinas, SP']);
+
       this.layerJvll = [
         marker([ -26.2747,-48.8631 ]),
         marker([ -26.3030,-48.8427 ]),
 
       ];
-      this.layerCwb = [
-        marker([ -25.3901,-49.2975 ]),
-        marker([ -25.4294,-49.2647 ]),
-        marker([ -25.4812,-49.3236 ]),
+      this.layerPetro = [
+        marker([ -22.5082,-43.1763 ]),
+        marker([ -22.5248,-43.1987 ]),
+        marker([ -22.4952,-43.1618 ]),
       ];
-      this.layerSP = [
-        marker([ -23.5826,-46.7468 ]),
-        marker([ -23.5536,-46.5978 ]),
-        marker([ -23.4998,-46.6030 ]),
+      this.layerCampinas = [
+        marker([ -22.8959,-47.0653 ]),
+        marker([ -22.9388,-47.0641 ]),
+        marker([ -22.8022,-47.0513 ]),
       ];
     } else {
-      console.log('Tela não carregada.');
+      console.log('Tela maps não carregada.');
     }
   }
 
