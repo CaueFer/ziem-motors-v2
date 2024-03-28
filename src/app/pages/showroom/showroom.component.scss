@@ -229,5 +229,25 @@
             transform: scale(1.05);
         }
     }
+
+    .skeletonCard{
+        animation: pulse-border 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        animation-delay: 0.5s;
+
+        cursor: wait;
+    }
    
+}
+
+// KEY FRAMES
+@keyframes pulse-border {
+    0% {
+        border-color: #dde0e7; 
+    }
+    50% {
+        border-color: #eff1f6; 
+    }
+    100% {
+        border-color: #dde0e7;
+    }
 }

@@ -42,7 +42,10 @@ export class ShowroomComponent {
         });
       })
     }
+  }
 
+  getNumberArray(length: number): number[] {
+    return Array.from({ length }, (_, index) => index);
   }
 
   windowScroll() {

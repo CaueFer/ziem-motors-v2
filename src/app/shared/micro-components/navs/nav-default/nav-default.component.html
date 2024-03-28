@@ -18,11 +18,11 @@
                         [ngClass]="{'active':currentSection === 'home'}">Home</a>
                 </li>
                 <li class="nav-item me-3">
-                    <a class="nav-link" href="javascript: void(0);" routerLink="/showroom"
+                    <a class="nav-link" href="javascript: void(0);" routerLink="/showroom" [ngxScrollTo]="'showroom'"
                         [ngClass]="{'active':currentSection === 'beneficios'}">Showroom</a>
                 </li>
                 <li class="nav-item me-3">
-                    <a class="nav-link" href="javascript: void(0);" routerLink="/stores"
+                    <a class="nav-link" href="javascript: void(0);" routerLink="/stores" [ngxScrollTo]="'mapSection'"
                         [ngClass]="{'active':currentSection === 'planos'}">Lojas</a>
                 </li>
                 <li class="nav-item me-3 fs-4"> 
