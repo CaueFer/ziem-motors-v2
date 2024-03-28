@@ -6,9 +6,9 @@
         <img src="assets/animations/gifs/mapLocation.gif" alt="">
 
         <div class="container position-relative" style="top: 70%;">
-            <div class="storesHeaderMenu w-100 bg-transparent d-flex flex-column justify-content-center align-items-center p-3 text-white" style="height: 70px;">
-               <h1 class="" >A AVENTURA COMEÇA AQUI</h1>
-               <h3 >encontre seu carro dos sonhos</h3>
+            <div class="storesHeaderMenu w-100 bg-transparent d-flex flex-column justify-content-center align-items-stat p-3 text-white" style="height: auto;">
+                <h1 class="fw-bold" >Explore novos horizontes</h1>
+               <h3 class="" >Aventura aguarda por você.</h3>
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@
             </div>
 
         </div>
-        <div class="formLojas col-7 ps-3 position-relative" style="height: 450px;">
+        <div class="formLojas col-7 ps-3 position-relative" style="height: auto;">
             <app-map [selectedCity]="selectedCity" [newCenter]="selectedCityLoc" (temLojas)="eventRecepter($event)"></app-map>
         </div>
     </div>  

@@ -32,7 +32,6 @@ export class StoresComponent {
 
   eventRecepter(event: any){
     this.cidadesDisponiveis = event;
-    console.log(this.cidadesDisponiveis);
   }
 
   resetForms(){
@@ -60,7 +59,6 @@ export class StoresComponent {
 
     if(customCity){
       let onlyCityName = customCity.split(',')[0].trim().toLowerCase();
-      console.log(onlyCityName)
 
       this._geonameService.getCities(onlyCityName)
         .subscribe((data: { name: string, location: LatLng }[]) => {
