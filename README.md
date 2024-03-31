@@ -2,26 +2,22 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
 
-## Development server
+## Como usar
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Abra a pasta a qual voce deseja salvar o projetor no vscode.
+No terminal digite: git clone https://github.com/CaueFer/ziem-motors-v2.git.
 
-## Code scaffolding
+Digite `ng serve` para iniciar o servidor de desenvolvimento. Entre no link `http://localhost:4200/`. A aplicação será recarregada automaticamente.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Executando testes end-to-end
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Execute `ng test` para executar os testes unitários via [Karma](https://karma-runner.github.io).
 
-## Running unit tests
+OU
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Execute `ng e2e` para executar os testes end-to-end através de uma plataforma de sua escolha. Para usar este comando, você primeiro precisa adicionar um pacote que implementa capacidades de teste end-to-end.
 
-## Running end-to-end tests
+## Saber mais
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Visite meu portfolio para ver mais projetos como esse, [LINK].
