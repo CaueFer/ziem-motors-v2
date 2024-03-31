@@ -1,6 +1,10 @@
 # ZiemMotors
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+Projeto realizado com a ideia de desenvolver skills com Angular CLI & MongoDB com ExpressJS.
+
+- [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+- 
+- [MongoDB]((https://www.mongodb.com/docs/)) version 7.2.0.
 
 ## Como usar
 
