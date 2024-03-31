@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Como usar
 
 Abra a pasta a qual voce deseja salvar o projetor no vscode.
-No terminal digite: git clone https://github.com/CaueFer/ziem-motors-v2.git.
+No terminal digite: `git clone https://github.com/CaueFer/ziem-motors-v2.git`
 
 Digite `ng serve` para iniciar o servidor de desenvolvimento. Entre no link `http://localhost:4200/`. A aplicação será recarregada automaticamente.
 
