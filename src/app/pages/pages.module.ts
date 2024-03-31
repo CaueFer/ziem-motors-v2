@@ -10,7 +10,6 @@ import { StoresComponent } from './stores/stores.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowroomComponent } from './showroom/showroom.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { RouterModule } from '@angular/router';
 import { ScrollToModule } from '@andrei4ik/ngx-scroll-to';
 
 

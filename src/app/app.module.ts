@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { AuthInterceptor } from './core/services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     NgxSkeletonLoaderModule.forRoot(),
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

@@ -51,6 +51,12 @@ export class RegisterComponent {
     }
   }
 
+  resetForms() {
+    this.registerForm.reset();
+
+    [this.errormsg, this.successmsg, this.isSubmited] = ['', '', false];
+  }
+
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }
@@ -58,42 +64,54 @@ export class RegisterComponent {
   getInputType() {
     return this.hidePassword ? 'password' : 'text';
   }
-
-  resetForms() {
-    this.registerForm.reset();
-
-    [this.errormsg, this.successmsg, this.isSubmited] = ['', '', false];
-  }
-
-  onSubmitBtnClick() {
-    this.isButtonDisabled = true;
-    setTimeout(() => { 
-      this.isButtonDisabled = false; 
-    }, 1500);
+  
+  onInput(){
+    this.errormsg = '';
   }
 
   submitSignIn(){
+    this.isButtonDisabled = true;
+    setTimeout(() => { 
+      this.isButtonDisabled = false; 
+    }, 1000);
+
     this.isSubmited = true;
 
-    if(this.registerForm.invalid){
-
-      this.errormsg = 
-      this.f['email'].invalid && this.f['password'].invalid && this.f['passwordConfirm'].invalid ? 'Campos inválidos.' :
-      this.f['email'].invalid && this.f['password'].valid && this.f['passwordConfirm'].valid ? 'Email inválido.' :
-      this.f['email'].valid && (this.f['password'].invalid || this.f['passwordConfirm'].invalid) ? 'Senhas inválidas.' :
-        'Campos inválidos.';
+    if(this.f['email'].invalid && (this.f['password'].invalid || this.f['passwordConfirm'].invalid)){
+      this.errormsg = 'Campos inválidos.';
 
       return;
     }
 
-    if(this.f['password'].value != this.f['passwordConfirm'].value){
-      this.errormsg = 'Senhas não coIncidem.';
+    if(this.f['email'].invalid){
+      this.errormsg = 'Email inválido.';
+
+      return;
+    }
+    
+    if(this.f['password'].value === '' && this.f['passwordConfirm'].value === ''){
+      this.errormsg = 'Campo senha vazio.';
+
+      return;
+    }
+
+    if(this.f['password'].value !== this.f['passwordConfirm'].value){
+      this.errormsg = 'Senhas não coincidem.';
       this.f['password'].setErrors({ 'passwordMismatch': true });
       this.f['passwordConfirm'].setErrors({ 'passwordMismatch': true });
-      return;
-    } 
 
-    this._authService.registerUser(this.registerForm.value.email, this.registerForm.value.password);
+      return;
+    }
+    else{
+      this.errormsg = '';
+      this.f['password'].setErrors(null);
+      this.f['passwordConfirm'].setErrors(null);
+    };
+    
+
+    if(this.registerForm.valid){
+      this._authService.registerUser(this.registerForm.value.email, this.registerForm.value.password);
+    }
     
     this.isSubmited = false;
   }

@@ -33,7 +33,7 @@
                 </label>
                 <div class="input-group">
                   <input  type="email" formControlName="email" class="form-control" id="email" [placeholder]="''"
-                  [ngClass]="{ 'is-invalid': f['email'].errors && isSubmited}" />
+                  [ngClass]="{ 'is-invalid': f['email'].errors && isSubmited}"  (input)="onInput()"/>
 
                   <button class="btn btn-light ms-0 text-black" type="button" id="email-addon" (click)="resetForms()"><i class="bi bi-x"></i></button>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="input-group auth-pass-inputgroup">
                     <input [type]="getInputType()" class="form-control" formControlName="password" placeholder=""
                         [ngClass]="{ 'is-invalid': f['password'].errors && isSubmited}" aria-label="Password"
-                        aria-describedby="password-addon">
+                        aria-describedby="password-addon" (input)="onInput()">
             
                     <button class="btn btn-light ms-0" type="button" id="password-addon"
                         (click)="togglePasswordVisibility()">
@@ -60,7 +60,7 @@
                 <div class="input-group auth-pass-inputgroup">
                     <input [type]="getInputType()" class="form-control" formControlName="passwordConfirm" placeholder=""
                         [ngClass]="{ 'is-invalid': f['passwordConfirm'].errors && isSubmited}" aria-label="Password2"
-                        aria-describedby="password2-addon"> 
+                        aria-describedby="password2-addon" (input)="onInput()"> 
           
                 </div>
             </div>
@@ -79,8 +79,7 @@
                 <button 
                   class="btn btn-dark w-50 shadow-none d-flex justify-content-center" 
                   type="submit" 
-                  [disabled]="isButtonDisabled ? 'disabled' : null"
-                  (click)="onSubmitBtnClick()">
+                  [disabled]="isButtonDisabled ? 'disabled' : null">
                   <span>Avançar</span>
                 </button>
                 

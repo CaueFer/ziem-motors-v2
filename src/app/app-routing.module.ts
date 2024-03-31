@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RouteGuard } from './core/services/route.guard';
 
 const routes: Routes = [
   {path: "", loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)},
@@ -9,6 +10,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [RouteGuard]
 })
 export class AppRoutingModule { }
