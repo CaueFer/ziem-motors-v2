@@ -6,7 +6,7 @@ const UserModel = require("./user-model");
 const jwt = require('jsonwebtoken');
 
 const app = express();
-const uri = "mongodb+srv://admin:Cachorro1337*mongodb@cluster0.0ejr2zv.mongodb.net/usersziem?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "mongodb+srv://admin:Cachorro1337*mongodb@cluster0.0ejr2zv.mongodb.net/ziemmotors?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose.connect(uri)
     .then(()=>{
@@ -29,6 +29,7 @@ app.post('/api/ziemmotors/signin', async (req, res) => {
         bcrypt.hash(req.body.password, 10)
             .then(hash => {
                 const userModel = new UserModel({
+                    name: req.body.name,
                     email: req.body.email,
                     password: hash
                 })

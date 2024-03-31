@@ -29,9 +29,9 @@ export class AuthService {
     return this.jwtToken;
   }
 
-  async registerUser(email: string, password: string){
+  async registerUser(name:string, email: string, password: string){
 
-    const userData: UserModel = {email: email, password: password}
+    const userData: UserModel = {name: name.toLocaleLowerCase(), email: email, password: password}
 
     this.http.post(this.url+'signin', userData).subscribe(data =>{
       console.log(data);

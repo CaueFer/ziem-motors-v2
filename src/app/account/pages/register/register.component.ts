@@ -24,7 +24,7 @@ export class RegisterComponent {
   constructor( private _authService: AuthService, private formBuilder: FormBuilder) {
 
     this.registerForm = this.formBuilder.group({
-      nome: [''],
+      name: ['', [Validators.required]],
       email: ['', [Validators.email, Validators.required]],
       password: ['', Validators.required],
       passwordConfirm: ['', Validators.required],
@@ -77,8 +77,16 @@ export class RegisterComponent {
 
     this.isSubmited = true;
 
-    if(this.f['email'].invalid && (this.f['password'].invalid || this.f['passwordConfirm'].invalid)){
+
+
+    if(this.f['name'].invalid && this.f['email'].invalid && (this.f['password'].invalid || this.f['passwordConfirm'].invalid)){
       this.errormsg = 'Campos inválidos.';
+
+      return;
+    }
+
+    if(this.f['name'].invalid){
+      this.errormsg = 'Nome inválido.';
 
       return;
     }
@@ -110,7 +118,7 @@ export class RegisterComponent {
     
 
     if(this.registerForm.valid){
-      this._authService.registerUser(this.registerForm.value.email, this.registerForm.value.password);
+      this._authService.registerUser(this.registerForm.value.name, this.registerForm.value.email, this.registerForm.value.password);
     }
     
     this.isSubmited = false;

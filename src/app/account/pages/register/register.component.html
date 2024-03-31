@@ -28,6 +28,20 @@
 
               <div class="mb-3 mt-2 d-flex flex-column">
 
+                <div class="mb-3 mt-2 d-flex flex-column">
+
+                  <label for="name">
+                    Nome
+                  </label>
+                  <div class="input-group">
+                    <input  type="text" formControlName="name" class="form-control" id="name" [placeholder]="''"
+                    [ngClass]="{ 'is-invalid': f['name'].errors && isSubmited}"  (input)="onInput()"/>
+  
+                    <button class="btn btn-light ms-0 text-black" type="button" id="name-addon" (click)="resetForms()"></button>
+                  </div>
+                  
+                </div>
+
                 <label for="email">
                   Email
                 </label>
