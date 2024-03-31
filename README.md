@@ -1,27 +1,27 @@
 # ZiemMotors
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+Projeto realizado com a ideia de desenvolver skills com Angular CLI & MongoDB com ExpressJS.
 
-## Development server
+- [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+- 
+- [MongoDB]((https://www.mongodb.com/docs/)) version 7.2.0.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Como usar
 
-## Code scaffolding
+Abra a pasta a qual voce deseja salvar o projetor no vscode.
+No terminal digite: `git clone https://github.com/CaueFer/ziem-motors-v2.git`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Digite `ng serve` para iniciar o servidor de desenvolvimento. Entre no link `http://localhost:4200/`. A aplicação será recarregada automaticamente.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Executando testes end-to-end
 
-## Running unit tests
+Execute `ng test` para executar os testes unitários via [Karma](https://karma-runner.github.io).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+OU
 
-## Running end-to-end tests
+Execute `ng e2e` para executar os testes end-to-end através de uma plataforma de sua escolha. Para usar este comando, você primeiro precisa adicionar um pacote que implementa capacidades de teste end-to-end.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Saber mais
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Visite meu portfolio para ver mais projetos como esse, [LINK].
