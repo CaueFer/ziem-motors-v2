@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AuthInterceptor } from './core/services/auth.interceptor';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AuthInterceptor } from './core/services/auth.interceptor';
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
+    ModalModule.forRoot(),
     NgxSkeletonLoaderModule.forRoot(),
   ],
   providers: [

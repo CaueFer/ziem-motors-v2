@@ -4,10 +4,10 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const UserModel = require("./user-model");
 const jwt = require('jsonwebtoken');
-
 const app = express();
-const uri = "mongodb+srv://admin:Cachorro1337*mongodb@cluster0.0ejr2zv.mongodb.net/ziemmotors?retryWrites=true&w=majority&appName=Cluster0";
 
+
+const uri = "mongodb+srv://admin:Cachorro1337*mongodb@cluster0.0ejr2zv.mongodb.net/ziemmotors?retryWrites=true&w=majority&appName=Cluster0";
 const secretKey = "STRINGMTFODA";
 
 mongoose.connect(uri)
@@ -33,7 +33,8 @@ app.post('/api/ziemmotors/signin', async (req, res) => {
                 const userModel = new UserModel({
                     name: req.body.name,
                     email: req.body.email,
-                    password: hash
+                    password: hash,
+                    image: '',
                 })
 
                 userModel.save().then(result => {
@@ -93,7 +94,7 @@ app.get('/api/ziemmotors/getUser', async (req, res) => {
         });
     }
 
-    jwt.verify(token, secretKey, (err, decoded) => {
+    jwt.verify(token, secretKey, async (err, decoded) => {
         if (err) {
             return res.status(401).json({
                 message: 'Invalid jwt'
@@ -101,17 +102,70 @@ app.get('/api/ziemmotors/getUser', async (req, res) => {
         }
 
         const userId = decoded.userId;
-        const userName = decoded.userName;
-        const userEmail = decoded.userEmail;
 
-        return res.status(200).json({
-            userInfos: {
-                userName: userName,
-                userEmail: userEmail
+        try {
+            const user = await UserModel.findById(userId);
+
+            if (!user) {
+                return res.status(404).json({ message: 'Usuário não encontrado.' });
             }
-        });
+
+            return res.status(200).json({
+                userInfos: {
+                    name: user.name,
+                    email: user.email,
+                    image: user.image
+                }
+            });
+        } catch (error) {
+            return res.status(500).json({ message: 'Erro ao buscar usuário.', error });
+        }
     });
 });
+
+app.put('/api/ziemmotors/updateUser', async (req, res) => {
+    const token = req.headers.authorization;
+
+    if (!token) {
+        return res.status(401).json({
+            message: 'Token not provided'
+        });
+    }
+
+    jwt.verify(token, secretKey, async (err, decoded) => {
+        if (err) {
+            return res.status(401).json({
+                message: 'Invalid jwt'
+            });
+        }
+
+        const userId = decoded.userId;
+
+        const updateFields = {};
+        if (req.body.name) {
+            updateFields.name = req.body.name;
+        }
+        if (req.body.email) {
+            updateFields.email = req.body.email;
+        }
+        if (req.body.image) {
+            updateFields.image = req.body.image;
+        }
+
+        try {
+            const user = await UserModel.findByIdAndUpdate(userId, updateFields, { new: true });
+
+            if (!user) {
+                return res.status(404).json({ message: 'Usuário não encontrado.' });
+            }
+
+            res.status(200).json({ message: 'Usuário atualizado com sucesso.', user });
+        } catch (error) {
+            res.status(500).json({ message: 'Erro ao atualizar usuário.', error });
+        }
+    });
+});
+
 
 
 module.exports = app;

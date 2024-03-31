@@ -14,9 +14,6 @@ export class AuthService {
   private authenticationSub = new Subject<boolean>();
   private isAutheticated = false;
 
-  private authUser!: UserModel;
-
-
   constructor(private http: HttpClient, private router: Router) { }
 
   getIsAutheticated(){
@@ -58,5 +55,24 @@ export class AuthService {
   getUser(): Observable<any> {
     return this.http.get<any>(this.url + 'getUser');
   }
-  
+
+  updateUser(email?: string, name?: string, img?: Blob){
+
+    const userData: UserModel = {
+      email: email ? email : undefined,
+      name: name ? name : undefined,
+      image: img
+    };
+
+    this.http.put(this.url+'updateUser', userData).subscribe(data =>{
+      console.log(data);
+    })
+  }
+
+  logout() {
+    this.jwtToken = '';
+    this.authenticationSub.next(false);
+    this.isAutheticated = false;
+    this.router.navigate(['/']);
+  }
 }

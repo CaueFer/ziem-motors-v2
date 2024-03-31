@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy{
     }
     this.authenticatedSub = this._authService.getAuthentication().subscribe(data => {
       if(data){
+        this.isAuthenticated = data;
         this.router.navigate(['profile']);
       }
     })
