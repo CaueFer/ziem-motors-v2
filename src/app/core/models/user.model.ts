@@ -4,4 +4,6 @@ export interface UserModel {
     email?: string;
     password?: string;
     image?: Blob;
+    endereco?: string;
+    telefone?: string;
 }

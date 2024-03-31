@@ -3,13 +3,13 @@
   <div id="wrapper">
     <!-- Sidebar -->
     <ul
-      class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+      class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion"
       id="accordionSidebar"
     >
       <!-- Sidebar - Brand -->
       <a
         class="sidebar-brand d-flex align-items-center justify-content-center"
-        routerLink="./"
+        routerLink="/"
       >
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
@@ -53,7 +53,7 @@
             id="sidebarToggleTop"
             class="btn btn-link d-md-none rounded-circle mr-3"
           >
-            <i class="fa fa-bars"></i>
+            <i class="bi bi-list"></i>
           </button>
 
           <!-- Topbar Search -->
@@ -69,8 +69,8 @@
                 aria-describedby="basic-addon2"
               />
               <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
+                <button class="btn btn-dark" type="button">
+                  <i class="bi bi-search"></i>
                 </button>
               </div>
             </div>
@@ -89,7 +89,7 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <i class="fas fa-search fa-fw"></i>
+                <i class="bi bi-search"></i>
               </a>
               <!-- Dropdown - Messages -->
               <div
@@ -107,7 +107,7 @@
                     />
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
+                        <i class="bi bi-search"></i>
                       </button>
                     </div>
                   </div>
@@ -180,9 +180,9 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                  >{{userModel.name}}</span
-                >
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{
+                  userModel.name
+                }}</span>
                 <img
                   class="img-profile rounded-circle"
                   src="assets/images/profile/undraw_profile.svg"
@@ -191,26 +191,22 @@
               <!-- Dropdown - User Information -->
               <div
                 class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                
               >
                 <a class="dropdown-item" href="javascript:void(0)">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="bi bi-person mr-2 text-black"></i>
                   Perfil
                 </a>
                 <a class="dropdown-item" href="javascript:void(0)">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="bi bi-gear mr-2 text-black"></i>
                   Configurações
                 </a>
                 <div class="dropdown-divider"></div>
                 <a
                   class="dropdown-item"
                   href="javascript:void(0)"
-
                   (click)="openModal('logout')"
                 >
-                  <i
-                    class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
-                  ></i>
+                  <i class="bi bi-box-arrow-left mr-2 text-black"></i>
                   Sair
                 </a>
               </div>
@@ -226,14 +222,16 @@
             class="d-sm-flex align-items-center justify-content-between mb-4"
           >
             <h1 class="h3 mb-0 text-gray-800">Perfil</h1>
-            <a
-              href="javascript:void(0)"
-              class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-              (click)="openModal('infos')"
+            <div class="rightSide">
+              <a
+                href="javascript:void(0)"
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                (click)="openModal('infos')"
               >
-              <i class="fas fa-download fa-sm text-white-50"></i> 
-              Salvar e enviar</a
-            >
+                <i class="fas fa-download fa-sm text-white-50"></i>
+                Salvar e enviar
+              </a>
+            </div>
           </div>
 
           <!-- Content Row -->
@@ -303,16 +301,16 @@
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body">
+                <div class="card-body"  style="height: 390px;">
                   <div class="card-body text-center">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                      src="assets/images/profile/undraw_profile.svg"
                       alt="avatar"
                       class="rounded-circle img-fluid"
                       style="width: 150px"
                     />
-                    <h5 class="my-3">{{userModel.name}}</h5>
-                    <p class="text-muted mb-4">{{userModel.email}}</p>
+                    <h5 class="my-3">{{ userModel.name }}</h5>
+                    <p class="text-muted mb-4">{{ userModel.email }}</p>
                     <div class="d-flex justify-content-center mb-2">
                       <button
                         type="button"
@@ -335,81 +333,65 @@
                   class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
                 >
                   <h6 class="m-0 font-weight-bold text-primary">Informações</h6>
-                  <div class="dropdown no-arrow">
-                    <a
-                      class="dropdown-toggle"
-                      href="#"
-                      role="button"
-                      id="dropdownMenuLink"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <i
-                        class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"
-                      ></i>
-                    </a>
-                    <div
-                      class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink"
-                    >
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-area">
+                <div class="card-body" style="height: 390px;">
+                  <div class="chart-area">  
                     <div class="card-body">
+                      <form [formGroup]="userInfos">
                         <div class="row">
                           <div class="col-sm-3">
-                            <p class="mb-0">Full Name</p>
+                            <p class="mb-0">Nome</p>
                           </div>
                           <div class="col-sm-9">
-                            <p class="text-muted mb-0">Johnatan Smith</p>
+                            <input
+                              type="text"
+                              class="form-control"
+                              formControlName="name"
+                            />
                           </div>
                         </div>
-                        <hr>
+                        <hr />
                         <div class="row">
                           <div class="col-sm-3">
                             <p class="mb-0">Email</p>
                           </div>
                           <div class="col-sm-9">
-                            <p class="text-muted mb-0">examplexample.com</p>
+                            <input
+                              type="email"
+                              class="form-control"
+                              formControlName="email"
+                            />
                           </div>
                         </div>
-                        <hr>
+                        <hr />
                         <div class="row">
                           <div class="col-sm-3">
-                            <p class="mb-0">Phone</p>
+                            <p class="mb-0">Telefone</p>
                           </div>
                           <div class="col-sm-9">
-                            <p class="text-muted mb-0">(097) 234-5678</p>
+                            <input
+                              type="tel"
+                              class="form-control"
+                              formControlName="telefone"
+                            />
                           </div>
                         </div>
-                        <hr>
+                        <hr />
                         <div class="row">
                           <div class="col-sm-3">
-                            <p class="mb-0">Mobile</p>
+                            <p class="mb-0">Endereço</p>
                           </div>
                           <div class="col-sm-9">
-                            <p class="text-muted mb-0">(098) 765-4321</p>
+                            <input
+                              type="text"
+                              class="form-control"
+                              formControlName="endereco"
+                            />
                           </div>
                         </div>
-                        <hr>
-                        <div class="row">
-                          <div class="col-sm-3">
-                            <p class="mb-0">Address</p>
-                          </div>
-                          <div class="col-sm-9">
-                            <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-                          </div>
-                        </div>
-                      </div>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -437,7 +419,12 @@
   <ng-template #logoutModal>
     <div class="modal-header">
       <h5 class="modal-title">Quer mesmo sair?</h5>
-      <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modalRef.hide()"
+      >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -445,28 +432,40 @@
       Clicar em "Logout" irá encerrar sua sessão atual.
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Cancel</button>
-      <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+      <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">
+        Cancel
+      </button>
+      <button type="button" class="btn btn-primary" (click)="logout()">
+        Logout
+      </button>
     </div>
   </ng-template>
   <!-- Logout Modal-->
 
   <!-- Infos Modal-->
   <ng-template #infosModal>
-      <div class="modal-header">
-        <h5 class="modal-title">Atualizar Informações</h5>
-        <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Tem certeza que deseja atualizar suas Informações?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="onSubmitInfos">Atualizar</button>
-      </div>
+    <div class="modal-header">
+      <h5 class="modal-title">Atualizar Informações</h5>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modalRef.hide()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Tem certeza que deseja atualizar suas Informações?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">
+        Cancel
+      </button>
+      <button type="button" class="btn btn-primary" (click)="onSubmitInfos()">
+        Atualizar
+      </button>
+    </div>
   </ng-template>
   <!-- Infos Modal-->
-
 </section>

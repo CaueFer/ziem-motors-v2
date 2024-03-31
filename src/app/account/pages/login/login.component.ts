@@ -38,16 +38,19 @@ export class LoginComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() { 
-    this.isAuthenticated = this._authService.getIsAutheticated();
-    if(this.isAuthenticated){
-      this.router.navigate(['profile']);
-    }
+
+    // this.isAuthenticated = this._authService.getIsAutheticated();
+    // if(this.isAuthenticated){
+    //   this.router.navigate(['profile']);
+    // }
     this.authenticatedSub = this._authService.getAuthentication().subscribe(data => {
       if(data){
         this.isAuthenticated = data;
         this.router.navigate(['profile']);
       }
     })
+
+    this._authService.authFromLocalStorage();
   }
 
   windowScroll() {

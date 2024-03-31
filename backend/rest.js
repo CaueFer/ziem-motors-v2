@@ -35,6 +35,8 @@ app.post('/api/ziemmotors/signin', async (req, res) => {
                     email: req.body.email,
                     password: hash,
                     image: '',
+                    endereco: '',
+                    telefone: ''
                 })
 
                 userModel.save().then(result => {
@@ -73,9 +75,10 @@ app.post('/api/ziemmotors/login', async (req, res) => {
             })
         }
 
-        const token = jwt.sign({userName: userFound.name, userEmail: userFound.email, userId: userFound._id}, secretKey, {expiresIn: "24h"})
+        const token = jwt.sign({userName: userFound.name, userEmail: userFound.email, userId: userFound._id}, secretKey, {expiresIn: "1h"})
         return res.status(200).json({
-            token: token
+            token: token,
+            expiresIn: 3600
         })
     })
     .catch(err => {
@@ -114,7 +117,9 @@ app.get('/api/ziemmotors/getUser', async (req, res) => {
                 userInfos: {
                     name: user.name,
                     email: user.email,
-                    image: user.image
+                    image: user.image,
+                    endereco: user.endereco,
+                    telefone: user.telefone
                 }
             });
         } catch (error) {
@@ -147,6 +152,12 @@ app.put('/api/ziemmotors/updateUser', async (req, res) => {
         }
         if (req.body.email) {
             updateFields.email = req.body.email;
+        }
+        if (req.body.endereco) {
+            updateFields.endereco = req.body.endereco;
+        }
+        if (req.body.telefone) {
+            updateFields.telefone = req.body.telefone;
         }
         if (req.body.image) {
             updateFields.image = req.body.image;

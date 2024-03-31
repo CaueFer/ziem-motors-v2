@@ -13,6 +13,7 @@ export class AuthService {
   private jwtToken!: string;
   private authenticationSub = new Subject<boolean>();
   private isAutheticated = false;
+  logoutTimer: any;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -42,12 +43,17 @@ export class AuthService {
 
     const userData: UserModel = {email: email, password: password}
 
-    this.http.post<{token: string}>(this.url+'login', userData).subscribe(data => {
+    this.http.post<{token: string, expiresIn: number}>(this.url+'login', userData).subscribe(data => {
       //console.log(data);
       this.jwtToken = data.token;
       if(this.jwtToken){
         this.authenticationSub.next(true);
         this.isAutheticated = true;
+        this.logoutTimer = setTimeout(() => {this.logout()}, data.expiresIn * 1000);
+
+        const now = new Date();
+        const expiresDate = new Date(now.getTime() + (data.expiresIn * 1000));
+        this.addToLocalstorage(this.jwtToken, expiresDate);
       }
     })
   }
@@ -56,12 +62,14 @@ export class AuthService {
     return this.http.get<any>(this.url + 'getUser');
   }
 
-  updateUser(email?: string, name?: string, img?: Blob){
+  updateUser( name?: string, email?: string, img?: Blob, endereco?: string, telefone?: string,){
 
     const userData: UserModel = {
-      email: email ? email : undefined,
       name: name ? name : undefined,
-      image: img
+      email: email ? email : undefined,
+      image: img,
+      endereco: endereco ? endereco : undefined,
+      telefone: telefone ? telefone : undefined,
     };
 
     this.http.put(this.url+'updateUser', userData).subscribe(data =>{
@@ -74,5 +82,48 @@ export class AuthService {
     this.authenticationSub.next(false);
     this.isAutheticated = false;
     this.router.navigate(['/']);
+
+    clearTimeout(this.logoutTimer);
+    this.clearFromLocalstorage();
+  }
+
+  addToLocalstorage(token: string, expirationDate: Date){
+    localStorage.setItem('token', token);
+    localStorage.setItem('expiresIn', expirationDate.toISOString());
+  }
+
+  clearFromLocalstorage(){
+      localStorage.removeItem('token');
+      localStorage.removeItem('expiresIn');
+  }
+
+  getLocalStorageData(){
+      const token = localStorage.getItem('token');
+      const expiresIn = localStorage.getItem('expiresIn');
+
+      if(!token || !expiresIn){
+          return;
+      }
+      return {
+          'token': token,
+          'expiresIn': new Date(expiresIn)
+      }
+  }
+
+  authFromLocalStorage(){
+      const localStorageData = this.getLocalStorageData();
+
+      //console.log(localStorageData)
+      if(localStorageData){
+          const now = new Date();
+          const expiresIn = localStorageData.expiresIn.getTime() - now.getTime();
+
+          if(expiresIn > 0){
+              this.jwtToken = localStorageData.token;
+              this.isAutheticated = true;
+              this.authenticationSub.next(true);
+              this.logoutTimer = setTimeout(() => {this.logout()}, expiresIn / 1000);
+          }
+      }
   }
 }
