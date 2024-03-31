@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from '../models/user.model';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -13,6 +13,8 @@ export class AuthService {
   private jwtToken!: string;
   private authenticationSub = new Subject<boolean>();
   private isAutheticated = false;
+
+  private authUser!: UserModel;
 
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -51,6 +53,10 @@ export class AuthService {
         this.isAutheticated = true;
       }
     })
+  }
+  
+  getUser(): Observable<any> {
+    return this.http.get<any>(this.url + 'getUser');
   }
   
 }
