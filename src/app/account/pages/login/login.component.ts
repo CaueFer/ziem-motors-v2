@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit, OnDestroy{
   private authenticatedSub!: Subscription;
   private isAuthenticated: boolean = false;
 
+  continueLogged: boolean = false;
+
   constructor( private _authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
 
     this.loginForm = this.formBuilder.group({
@@ -51,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy{
     })
 
     this._authService.authFromLocalStorage();
-  }
+  };
 
   windowScroll() {
     const navbar = document.getElementById('bgSectionMask');
@@ -65,19 +67,19 @@ export class LoginComponent implements OnInit, OnDestroy{
         this.scroolled = false;
       }
     }
-  }
+  };
 
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
-  }
+  };
 
   getInputType() {
     return this.hidePassword ? 'password' : 'text';
-  }
+  };
   
   resetForms() {
     this.loginForm.reset();
-  }
+  };
 
 
   submitLogin(){
@@ -91,8 +93,12 @@ export class LoginComponent implements OnInit, OnDestroy{
 
     if(this.loginForm.valid){
       
-      this._authService.loginUser(this.f['email'].value, this.f['password'].value);
+      this._authService.loginUser(this.f['email'].value, this.f['password'].value, this.continueLogged);
     }
+  };
 
+  checkBoxInput(target: any){
+    let isChecked = target.checked;
+    isChecked ? this.continueLogged = true: this.continueLogged = false;
   }
 }

@@ -20,7 +20,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public userModel: UserModel = {} as UserModel;
 
   userInfos: FormGroup;
-
+  inputsChanged: { [key: string]: boolean } = {};
+  successAtt: boolean = false;
 
   constructor(private _authService: AuthService, private _modalService: BsModalService, private formBuilder: FormBuilder){
 
@@ -30,6 +31,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
       telefone: ['', Validators.required],
       endereco: ['', Validators.required],
       imagem: ['']
+    });
+
+    this.userInfos.valueChanges.subscribe(() => {
+      Object.keys(this.userInfos.controls).forEach(key => {
+        if (this.userInfos.controls[key].dirty) {
+          this.inputsChanged[key] = true;
+        }
+      });
     });
 
    }
@@ -61,13 +70,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   onSubmitInfos(){
     this.modalRef.hide();
 
-    const name = this.userInfos.value.name;
-    const email = this.userInfos.value.email;
-    const image = this.userInfos.value.image;
-    const endereco = this.userInfos.value.endereco;
-    const telefone = this.userInfos.value.telefone;
+    const { name, email, image, endereco, telefone } = this.userInfos.value;
+    this._authService.updateUser(name, email, image, endereco, telefone).subscribe(res =>{
 
-    this._authService.updateUser(name, email, image, endereco, telefone);
+      console.log(res);
+      if(res){
+        this.clearObjectsOfInputs();
+        this.successAtt = true;
+      }
+    })
+
   }
 
   openModal(modal: string) {
@@ -80,7 +92,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   logout() {
     this.modalRef.hide();
-
     this._authService.logout();
   }
 
@@ -92,6 +103,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
       image: this.userModel.image,
       endereco: this.userModel.endereco,
       telefone: this.userModel.telefone
+    });
+  }
+
+  getInputsChangedLength(): number {
+    return Object.values(this.inputsChanged).length;
+  }
+
+  clearObjectsOfInputs(){
+    Object.keys(this.inputsChanged).forEach(key => {
+      this.inputsChanged[key] = false;
     });
   }
 }

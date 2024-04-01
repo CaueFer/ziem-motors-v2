@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from '../models/user.model';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -39,7 +39,7 @@ export class AuthService {
 
   }
 
-  async loginUser(email: string, password: string){
+  async loginUser(email: string, password: string, continueLogged: boolean){
 
     const userData: UserModel = {email: email, password: password}
 
@@ -53,7 +53,8 @@ export class AuthService {
 
         const now = new Date();
         const expiresDate = new Date(now.getTime() + (data.expiresIn * 1000));
-        this.addToLocalstorage(this.jwtToken, expiresDate);
+
+        if(continueLogged) this.addToLocalstorage(this.jwtToken, expiresDate);
       }
     })
   }
@@ -72,9 +73,15 @@ export class AuthService {
       telefone: telefone ? telefone : undefined,
     };
 
-    this.http.put(this.url+'updateUser', userData).subscribe(data =>{
-      console.log(data);
-    })
+    return this.http.put(this.url+'updateUser', userData).pipe(
+      map((data: any) => {
+        if (data && data.message) {
+          return true; 
+        } else {
+          return false; 
+        }
+      })
+    );
   }
 
   logout() {
@@ -122,7 +129,7 @@ export class AuthService {
               this.jwtToken = localStorageData.token;
               this.isAutheticated = true;
               this.authenticationSub.next(true);
-              this.logoutTimer = setTimeout(() => {this.logout()}, expiresIn / 1000);
+              this.logoutTimer = setTimeout(() => {this.logout()}, expiresIn);
           }
       }
   }
