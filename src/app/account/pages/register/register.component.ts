@@ -125,7 +125,7 @@ export class RegisterComponent {
           this.registerForm.reset();
         },
         error: (error) =>{
-          if(error) this.errormsg = error.message;
+          if(error.message) this.errormsg = error.message;
         }
       });
     }

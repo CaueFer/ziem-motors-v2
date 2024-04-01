@@ -20,10 +20,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public userModel: UserModel = {} as UserModel;
 
   userInfos: FormGroup;
+  imgUser!: string;
   inputsChanged: { [key: string]: boolean } = {};
   successAtt: boolean = false;
-
-  imgUser!: string;
 
   constructor(private _authService: AuthService, private _modalService: BsModalService, private formBuilder: FormBuilder){
 
@@ -32,7 +31,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
       endereco: ['', Validators.required],
-      imagem: ['']
+      image: ['']
     });
 
     this.userInfos.valueChanges.subscribe(() => {
@@ -62,7 +61,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       };
 
       this.attInputs();
-
       //console.log(this.userModel);
     });
 
@@ -73,13 +71,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if(this.modalRef) this.modalRef.hide();
 
     const { name, email, image, endereco, telefone } = this.userInfos.value;
-    console.log(image);
+    //console.log(image);
     this._authService.updateUser(name, email, image, endereco, telefone).subscribe(res =>{
       if(res){
         this.clearObjectsOfInputs();
         this.successAtt = true;
 
-        setTimeout(() => {this.successAtt = false;}, 3000)
+        setTimeout(() => { this.successAtt = false; }, 3000)
+
+
       }
     })
   }
@@ -96,7 +96,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   attInputs(){
-    
     this.userInfos.patchValue({
       name: this.userModel.name,
       email: this.userModel.email,
@@ -104,6 +103,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       endereco: this.userModel.endereco,
       telefone: this.userModel.telefone
     });
+    this.imgUser = this.userInfos.value.image;
   }
 
   getInputsChangedLength(): number {
@@ -120,9 +120,23 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   };
 
-  onFileSelected(event: any) {
+  async onFileSelected(event: any): Promise<void> {
     const selectedFile: File = event.target.files[0];
+    const base64 = await this.convertToBase64(selectedFile);
+    this.userInfos.patchValue({ image: base64 });
+    this.imgUser = base64;
+  }
 
-    console.log(selectedFile)
+  convertToBase64(file: File): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result as string);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
   }
 }

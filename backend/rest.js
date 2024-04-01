@@ -2,11 +2,11 @@ const express = require("express");
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
-const UserModel = require("./user-model");
+const UserModel = require("./models/user-model");
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const app = express();
 
+const app = express();
 const uri = "mongodb+srv://admin:Cachorro1337*mongodb@cluster0.0ejr2zv.mongodb.net/ziemmotors?retryWrites=true&w=majority&appName=Cluster0";
 const secretKey = "STRINGMTFODA";
 
