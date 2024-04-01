@@ -353,6 +353,7 @@
                               formControlName="name" 
                             />
                             <span *ngIf="inputsChanged['name']" class="bi bi-cloud-download fs-5 position-absolute" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
+                            <span *ngIf="successAtt" class="bi bi-check2 fs-5 position-absolute text-success" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
                           </div>
                         </div>
                         <hr />
@@ -367,6 +368,7 @@
                               formControlName="email"
                             />
                             <span *ngIf="inputsChanged['email']" class="bi bi-cloud-download fs-5 position-absolute" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
+                            <span *ngIf="successAtt" class="bi bi-check2 fs-5 position-absolute text-success" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
                           </div>
                         </div>
                         <hr />
@@ -381,6 +383,7 @@
                               formControlName="telefone"
                             />
                             <span *ngIf="inputsChanged['telefone']" class="bi bi-cloud-download fs-5 position-absolute" style="left: 92%; top: 50%; transform: translateY(-50%);"></span>
+                            <span *ngIf="successAtt" class="bi bi-check2 fs-5 position-absolute text-success" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
                           </div>
                         </div>
                         <hr />
@@ -395,6 +398,7 @@
                               formControlName="endereco"
                             />
                             <span *ngIf="inputsChanged['endereco']" class="bi bi-cloud-download fs-5 position-absolute" style="left: 92%; top: 50%; transform: translateY(-50%);"></span>
+                            <span *ngIf="successAtt" class="bi bi-check2 fs-5 position-absolute text-success" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
                           </div>
                         </div>
                       </form>
