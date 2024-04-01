@@ -4,21 +4,22 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const UserModel = require("./user-model");
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 const app = express();
-
 
 const uri = "mongodb+srv://admin:Cachorro1337*mongodb@cluster0.0ejr2zv.mongodb.net/ziemmotors?retryWrites=true&w=majority&appName=Cluster0";
 const secretKey = "STRINGMTFODA";
 
 mongoose.connect(uri)
-    .then(()=>{
-        console.log('Database conectada');
-    })
-    .catch( () => {
-        console.log('Erro ao conectar na database');
-    })
+.then(()=>{
+    console.log('Database conectada');
+})
+.catch( () => {
+    console.log('Erro ao conectar na database');
+})
 
-app.use(bodyParser.json());
+app.use(cors());
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');

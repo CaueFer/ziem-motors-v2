@@ -304,10 +304,10 @@
                 <div class="card-body"  style="height: 390px;">
                   <div class="card-body text-center">
                     <img
-                      src="assets/images/profile/undraw_profile_2.svg"
+                      [src]="imgUser ? imgUser : 'assets/images/profile/undraw_profile_2.svg'"
                       alt="avatar"
                       class="rounded-circle img-fluid"
-                      style="width: 150px"
+                      style="width: 150px; height: 150px;"
                     />
                     <h5 class="my-3">{{ userModel.name }}</h5>
                     <p class="text-muted mb-4">{{ userModel.email }}</p>
@@ -316,10 +316,12 @@
                         type="button"
                         class="btn btn-outline-primary ms-1"
                         style="box-shadow: none!important;"
+                        (click)="fileInput.click()"
                       >
                         Editar foto
                         <i class="bi bi-pencil-square ms-2"></i>
                       </button>
+                      <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
                     </div>
                   </div>
                 </div>
@@ -397,7 +399,7 @@
                         </div>
                       </form>
                     </div>
-                    <span *ngIf="getInputsChangedLength() > 0 && !successAtt" class="fs-5 position-absolute z-3 text-gray-600" style="left: 0%;  top: 95%; padding-left: 20px;">Dados alterados, lembre-se de salvar.</span>
+                    <span *ngIf="getInputsChangedLength() > 0" class="fs-5 position-absolute z-3 text-gray-600" style="left: 0%;  top: 95%; padding-left: 20px;">Dados alterados, lembre-se de salvar.</span>
                     <span *ngIf="successAtt" class="fs-5 position-absolute z-3 text-success" style="left: 0%;  top: 95%; padding-left: 20px;">Dados salvos!</span>
                   </div>
                 </div>

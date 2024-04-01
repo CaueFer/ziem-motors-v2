@@ -23,6 +23,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   inputsChanged: { [key: string]: boolean } = {};
   successAtt: boolean = false;
 
+  imgUser!: string;
+
   constructor(private _authService: AuthService, private _modalService: BsModalService, private formBuilder: FormBuilder){
 
     this.userInfos = this.formBuilder.group({
@@ -68,26 +70,24 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   onSubmitInfos(){
-    this.modalRef.hide();
+    if(this.modalRef) this.modalRef.hide();
 
     const { name, email, image, endereco, telefone } = this.userInfos.value;
+    console.log(image);
     this._authService.updateUser(name, email, image, endereco, telefone).subscribe(res =>{
-
-      console.log(res);
       if(res){
         this.clearObjectsOfInputs();
         this.successAtt = true;
+
+        setTimeout(() => {this.successAtt = false;}, 3000)
       }
     })
-
   }
 
   openModal(modal: string) {
 
     if(modal === 'logout') this.modalRef = this._modalService.show(this.logoutModal);
-
     if(modal === 'infos') this.modalRef = this._modalService.show(this.infosModal);
-
   }
 
   logout() {
@@ -107,12 +107,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   getInputsChangedLength(): number {
-    return Object.values(this.inputsChanged).length;
-  }
+    let i = 0;
+    Object.keys(this.inputsChanged).forEach(key => {
+      if(this.inputsChanged[key] === true) i++;
+    });
+    return i;
+  };
 
   clearObjectsOfInputs(){
     Object.keys(this.inputsChanged).forEach(key => {
       this.inputsChanged[key] = false;
     });
+  };
+
+  onFileSelected(event: any) {
+    const selectedFile: File = event.target.files[0];
+
   }
 }
