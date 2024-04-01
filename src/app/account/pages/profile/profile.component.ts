@@ -123,5 +123,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   onFileSelected(event: any) {
     const selectedFile: File = event.target.files[0];
 
+    console.log(selectedFile)
   }
 }

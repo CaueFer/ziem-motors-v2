@@ -118,7 +118,16 @@ export class RegisterComponent {
     
 
     if(this.registerForm.valid){
-      this._authService.registerUser(this.registerForm.value.name, this.registerForm.value.email, this.registerForm.value.password);
+      this._authService.registerUser(this.registerForm.value.name, this.registerForm.value.email, this.registerForm.value.password)
+      .subscribe({
+        next: (data) => {
+          if(data) this.successmsg = 'Conta criada com sucesso. ';
+          this.registerForm.reset();
+        },
+        error: (error) =>{
+          if(error) this.errormsg = error.message;
+        }
+      });
     }
     
     this.isSubmited = false;

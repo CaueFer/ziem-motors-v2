@@ -18,8 +18,9 @@
           <div class="p-2 mt-2">
             <form class="form-horizontal" [formGroup]="registerForm" (ngSubmit)="submitSignIn()">
 
-              <div *ngIf="successmsg != ''" class="alert alert-success" role="alert">
-                Registro concluido.
+            <div *ngIf="successmsg != ''" class="alert alert-success" role="alert">
+              {{successmsg}}
+              <span routerLink="/account/login" role="button" class="text-primary">fazer login.</span>
             </div>
             
             <div *ngIf="errormsg != ''" class="alert alert-danger" role="alert">

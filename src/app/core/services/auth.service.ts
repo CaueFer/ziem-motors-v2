@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from '../models/user.model';
-import { Observable, Subject, map } from 'rxjs';
+import { Observable, Subject, catchError, map, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -29,14 +29,25 @@ export class AuthService {
     return this.jwtToken;
   }
 
-  async registerUser(name:string, email: string, password: string){
+  registerUser(name: string, email: string, password: string): Observable<string> {
+    const userData: UserModel = { name: name.toLocaleLowerCase(), email: email, password: password };
+  
+    return this.http.post<any>(this.url + 'signin', userData).pipe(
+      map(data => data.message),
+      catchError(error => {
+        //console.log(error)
+        let errorMessage = '';
+        if (error.error && error.error.error.errors.email) {
+   
+          errorMessage = error.error.error.errors.email.message;
 
-    const userData: UserModel = {name: name.toLocaleLowerCase(), email: email, password: password}
-
-    this.http.post(this.url+'signin', userData).subscribe(data =>{
-      console.log(data);
-    })
-
+          if(errorMessage.includes('Error, expected `email` to be unique.')) errorMessage = 'email já cadastrado.';
+        } else {
+          errorMessage = 'Erro ao criar conta. Por favor, tente novamente mais tarde.';
+        }
+        return throwError(() => new Error(errorMessage));
+      })
+    );
   }
 
   async loginUser(email: string, password: string, continueLogged: boolean){
