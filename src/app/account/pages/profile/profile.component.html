@@ -135,7 +135,7 @@
                 aria-labelledby="alertsDropdown"
               >
                 <h6 class="dropdown-header">Notificações Recentes</h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="bi bi-car-front-fill text-white fs-4"></i>
@@ -400,11 +400,10 @@
                             <span *ngIf="inputsChanged['endereco']" class="bi bi-cloud-download fs-5 position-absolute" style="left: 92%; top: 50%; transform: translateY(-50%);"></span>
                             <span *ngIf="successAtt" class="bi bi-check2 fs-5 position-absolute text-success" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
                           </div>
-                        </div>
+                        </div>  
                       </form>
                     </div>
                     <span *ngIf="getInputsChangedLength() > 0" class="fs-5 position-absolute z-3 text-gray-600" style="left: 0%;  top: 95%; padding-left: 20px;">Dados alterados, lembre-se de salvar.</span>
-                    <span *ngIf="successAtt" class="fs-5 position-absolute z-3 text-gray-600" style="left: 0%;  top: 95%; padding-left: 20px;">Dados salvos.</span>
                   </div>
                 </div>
               </div>
@@ -481,4 +480,28 @@
     </div>
   </ng-template>
   <!-- Infos Modal-->
+  
+  <!-- saveInfos Modal-->
+  <ng-template #saveInfosModal>
+      <div class="modal-body d-flex flex-column justify-content-center align-items-center fs-5 p-4 py-5" id="saveInfosModal">
+        <button
+          type="button"
+          class="close position-absolute" style="top: 10%; left: 93%;"
+          aria-label="Close"
+          (click)="modalRef.hide()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <section *ngIf="isLoading" class="dots-container mb-3">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </section>
+        <section *ngIf="!isLoading" class="containerCheck mb-3">
+          <div class="checkmark d-flex justify-content-center align-items-center"><i class="bi bi-check2 align-middle"></i></div>
+        </section>
+        salvando suas informações
+      </div>
+  </ng-template>
+  <!-- saveInfos Modal-->
 </section>

@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   @ViewChild('logoutModal') logoutModal!: TemplateRef<any>;
   @ViewChild('infosModal') infosModal!: TemplateRef<any>;
+  @ViewChild('saveInfosModal') saveinfosModal!: TemplateRef<any>;
   modalRef!: BsModalRef;
 
   private getUserSub!: Subscription;
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   imgUser!: string;
   inputsChanged: { [key: string]: boolean } = {};
   successAtt: boolean = false;
+  isLoading: boolean = false;
 
   constructor(private _authService: AuthService, private _modalService: BsModalService, private formBuilder: FormBuilder){
 
@@ -49,7 +51,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    
     this.getUserSub = this._authService.getUser().subscribe(data =>{
 
       this.userModel = {
@@ -59,13 +60,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
         telefone: data.userInfos.telefone,
         endereco: data.userInfos.endereco
       };
-
       this.attInputs();
       //console.log(this.userModel);
-    });
-
-    
-  }
+    })
+  };
 
   onSubmitInfos(){
     if(this.modalRef) this.modalRef.hide();
@@ -73,13 +71,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const { name, email, image, endereco, telefone } = this.userInfos.value;
     //console.log(image);
     this._authService.updateUser(name, email, image, endereco, telefone).subscribe(res =>{
+      this.isLoading = true;
+      this.openModal('saveinfos');
       if(res){
         this.clearObjectsOfInputs();
-        this.successAtt = true;
 
-        setTimeout(() => { this.successAtt = false; }, 3000)
-
-
+        setTimeout(() => { this.isLoading = false; }, 1500);
+        setTimeout(() => { this.modalRef.hide(); }, 2000);
+        setTimeout(() => { this.successAtt = false; }, 3000);
       }
     })
   }
@@ -88,6 +87,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     if(modal === 'logout') this.modalRef = this._modalService.show(this.logoutModal);
     if(modal === 'infos') this.modalRef = this._modalService.show(this.infosModal);
+    if(modal === 'saveinfos') this.modalRef = this._modalService.show(this.saveinfosModal, {class: 'modal-dialog-centered'});
   }
 
   logout() {

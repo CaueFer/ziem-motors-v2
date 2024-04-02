@@ -84,7 +84,7 @@ export class AuthService {
       telefone: telefone ? telefone : undefined,
     };
 
-    console.log(img);
+    //console.log(img);
 
     return this.http.put(this.url+'updateUser', userData).pipe(
       map((data: any) => {
