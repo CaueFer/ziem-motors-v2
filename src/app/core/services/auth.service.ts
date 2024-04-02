@@ -39,35 +39,47 @@ export class AuthService {
         let errorMessage = '';
         if (error.error && error.error.error.errors.email) {
    
-          errorMessage = error.error.error.errors.email.message;
+          let errormsg = error.error.error.errors.email.message;
 
-          if(errorMessage.includes('Error, expected `email` to be unique.')) errorMessage = 'email já cadastrado.';
-        } else {
-          errorMessage = 'Erro ao criar conta. Por favor, tente novamente mais tarde.';
-        }
+          if(errormsg.includes('Error, expected `email` to be unique.')) errorMessage = 'email já cadastrado.';
+        } 
+        else errorMessage = 'Erro ao criar conta. Por favor, tente novamente mais tarde.';
         return throwError(() => new Error(errorMessage));
       })
     );
   }
 
-  async loginUser(email: string, password: string, continueLogged: boolean){
-
+  loginUser(email: string, password: string, continueLogged: boolean): Observable<any>{
     const userData: UserModel = {email: email, password: password}
 
-    this.http.post<{token: string, expiresIn: number}>(this.url+'login', userData).subscribe(data => {
-      //console.log(data);
-      this.jwtToken = data.token;
-      if(this.jwtToken){
-        this.authenticationSub.next(true);
-        this.isAutheticated = true;
-        this.logoutTimer = setTimeout(() => {this.logout()}, data.expiresIn * 1000);
+    return this.http.post<{token: string, expiresIn: number}>(this.url+'login', userData).pipe(
+      map(data => {
+        this.jwtToken = data.token;
+        if(this.jwtToken){
+          this.authenticationSub.next(true);
+          this.isAutheticated = true;
+          this.logoutTimer = setTimeout(() => {this.logout()}, data.expiresIn * 1000);
+  
+          const now = new Date();
+          const expiresDate = new Date(now.getTime() + (data.expiresIn * 1000));
+  
+          if(continueLogged) this.addToLocalstorage(this.jwtToken, expiresDate);
+        }
+      }),
+      catchError(error => {
+        //console.log(error)
+        let errorMessage = '';
+        if(error.error.message){
+          let errormsg = error.error.message;
 
-        const now = new Date();
-        const expiresDate = new Date(now.getTime() + (data.expiresIn * 1000));
+          if(errormsg.includes('User/Email not found')) errorMessage = 'Email não cadastrado';
+          if(errormsg.includes('Incorrect password')) errorMessage = 'Senha incorreta';
+        }
+        else errorMessage = 'Erro ao validar conta. Por favor, tente novamente mais tarde.';
 
-        if(continueLogged) this.addToLocalstorage(this.jwtToken, expiresDate);
-      }
-    })
+        return throwError(() => new Error(errorMessage));
+      })
+    )
   }
   
   getUser(): Observable<any> {

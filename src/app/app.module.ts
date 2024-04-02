@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AuthInterceptor } from './core/services/auth.interceptor';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -22,10 +23,13 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     HttpClientModule,
     ModalModule.forRoot(),
     NgxSkeletonLoaderModule.forRoot(),
+    NgxMaskDirective,
+    NgxMaskPipe,
   ],
   providers: [
     provideClientHydration(),
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    provideNgxMask(),
   ],
   bootstrap: [AppComponent]
 })

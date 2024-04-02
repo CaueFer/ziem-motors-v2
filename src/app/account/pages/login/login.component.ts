@@ -93,7 +93,15 @@ export class LoginComponent implements OnInit, OnDestroy{
 
     if(this.loginForm.valid){
       
-      this._authService.loginUser(this.f['email'].value, this.f['password'].value, this.continueLogged);
+      this._authService.loginUser(this.f['email'].value, this.f['password'].value, this.continueLogged)
+      .subscribe({
+        next: (data) =>{
+          //console.log(data);
+        },
+        error: (error) =>{
+          if(error.message) this.errormsg = error.message;
+        }
+      });
     }
   };
 
