@@ -1,7 +1,7 @@
 <app-nav-default [variant]="['light', 'transparent']"></app-nav-default>
 <section class="" id="showroom" (window:scroll)="windowScroll()">
     
-    <div id="showroomCar" style="height: 100vh; width: 100vw;">
+    <div id="showroomCar" style="height: 100vh; width: 99vw;">
         <div  class="w-100 h-100 bg-black position-absolute z-3 d-flex justify-content-center align-items-center" style="top: 0; left: 0;" id="loadingDiv">
             <div class="loader">
                 <div class="loader-square"></div>
@@ -144,5 +144,5 @@
         
     </div>
 </section>
-<app-cube-test (isLoading)="showLoader($event)" [scrolldown]="this.scrollDown" ></app-cube-test>
+<app-cube-test (isLoading)="showLoader($event)" [scrolldown]="this.scrollDown" style="width: 100%;"></app-cube-test>
 <app-footer-default/>

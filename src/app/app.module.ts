@@ -23,13 +23,10 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     HttpClientModule,
     ModalModule.forRoot(),
     NgxSkeletonLoaderModule.forRoot(),
-    NgxMaskDirective,
-    NgxMaskPipe,
   ],
   providers: [
     provideClientHydration(),
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    provideNgxMask(),
   ],
   bootstrap: [AppComponent]
 })

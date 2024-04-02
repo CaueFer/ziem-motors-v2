@@ -309,7 +309,7 @@
                       class="rounded-circle img-fluid"
                       style="width: 150px; height: 150px;"
                     />
-                    <h5 class="my-3">{{ userModel.name }}</h5>
+                    <h5 class="my-3">{{  userModel && userModel.name ? userModel.name.charAt(0).toUpperCase() + userModel.name.slice(1) : ''  }}</h5>
                     <p class="text-muted mb-4">{{ userModel.email }}</p>
                     <div class="d-flex justify-content-center mb-2">
                       <button

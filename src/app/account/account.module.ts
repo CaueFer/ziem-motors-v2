@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 
 @NgModule({
@@ -24,9 +25,14 @@ import { ProfileComponent } from './pages/profile/profile.component';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
   exports: [
     RegisterComponent,
+  ],
+  providers: [
+    provideNgxMask(),
   ]
 
 })
