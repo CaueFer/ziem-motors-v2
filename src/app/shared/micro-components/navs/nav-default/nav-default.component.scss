@@ -16,6 +16,13 @@
     font-family: 'Poppins', sans-serif;
     color: white;
   }
+
+  .menuBtn{
+    
+    i{
+      color: white;
+    }
+  }
 }
 
 #navbar.nav-sticky{
@@ -26,6 +33,13 @@
 
   a{
     color: black;
+  }
+
+  .menuBtn{
+
+    i{
+      color: black;
+    }
   }
 }
 
