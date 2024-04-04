@@ -1,120 +1,192 @@
-<app-nav-default [variant]="['', 'slow']"></app-nav-default>
+<app-nav-default
+  class="d-none d-sm-flex"
+  [variant]="['', 'slow']"
+></app-nav-default>
+<app-nav-default
+  class="d-flex d-sm-none"
+  [variant]="['light', '']"
+></app-nav-default>
 
-<div class="account-pages user-select-none section pt-0" (window:scroll)="windowScroll()" id="loginSection">
-    <section class="section bgSectionRegister d-flex align-items-end position-relative justify-content-center">
-      <div class="bgSectionMask" [ngClass]="" id="bgSectionMask"></div>
-    </section>
-    <div class="col-md-8 col-lg-6 col-xl-5" id="formRegister">
-      <div class="card overflow-hidden">
-        <div class="bgRegister">
-            <div class="col-12 h-100">
-              <div class="text-white p-4 h-100 d-flex flex-column justify-content-center">
-                <h5 class="">Vamos entrar na sua conta.</h5>
-                <p class="m-0 fs-6">Preencha os campos abaixo.</p>
-              </div>
-            </div>
+<div
+  class="account-pages user-select-none section pt-0"
+  (window:scroll)="windowScroll()"
+  id="loginSection"
+>
+  <section
+    class="section bgSectionRegister d-none d-sm-flex align-items-end position-relative justify-content-center"
+  >
+    <div class="bgSectionMask" [ngClass]="" id="bgSectionMask"></div>
+  </section>
+  <section
+    class="section bgSectionRegister d-flex d-sm-none align-items-center position-relative justify-content-center"
+  ></section>
+  <div class="col-md-8 col-lg-6 col-xl-5" id="formLogin">
+    <div class="card overflow-hidden">
+      <div class="bgRegister">
+        <div class="col-12 h-100">
+          <div
+            class="text-white p-4 h-100 d-flex flex-column justify-content-center"
+          >
+            <h5 class="">Vamos entrar na sua conta.</h5>
+            <p class="m-0 fs-6">Preencha os campos abaixo.</p>
+          </div>
         </div>
-        <div class="card-body pt-0">
-          <div class="p-2 mt-2">
-            <form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
-
-              <div *ngIf="successmsg != ''" class="alert alert-success" role="alert">
-                {{ successmsg }}
+      </div>
+      <div class="card-body pt-0">
+        <div class="p-2 mt-2">
+          <form
+            class="form-horizontal"
+            [formGroup]="loginForm"
+            (ngSubmit)="submitLogin()"
+          >
+            <div
+              *ngIf="successmsg != ''"
+              class="alert alert-success"
+              role="alert"
+            >
+              {{ successmsg }}
             </div>
-            
+
             <div *ngIf="errormsg != ''" class="alert alert-danger" role="alert">
-                {{ errormsg }}
+              {{ errormsg }}
             </div>
 
-              <div class="mb-3 mt-2 d-flex flex-column">
+            <div class="mb-3 mt-2 d-flex flex-column">
+              <label for="email"> Email </label>
+              <div class="input-group">
+                <input
+                  type="email"
+                  formControlName="email"
+                  class="form-control"
+                  id="email"
+                  [placeholder]="''"
+                  [ngClass]="{ 'is-invalid': f['email'].errors && isSubmited }"
+                />
 
-                <label for="email">
-                  Email
-                </label>
-                <div class="input-group">
-                  <input  type="email" formControlName="email" class="form-control" id="email" [placeholder]="''"
-                  [ngClass]="{ 'is-invalid': f['email'].errors && isSubmited}" />
-
-                  <button class="btn btn-light ms-0 text-black" type="button" id="email-addon" (click)="resetForms()"><i class="bi bi-x"></i></button>
-                </div>
-                
+                <button
+                  class="btn btn-light ms-0 text-black"
+                  type="button"
+                  id="email-addon"
+                  (click)="resetForms()"
+                >
+                  <i class="bi bi-x"></i>
+                </button>
               </div>
+            </div>
 
-              <div class="mb-3 mt-2">
-                <label for="password">Senha</label>
-                <div class="input-group auth-pass-inputgroup">
-                    <input [type]="getInputType()" class="form-control" formControlName="password" placeholder=""
-                        [ngClass]="{ 'is-invalid': f['password'].errors && isSubmited}" aria-label="Password"
-                        aria-describedby="password-addon">
-            
-                    <button class="btn btn-light ms-0" type="button" id="password-addon"
-                        (click)="togglePasswordVisibility()">
-                          <i *ngIf="!hidePassword" class="bi bi-eye-fill"></i>
-                          <i *ngIf="hidePassword" class="bi bi-eye-slash-fill"></i>
-                        </button>
-                </div>
+            <div class="mb-3 mt-2">
+              <label for="password">Senha</label>
+              <div class="input-group auth-pass-inputgroup">
+                <input
+                  [type]="getInputType()"
+                  class="form-control"
+                  formControlName="password"
+                  placeholder=""
+                  [ngClass]="{
+                    'is-invalid': f['password'].errors && isSubmited
+                  }"
+                  aria-label="Password"
+                  aria-describedby="password-addon"
+                />
+
+                <button
+                  class="btn btn-light ms-0"
+                  type="button"
+                  id="password-addon"
+                  (click)="togglePasswordVisibility()"
+                >
+                  <i *ngIf="!hidePassword" class="bi bi-eye-fill"></i>
+                  <i *ngIf="hidePassword" class="bi bi-eye-slash-fill"></i>
+                </button>
+              </div>
             </div>
             <div class="">
-                <div class="form-check">
-                    <input class="form-check-input"  role="button" type="checkbox" id="remember-check" (change)="checkBoxInput($event.target)">
-                    <label class="form-check-label"  role="button" for="remember-check">
-                        Manter conectado
-                    </label>
-                </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  role="button"
+                  type="checkbox"
+                  id="remember-check"
+                  (change)="checkBoxInput($event.target)"
+                />
+                <label
+                  class="form-check-label"
+                  role="button"
+                  for="remember-check"
+                >
+                  Manter conectado
+                </label>
+              </div>
 
-                <div>
-                    <p class="" style="margin-top: 57px;">
-                    Não tem conta? <span routerLink="/account/register" role="button" class="text-primary">criar.</span>
-                    </p>
-                </div>
-
+              <div>
+                <p class="" style="margin-top: 57px">
+                  Não tem conta?
+                  <span
+                    routerLink="/account/register"
+                    role="button"
+                    class="text-primary"
+                    [ngxScrollTo]="'formRegister'"
+                    >criar.</span
+                  >
+                </p>
+              </div>
             </div>
-              <div class="my-4 d-grid d-flex flex-column align-items-center">
-                <button class="btn btn-dark w-50 shadow-none d-flex justify-content-center" type="submit">
-                    <span >Avançar</span>
-                </button>
-                
-                <div class="mt-3 text-center">
-                    <a routerLink="/account/reset-password" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Esqueceu a senha?</a>
-                </div>
+            <div class="my-4 d-grid d-flex flex-column align-items-center">
+              <button
+                class="btn btn-dark w-50 shadow-none d-flex justify-content-center"
+                type="submit"
+              >
+                <span>Avançar</span>
+              </button>
+
+              <div class="mt-3 text-center">
+                <a routerLink="/account/reset-password" class="text-muted"
+                  ><i class="mdi mdi-lock mr-1"></i> Esqueceu a senha?</a
+                >
               </div>
+            </div>
 
-              <hr>
+            <hr />
 
-              <div class="mt-4 text-center">
-                <h5 class="mb-3">Logar com</h5>
+            <div class="mt-4 text-center">
+              <h5 class="mb-3">Logar com</h5>
 
-                <ul class="list-inline fs-4">
-                  <li class="list-inline-item m-0">
-                    <a href="javascript::void()" class="social-list-item text-black border-primary">
-                      <i class="bi bi-facebook"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item mx-3">
-                    <a href="javascript::void()" class="social-list-item text-black border-info">
-                      <i class="bi bi-twitter-x"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item m-0">
-                    <a href="javascript::void()" class="social-list-item text-black border-danger">
-                      <i class="bi bi-google"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
-            </form>
-          </div>
-
+              <ul class="list-inline fs-4">
+                <li class="list-inline-item m-0">
+                  <a
+                    href="javascript::void()"
+                    class="social-list-item text-black border-primary"
+                  >
+                    <i class="bi bi-facebook"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item mx-3">
+                  <a
+                    href="javascript::void()"
+                    class="social-list-item text-black border-info"
+                  >
+                    <i class="bi bi-twitter-x"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item m-0">
+                  <a
+                    href="javascript::void()"
+                    class="social-list-item text-black border-danger"
+                  >
+                    <i class="bi bi-google"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="mt-5 text-center">
-        <p>{{year}} © Ziem Motors | CaueDev</p>
-      </div>
-
     </div>
-    
-  
-    <!-- end container -->
+    <div class="mt-5 text-center">
+      <p>{{ year }} © Ziem Motors | CaueDev</p>
+    </div>
   </div>
-  <!-- end page -->
+
+  <!-- end container -->
+</div>
+<!-- end page -->

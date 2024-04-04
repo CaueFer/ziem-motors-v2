@@ -46,7 +46,7 @@
   font-size: 0.8rem;
 }
 
-#formRegister {
+#formLogin {
   position: absolute;
 
   width: 530px;
@@ -63,12 +63,10 @@
 .account-pages{
 
   @media (max-width: 515px) {
-
-    #formRegister{
+    #formLogin{
       width: 100%;
     }
   }
-
 }
 
 

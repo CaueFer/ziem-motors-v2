@@ -47,15 +47,22 @@
   font-size: 0.8rem;
 }
 
-#formRegister{
+#formRegister {
   position: absolute;
-  width: 35%;
-  min-width: 500px;
+  width: 530px;
   top: 25%;
-
-  left: 0; 
-  right: 0; 
-  margin-left: auto; 
-  margin-right: auto; 
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   z-index: 1000;
+}
+
+.account-pages{
+
+  @media (max-width: 515px) {
+    #formRegister{
+      width: 100%;
+    }
+  }
 }
