@@ -42,7 +42,7 @@ export class CubeTestComponent {
     this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
 
     afterNextRender(() => {
-      const width = (window.innerWidth-15);
+      const width = (window.innerWidth);
       const height = window.innerHeight;
 
       // RENDER

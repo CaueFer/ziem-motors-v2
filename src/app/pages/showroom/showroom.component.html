@@ -1,148 +1,312 @@
-<app-nav-default [variant]="['light', 'transparent']"></app-nav-default>
+<app-nav-default [variant]="[]"></app-nav-default>
 <section class="" id="showroom" (window:scroll)="windowScroll()">
-    
-    <div id="showroomCar" style="height: 100vh; width: 99vw;">
-        <div  class="w-100 h-100 bg-black position-absolute z-3 d-flex justify-content-center align-items-center" style="top: 0; left: 0;" id="loadingDiv">
-            <div class="loader">
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-            </div>
-        </div>>
+  <div id="showroomCar" style="height: 99vh; width: 100%;">
+    <div
+      class="w-100 h-100 bg-black position-absolute z-3 d-flex justify-content-center align-items-center"
+      style="top: 0; left: 0"
+      id="loadingDiv"
+    >
+      <div class="loader">
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+      </div>
     </div>
+    >
+  </div>
 
-    <div class="section position-relative">
-
-        <div class="container carOptions z-1" id="carOptionsId">
-            <div class="row p-2 rounded-pill bg-white cardOptionsItems">
-                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center border-end my-2 cardOptionsItem">
-                    <span class="position-absolute z-2 ps-3">Tipo de Motor</span>
-                    <select class="form-select p-3 z-3 bg-transparent" aria-label="" id="selectMotor">
-                        <option value="0" selected></option>
-                        <option value="1">Combustão</option>
-                        <option value="2">Híbrido</option>
-                        <option value="3">Elétrico</option>
-                    </select>
-                </div>
-                
-                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 border-end cardOptionsItem">
-                    <span class="position-absolute z-2">Tipo de Cambio</span>
-                    <select class="form-select p-3 z-3 bg-transparent w-100 bg-danger" aria-label="" id="selectCambio">      
-                        <option value="0" selected></option>
-                        <option value="1">Manual</option>
-                        <option value="2">Automático</option>
-                        <option value="3">Sequencial</option>
-                    </select>
-                </div>
-                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 border-end cardOptionsItem">
-                    <span class="position-absolute z-2">Quilometragem</span>
-                    <select class="form-select p-3 z-3 bg-transparent" aria-label="" id="selectKm">
-                        <option value="0" selected></option>
-                        <option value="1">0 km</option>
-                        <option value="2">Semi-novo</option>
-                        <option value="3">Usado</option>
-                    </select>
-                </div>
-                <div class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 px-3 cardOptionsItem position-relative" style="min-height: 56px;">
-                    <input type="text" id="searchInput" placeholder="Pesquisar...">
-                    <span class="rounded-circle bg-primary d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; font-size: 18px;"><i class="bi bi-search text-white"></i></span>
-                </div>
-            </div>
+  <div class="section position-relative">
+    <div class="container carOptions z-1" id="carOptionsId">
+      <div class="row p-2 rounded-pill bg-white cardOptionsItems">
+        <div
+          class="opt col-3 d-flex flex-row justify-content-between align-items-center border-end my-2 cardOptionsItem"
+        >
+          <span class="position-absolute z-2 ps-3 d-none d-lg-block"
+            >Tipo de Motor</span
+          >
+          <span class="position-absolute z-2 ps-3 d-lg-none"
+            ><i class="bi bi-fuel-pump fs-5"></i
+          ></span>
+          <select
+            class="form-select p-3 z-3 bg-transparent"
+            aria-label=""
+            id="selectMotor"
+          >
+            <option value="0" selected></option>
+            <option value="1">Combustão</option>
+            <option value="2">Híbrido</option>
+            <option value="3">Elétrico</option>
+          </select>
         </div>
 
-        <section class="section" style="max-height: 1056px; overflow-y: hidden;">
-            <div class="container">       
-                <h1>Encontre seu carro dos sonhos</h1>
-                <p>Descubra o poder da liberdade sobre quatro rodas na nossa loja de carros - onde os sonhos ganham velocidade e a jornada se torna uma aventura!</p>
-
-
-                <div class="cardCarros py-5">
-                    <div class="row gap-4 d-flex justify-content-center align-items-center">
-                        <div class="card p-4" style="width: 18rem;">
-                            <h5 class="text-center justify-content-center align-items-center m-0">Porsche Carrera</h5>
-                            <div class="cardImg w-100 d-flex justify-content-center" style="height: 180px;">
-                                <img src="assets/images/imgCarros/porsche-718/esquerda.png" class="card-img-top py-5 object-fit-contain" alt="...">
-                            </div>
-                            <div class="card-body row">
-                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
-                                    <i class="bi bi-fuel-pump fs-5"></i>
-                                    <span style="font-size: 13px;">Combustão</span>
-                                </div>
-                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
-                                    <i class="bi bi-tools fs-5"></i>
-                                    <span style="font-size: 13px;">Manual</span>
-                                </div>
-                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
-                                    <i class="bi bi-speedometer fs-5"></i>
-                                    <span class="" style="font-size: 13px;">Semi-novo</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card p-4" style="width: 18rem;">
-                            <h5 class="text-center justify-content-center align-items-center m-0">Lambo Huracan</h5>
-                            <div class="cardImg w-100 d-flex justify-content-center" style="height: 180px;">
-                                <img src="assets/images/imgCarros/lambo-huracan/esquerda.png" class="card-img-top py-5 object-fit-contain" alt="...">
-                            </div>
-                            <div class="card-body row">
-                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
-                                    <i class="bi bi-fuel-pump fs-5"></i>
-                                    <span style="font-size: 13px;">Combustão</span>
-                                </div>
-                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
-                                    <i class="bi bi-tools fs-5"></i>
-                                    <span style="font-size: 13px;">Automatico</span>
-                                </div>
-                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
-                                    <i class="bi bi-speedometer fs-5"></i>
-                                    <span class="" style="font-size: 13px;">Novo</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card p-4" style="width: 18rem;">
-                            <h5 class="text-center justify-content-center align-items-center m-0">Mclaren GT</h5>
-                            <div class="cardImg w-100 d-flex justify-content-center" style="height: 180px;">
-                                <img src="assets/images/imgCarros/mclaren-gt/esquerda.png" class="card-img-top py-5 object-fit-contain" alt="...">
-                            </div>
-                            <div class="card-body row">
-                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
-                                    <i class="bi bi-fuel-pump fs-5"></i>
-                                    <span style="font-size: 13px;">Hibrido</span>
-                                </div>
-                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
-                                    <i class="bi bi-tools fs-5"></i>
-                                    <span style="font-size: 13px;">Sequencial</span>
-                                </div>
-                                <div class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3">
-                                    <i class="bi bi-speedometer fs-5"></i>
-                                    <span class="" style="font-size: 13px;">Usado</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SKELETON LOADER ================================== -->
-                        <div class="card p-4 d-flex flex-column justify-content-center align-items-center skeletonCard" style="width: 18rem;" *ngFor="let index of getNumberArray(9)">
-                            <ngx-skeleton-loader animation="pulse" appearance="line" [theme]="{height: '24px', width: '130px'}" style="max-height: 24px;" />
-                            <div class="cardImg w-100 d-flex justify-content-center align-items-center" style="height: 180px;">
-                                <ngx-skeleton-loader animation="pulse" [theme]="{height: '98px', width: '170px'}"/>
-                            </div>
-                            <div class="card-body row">
-                                <ngx-skeleton-loader animation="pulse" [theme]="{height: '49px', width: '170px'}" style="max-height: 54px;"/>
-                            </div>
-                        </div>
-                        <!-- SKELETON LOADER ================================== -->
-
-                    </div>
+        <div
+          class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 border-end cardOptionsItem"
+        >
+          <span class="position-absolute z-2 d-none d-lg-block"
+            >Tipo de Cambio</span
+          >
+          <span class="position-absolute z-2 ps-3 d-lg-none"
+            ><i class="bi bi-tools fs-5"></i
+          ></span>
+          <select
+            class="form-select p-3 z-3 bg-transparent w-100 bg-danger"
+            aria-label=""
+            id="selectCambio"
+          >
+            <option value="0" selected></option>
+            <option value="1">Manual</option>
+            <option value="2">Automático</option>
+            <option value="3">Sequencial</option>
+          </select>
+        </div>
+        <div
+          class="opt col-3 d-flex flex-row justify-content-between align-items-center my-2 border-end cardOptionsItem"
+        >
+          <span class="position-absolute z-2 d-none d-lg-block text-truncate"
+            >Quilometragem</span
+          >
+          <span class="position-absolute z-2 ps-3 d-lg-none"
+            ><i class="bi bi-speedometer fs-5"></i
+          ></span>
+          <select
+            class="form-select p-3 z-3 bg-transparent"
+            aria-label=""
+            id="selectKm"
+          >
+            <option value="0" selected></option>
+            <option value="1">0 km</option>
+            <option value="2">Semi-novo</option>
+            <option value="3">Usado</option>
+          </select>
+        </div>
+        <div
+          class="opt col-3 d-none d-lg-flex flex-row justify-content-between align-items-center my-2 px-3 cardOptionsItem position-relative"
+          style="min-height: 56px"
+        >
+          <input
+            type="text"
+            class="input w-50"
+            id="searchInput"
+            placeholder="Pesquisar..."
+          />
+          <label
+            for="searchInput"
+            role="button"
+            class="rounded-circle bg-primary d-flex justify-content-center align-items-center me-3"
+            style="width: 40px; height: 40px; font-size: 18px"
+            ><i class="bi bi-search text-white"></i
+          ></label>
+        </div>
+        <div
+          class="opt col-3 d-flex d-lg-none flex-row justify-content-center align-items-center my-2 px-3 cardOptionsItem position-relative dropdown"
+          style="min-height: 56px"
+        >
+          <label
+            for="searchInput"
+            role="button"
+            class="rounded-circle bg-primary d-flex justify-content-center align-items-center me-3"
+            style="width: 40px; height: 40px; font-size: 18px"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="bi bi-search text-white"></i
+          ></label>
+          <div
+            aria-labelledby="dropdown"
+            class="dropdown-menu p-3 shadow animated--grow-in"
+            data-bs-popper="static"
+            style="width: 99vw"
+          >
+            <form class="form-inline mr-auto w-100 navbar-search">
+              <div class="input-group">
+                <input
+                  type="text"
+                  placeholder="Pesquisar..."
+                  aria-label="Search"
+                  aria-describedby="basic-addon2"
+                  class="form-control bg-light border-0 small inputClean"
+                />
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-primary">
+                    <i class="bi bi-search"></i>
+                  </button>
                 </div>
-            </div>
-        </section>
-        
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <section class="section" style="max-height: 1056px; overflow-y: hidden">
+      <div class="container">
+        <h1>Encontre seu carro dos sonhos</h1>
+        <p>
+          Descubra o poder da liberdade sobre quatro rodas na nossa loja de
+          carros - onde os sonhos ganham velocidade e a jornada se torna uma
+          aventura!
+        </p>
+
+        <div class="cardCarros py-5">
+          <div
+            class="row gap-4 d-flex justify-content-center align-items-center"
+          >
+            <div class="card p-4" style="width: 18rem">
+              <h5
+                class="text-center justify-content-center align-items-center m-0"
+              >
+                Porsche Carrera
+              </h5>
+              <div
+                class="cardImg w-100 d-flex justify-content-center"
+                style="height: 180px"
+              >
+                <img
+                  src="assets/images/imgCarros/porsche-718/esquerda.png"
+                  class="card-img-top py-5 object-fit-contain"
+                  alt="..."
+                />
+              </div>
+              <div class="card-body row">
+                <div
+                  class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3"
+                >
+                  <i class="bi bi-fuel-pump fs-5"></i>
+                  <span style="font-size: 13px">Combustão</span>
+                </div>
+                <div
+                  class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3"
+                >
+                  <i class="bi bi-tools fs-5"></i>
+                  <span style="font-size: 13px">Manual</span>
+                </div>
+                <div
+                  class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3"
+                >
+                  <i class="bi bi-speedometer fs-5"></i>
+                  <span class="" style="font-size: 13px">Semi-novo</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card p-4" style="width: 18rem">
+              <h5
+                class="text-center justify-content-center align-items-center m-0"
+              >
+                Lambo Huracan
+              </h5>
+              <div
+                class="cardImg w-100 d-flex justify-content-center"
+                style="height: 180px"
+              >
+                <img
+                  src="assets/images/imgCarros/lambo-huracan/esquerda.png"
+                  class="card-img-top py-5 object-fit-contain"
+                  alt="..."
+                />
+              </div>
+              <div class="card-body row">
+                <div
+                  class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3"
+                >
+                  <i class="bi bi-fuel-pump fs-5"></i>
+                  <span style="font-size: 13px">Combustão</span>
+                </div>
+                <div
+                  class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3"
+                >
+                  <i class="bi bi-tools fs-5"></i>
+                  <span style="font-size: 13px">Auto</span>
+                </div>
+                <div
+                  class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3"
+                >
+                  <i class="bi bi-speedometer fs-5"></i>
+                  <span class="" style="font-size: 13px">Novo</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card p-4" style="width: 18rem">
+              <h5
+                class="text-center justify-content-center align-items-center m-0"
+              >
+                Mclaren GT
+              </h5>
+              <div
+                class="cardImg w-100 d-flex justify-content-center"
+                style="height: 180px"
+              >
+                <img
+                  src="assets/images/imgCarros/mclaren-gt/esquerda.png"
+                  class="card-img-top py-5 object-fit-contain"
+                  alt="..."
+                />
+              </div>
+              <div class="card-body row">
+                <div
+                  class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3"
+                >
+                  <i class="bi bi-fuel-pump fs-5"></i>
+                  <span style="font-size: 13px">Hibrido</span>
+                </div>
+                <div
+                  class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3"
+                >
+                  <i class="bi bi-tools fs-5"></i>
+                  <span style="font-size: 13px">Sequencial</span>
+                </div>
+                <div
+                  class="cardItem p-0 col-4 d-flex flex-column justify-content-center align-items-center rounded-3"
+                >
+                  <i class="bi bi-speedometer fs-5"></i>
+                  <span class="" style="font-size: 13px">Usado</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SKELETON LOADER ================================== -->
+            <div
+              class="card p-4 d-flex flex-column justify-content-center align-items-center skeletonCard"
+              style="width: 18rem"
+              *ngFor="let index of getNumberArray(9)"
+            >
+              <ngx-skeleton-loader
+                animation="pulse"
+                appearance="line"
+                [theme]="{ height: '24px', width: '130px' }"
+                style="max-height: 24px"
+              />
+              <div
+                class="cardImg w-100 d-flex justify-content-center align-items-center"
+                style="height: 180px"
+              >
+                <ngx-skeleton-loader
+                  animation="pulse"
+                  [theme]="{ height: '98px', width: '170px' }"
+                />
+              </div>
+              <div class="card-body row">
+                <ngx-skeleton-loader
+                  animation="pulse"
+                  [theme]="{ height: '49px', width: '170px' }"
+                  style="max-height: 54px"
+                />
+              </div>
+            </div>
+            <!-- SKELETON LOADER ================================== -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </section>
-<app-cube-test (isLoading)="showLoader($event)" [scrolldown]="this.scrollDown" style="width: 100%;"></app-cube-test>
-<app-footer-default/>
+<app-cube-test
+  (isLoading)="showLoader($event)"
+  [scrolldown]="this.scrollDown"
+  style="width: 100%"
+></app-cube-test>
+<app-footer-default />
