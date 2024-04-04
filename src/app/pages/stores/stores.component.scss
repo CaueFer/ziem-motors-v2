@@ -1,32 +1,40 @@
-#formGrupStores{
+#formGrupStores {
+  #cidadeInput {
+    outline: none;
+    box-shadow: none;
 
-    #cidadeInput{
-        outline: none;
-        box-shadow: none;
-    
-        background-color: rgb(133, 133, 133);
-        color: white;
-        width: auto;
-    
-        &::placeholder{
-            color: rgba(255, 255, 255, 0.712);
-            text-align: start;
-        }
-    
-        &:focus{
-            border: var(--bs-border-width) solid var(--bs-border-color);
-    
-        }
+    background-color: rgb(133, 133, 133);
+    color: white;
+    width: auto;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.712);
+      text-align: start;
     }
+
+    &:focus {
+      border: var(--bs-border-width) solid var(--bs-border-color);
+    }
+  }
 }
 
+.headerStores {
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
 
-.headerStores{
-    img{
-        width: 100%; 
-        height: 100%; 
-        position: absolute; 
-        top: 0; 
-        left: 0;
+#findMapLg {
+  margin-top: 80px;
+  margin-bottom: 80px;
+
+  @media (min-width: 992px) {
+    & {
+      border-radius: 20px!important;
     }
+  }
 }

@@ -1,58 +1,346 @@
 <app-nav-default [variant]="['']" class="z-3"></app-nav-default>
 
-<section class="section" id="mapSection" style="padding: 0px;">
+<section class="section" id="mapSection" style="padding: 0px">
+  <div
+    class="section headerStores bg-dark position-relative"
+    style="height: 60vh"
+  >
+    <img
+      src="assets/animations/gifs/mapLocation.gif"
+      class="object-fit-cover"
+      alt="imgStores"
+    />
 
-    <div class="section headerStores bg-dark position-relative" style="height: 60vh;">
-        <img src="assets/animations/gifs/mapLocation.gif" alt="">
-
-        <div class="container position-relative" style="top: 70%;">
-            <div class="storesHeaderMenu w-100 bg-transparent d-flex flex-column justify-content-center align-items-stat p-3 text-white" style="height: auto;">
-                <h1 class="fw-bold" >Explore novos horizontes</h1>
-               <h3 class="" >Aventura aguarda por você.</h3>
-            </div>
-        </div>
+    <div class="container position-relative" style="top: calc(65% + 1.5vw)">
+      <div
+        class="storesHeaderMenu w-100 bg-transparent d-flex flex-column justify-content-center align-items-stat p-3 text-white"
+        style="height: auto"
+      >
+        <h1 class="fw-bold">Explore novos horizontes</h1>
+        <h3 class="">Aventura aguarda por você.</h3>
+      </div>
     </div>
+  </div>
 
-    <div class="container p-5 d-flex bg-dark" style="border-radius: 48px; margin-top: 80px; margin-bottom: 80px;">
-        <div class="formLojas col-5 pe-3">
-
-            <div class="upper text-white">
-                <h1 class="fw-bold py-3 text-start m-0 ">FIND CARS</h1>
-                <p class=" fs-5 m-0 text-start">Encontre a loja mais perto de você</p>
-                <form [formGroup]="cityForm" class="pt-5 pb-4 d-flex flex-column gap-3" id="formGrupStores">
-                        <div class="d-flex align-items-center gap-1 text-center fs-5 text-white">
-                            <span class="">Procurar</span>
-                            <i class="bi bi-arrow-down-short fs-3 iconCenter"></i>
-                        </div>
-                        <div class="input input-group d-flex flex-row" style="width: 60%;">
-                            <input type="text" class="form-control" aria-expanded="false" formControlName="cityName" id="cidadeInput" (input)="onInput($event)" placeholder="digite o nome da cidade..." autocomplete="off" >  
-                            <div class="dropdown-menu mt-5" id="dropdownCidadeinput">
-                                <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0">Nenhum encontrado.</span>
-                                <a class="dropdown-item text-black" *ngFor="let item of returnedCitys" (click)="onSelectCity($event)" >{{item}}</a>
-                            </div>
-                            <i class="bi bi-search input-group-text" style="border-radius: 0px var(--bs-border-radius) var(--bs-border-radius) 0px;"></i>
-                        </div>
-                </form>
-
-                <span class="fs-5 px-2 py-3" *ngIf="selectedCity !== '' && !cidadesDisponiveis.includes(selectedCity)"><i class="bi bi-emoji-tear-fill"></i> Nenhuma loja nesta cidade.</span>
-            
+  <!-- FIND CAR MAP ============================= -->
+  <div
+    id="findMapLg"
+    class="container-lg p-5 bg-dark d-none d-md-flex rounded-0"
+  >
+    <div class="formLojas col-5 pe-3">
+      <div class="upper text-white">
+        <h1 class="fw-bold py-3 text-start m-0">FIND CARS</h1>
+        <p class="fs-5 m-0 text-start">Encontre a loja mais perto de você</p>
+        <form
+          [formGroup]="cityForm"
+          class="pt-5 pb-4 d-flex flex-column gap-3"
+          id="formGrupStores"
+        >
+          <div
+            class="d-flex align-items-center gap-1 text-center fs-5 text-white"
+          >
+            <span class="">Procurar</span>
+            <i class="bi bi-arrow-down-short fs-3 iconCenter"></i>
+          </div>
+          <div class="input input-group d-flex flex-row">
+            <input
+              type="text"
+              class="form-control"
+              aria-expanded="false"
+              formControlName="cityName"
+              id="cidadeInput"
+              (input)="onInput($event)"
+              placeholder="digite a cidade..."
+              autocomplete="off"
+              style="width: calc(100% - 42px);"
+            />
+            <div class="dropdown-menu mt-5" id="dropdownCidadeinput">
+              <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0"
+                >Nenhum encontrado.</span
+              >
+              <a
+                class="dropdown-item text-black"
+                *ngFor="let item of returnedCitys"
+                (click)="onSelectCity($event)"
+                >{{ item }}</a
+              >
             </div>
+            <i
+              class="bi bi-search input-group-text"
+              style="
+                border-radius: 0px var(--bs-border-radius)
+                  var(--bs-border-radius) 0px;
+              "
+            ></i>
+          </div>
+        </form>
 
-            <hr class="border-white">
-            
-            <div class="lower">
-                <p class="fs-5 text-black d-flex align-items-center gap-1 pt-3 text-white">Recomendações <i class="bi bi-arrow-down-short fs-3 iconCenter"></i></p>
-                <p class="fs-6 ps-2 text-black text-white" role="button" (click)="onInput(null, 'Petrópolis, RJ')" ><i class="bi bi-geo-alt-fill pe-2"></i>Petrópolis, RJ</p>
-                <p class="fs-6 ps-2 text-black text-white" role="button" (click)="onInput(null, 'Joinville, SC')" ><i class="bi bi-geo-alt-fill pe-2"></i>Joinville, SC</p>
-                <p class="fs-6 ps-2 text-black text-white" role="button" (click)="onInput(null, 'Campinas, SP')" ><i class="bi bi-geo-alt-fill pe-2"></i>Campinas, SP</p>
+        <span
+          class="fs-5 px-2 py-3"
+          *ngIf="
+            selectedCity !== '' && !cidadesDisponiveis.includes(selectedCity)
+          "
+          ><i class="bi bi-emoji-tear-fill"></i> Nenhuma loja nesta
+          cidade.</span
+        >
+      </div>
 
+      <hr class="border-white" />
+
+      <div class="lower">
+        <p
+          class="fs-5 text-black d-flex align-items-center gap-1 pt-3 text-white"
+        >
+          Recomendações <i class="bi bi-arrow-down-short fs-3 iconCenter"></i>
+        </p>
+        <p
+          class="fs-6 ps-2 text-black text-white"
+          role="button"
+          (click)="onInput(null, 'Petrópolis, RJ')"
+        >
+          <i class="bi bi-geo-alt-fill pe-2"></i>Petrópolis, RJ
+        </p>
+        <p
+          class="fs-6 ps-2 text-black text-white"
+          role="button"
+          (click)="onInput(null, 'Joinville, SC')"
+        >
+          <i class="bi bi-geo-alt-fill pe-2"></i>Joinville, SC
+        </p>
+        <p
+          class="fs-6 ps-2 text-black text-white"
+          role="button"
+          (click)="onInput(null, 'Campinas, SP')"
+        >
+          <i class="bi bi-geo-alt-fill pe-2"></i>Campinas, SP
+        </p>
+      </div>
+    </div>
+    <div class="formLojas col-7 ps-3 position-relative" style="height: auto">
+      <app-map
+        [selectedCity]="selectedCity"
+        [newCenter]="selectedCityLoc"
+        (temLojas)="eventRecepter($event)"
+      ></app-map>
+    </div>
+  </div>
+  <!-- FIND CAR END ============================= -->
+
+  <!-- FIND CAR MAP ============================= -->
+  <div
+    class="container-lg py-5 px-4 bg-dark d-none d-sm-flex d-md-none flex-column"
+    style="margin-top: 80px; margin-bottom: 80px"
+  >
+    <div class="formLojas pe-3">
+      <div class="upper text-white">
+        <h1 class="fw-bold py-3 text-start m-0">FIND CARS</h1>
+        <p class="fs-5 m-0 text-start">Encontre a loja mais perto de você</p>
+        <form
+          [formGroup]="cityForm"
+          class="pt-5 pb-4 d-flex flex-column gap-3"
+          id="formGrupStores"
+        >
+          <div
+            class="d-flex align-items-center gap-1 text-center fs-5 text-white"
+          >
+            <span class="">Procurar</span>
+            <i class="bi bi-arrow-down-short fs-3 iconCenter"></i>
+          </div>
+          <div class="input input-group d-flex flex-row w-100 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              aria-expanded="false"
+              formControlName="cityName"
+              id="cidadeInput"
+              (input)="onInput($event)"
+              placeholder="digite a cidade..."
+              autocomplete="off"
+              style="width: calc(100%-42px);"
+            />
+            <i
+              class="bi bi-search input-group-text"
+              style="
+                border-radius: 0px var(--bs-border-radius)
+                  var(--bs-border-radius) 0px;
+              "
+            ></i>
+            <div class="dropdown-menu mt-5" id="dropdownCidadeinput">
+              <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0"
+                >Nenhum encontrado.</span
+              >
+              <a
+                class="dropdown-item text-black"
+                *ngFor="let item of returnedCitys"
+                (click)="onSelectCity($event)"
+                >{{ item }}</a
+              >
             </div>
+          </div>
+        </form>
 
+        <span
+          class="fs-5 px-2 py-3"
+          *ngIf="
+            selectedCity !== '' && !cidadesDisponiveis.includes(selectedCity)
+          "
+          ><i class="bi bi-emoji-tear-fill"></i> Nenhuma loja nesta
+          cidade.</span
+        >
+      </div>
+
+      <hr class="border-white" />
+
+      <div class="lower">
+        <p
+          class="fs-5 text-black d-flex align-items-center gap-1 pt-3 text-white"
+        >
+          Recomendações <i class="bi bi-arrow-down-short fs-3 iconCenter"></i>
+        </p>
+        <div class="recomendItems ps-2 d-flex flex-row gap-3">
+          <p
+            class="fs-6 text-black text-white"
+            role="button"
+            (click)="onInput(null, 'Petrópolis, RJ')"
+          >
+            <i class="bi bi-geo-alt-fill pe-2"></i>Petrópolis, RJ
+          </p>
+          <p
+            class="fs-6 text-black text-white"
+            role="button"
+            (click)="onInput(null, 'Joinville, SC')"
+          >
+            <i class="bi bi-geo-alt-fill pe-2"></i>Joinville, SC
+          </p>
+          <p
+            class="fs-6 text-black text-white"
+            role="button"
+            (click)="onInput(null, 'Campinas, SP')"
+          >
+            <i class="bi bi-geo-alt-fill pe-2"></i>Campinas, SP
+          </p>
         </div>
-        <div class="formLojas col-7 ps-3 position-relative" style="height: auto;">
-            <app-map [selectedCity]="selectedCity" [newCenter]="selectedCityLoc" (temLojas)="eventRecepter($event)"></app-map>
+      </div>
+    </div>
+    <div class="formLojas py-3 position-relative" style="height: 350px">
+      <app-map
+        [selectedCity]="selectedCity"
+        [newCenter]="selectedCityLoc"
+        (temLojas)="eventRecepter($event)"
+      ></app-map>
+    </div>
+  </div>
+  <!-- FIND CAR END ============================= -->
+
+  <!-- FIND CAR MAP ============================= -->
+  <div
+    class="container-lg py-5 my-0 px-4 bg-dark d-flex d-sm-none flex-column"
+    style="margin-top: 80px; margin-bottom: 80px"
+  >
+    <div class="formLojas pe-3">
+      <div class="upper text-white">
+        <h1 class="fw-bold py-3 text-start m-0">FIND CARS</h1>
+        <p class="fs-5 m-0 text-start">Encontre a loja mais perto de você</p>
+        <form
+          [formGroup]="cityForm"
+          class="pt-5 pb-4 d-flex flex-column gap-3"
+          id="formGrupStores"
+        >
+          <div
+            class="d-flex align-items-center gap-1 text-center fs-5 text-white"
+          >
+            <span class="">Procurar</span>
+            <i class="bi bi-arrow-down-short fs-3 iconCenter"></i>
+          </div>
+          <div class="input input-group d-flex flex-row">
+            <input
+              type="text"
+              class="form-control"
+              aria-expanded="false"
+              formControlName="cityName"
+              id="cidadeInput"
+              (input)="onInput($event)"
+              placeholder="digite a cidade..."
+              autocomplete="off"
+              style="width: calc(100% - 42px);"
+            />
+            <div class="dropdown-menu mt-5" id="dropdownCidadeinput">
+              <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0"
+                >Nenhum encontrado.</span
+              >
+              <a
+                class="dropdown-item text-black"
+                *ngFor="let item of returnedCitys"
+                (click)="onSelectCity($event)"
+                >{{ item }}</a
+              >
+            </div>
+            <i
+              class="bi bi-search input-group-text"
+              style="
+                border-radius: 0px var(--bs-border-radius)
+                  var(--bs-border-radius) 0px;
+              "
+            ></i>
+          </div>
+        </form>
+
+        <span
+          class="fs-5 px-2 py-3"
+          *ngIf="
+            selectedCity !== '' && !cidadesDisponiveis.includes(selectedCity)
+          "
+          ><i class="bi bi-emoji-tear-fill"></i> Nenhuma loja nesta
+          cidade.</span
+        >
+      </div>
+
+      <hr class="border-white" />
+
+      <div class="lower py-3">
+        <p
+          class="dropdown btn btn-outline-light m-0 fs-6 d-flex align-items-center justify-content-center gap-1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          role="button"
+          style="width: 190px !important"
+        >
+          Recomendações <i class="bi bi-arrow-down-short fs-3 iconCenter"></i>
+        </p>
+        <div class="recomendItems dropdown-menu ps-2" style="z-index: 1001">
+          <p
+            class="fs-6 text-black"
+            role="button"
+            (click)="onInput(null, 'Petrópolis, RJ')"
+          >
+            <i class="bi bi-geo-alt-fill pe-2"></i>Petrópolis, RJ
+          </p>
+          <p
+            class="fs-6 text-black"
+            role="button"
+            (click)="onInput(null, 'Joinville, SC')"
+          >
+            <i class="bi bi-geo-alt-fill pe-2"></i>Joinville, SC
+          </p>
+          <p
+            class="fs-6 text-black"
+            role="button"
+            (click)="onInput(null, 'Campinas, SP')"
+          >
+            <i class="bi bi-geo-alt-fill pe-2"></i>Campinas, SP
+          </p>
         </div>
-    </div>  
+      </div>
+    </div>
+    <div class="formLojas py-3 position-relative" style="height: 350px">
+      <app-map
+        [selectedCity]="selectedCity"
+        [newCenter]="selectedCityLoc"
+        (temLojas)="eventRecepter($event)"
+      ></app-map>
+    </div>
+  </div>
+  <!-- FIND CAR END ============================= -->
 </section>
 
 <app-footer-default></app-footer-default>
