@@ -1,111 +1,300 @@
 <app-nav-default></app-nav-default>
 <div class="content">
-
   <section class="section position-relative w-100 pt-0" id="home">
-    <owl-carousel-o [options]="mainOptions" class="" id="carouselHome">
-      <ng-template carouselSlide [id]="'slide3'"> 
-          <img class="object-fit-cover" style="height: 87vh;"  [src]="'assets/images/carousel/slide3.jpg' || 'assets/images/carousel/default.jpg'" alt="imgSlide3">
-      </ng-template>  
-    </owl-carousel-o>
+    <img
+      class="object-fit-cover w-100"
+      style="max-height: 87vh"
+      [src]="
+        'assets/images/carousel/slide3.jpg' ||
+        'assets/images/carousel/default.jpg'
+      "
+      alt="imgSlide3"
+    />
 
-    <div class="container features d-flex flex-column">
-      <div class="text row d-flex flex-row">
+    <div class="container-lg features d-flex flex-column">
+      <div class="text row d-none d-md-flex flex-row">
         <div class="col">
-            <h1 class="fw-bold pt-3 ps-3" style="font-size: 56px;">PREMIUM CARS</h1>
-            <p class="pt-5 pb-3 ps-3 fs-3 m-0">Exclusividade e luxo aos nossos clientes</p>
-            <p class="pb-4 ps-3 fs-3 m-0">Todos os carros são verificados e autenticados pelas marcas originais.</p>
-            
-            <hr>
+          <h1 class="fw-bold pt-3 ps-3" style="font-size: calc(1.375rem + 2vw)">
+            PREMIUM CARS
+          </h1>
+          <p class="pt-5 pb-3 ps-3 fs-3 m-0">
+            Exclusividade e luxo aos nossos clientes
+          </p>
+          <p class="pb-4 ps-3 fs-3 m-0">
+            Todos os carros são verificados e autenticados pelas marcas
+            originais.
+          </p>
 
-            <div class="btnHome ps-3 pt-4">
-                <button type="button" class="btn btn-dark px-4 py-3 fs-4"  routerLink="/showroom">Ver carros</button>
-            </div>
+          <hr />
+
+          <div class="btnHome ps-3 pt-4">
+            <button
+              type="button"
+              class="btn btn-dark px-4 py-3 fs-4"
+              routerLink="/showroom"
+            >
+              Ver carros
+            </button>
+          </div>
         </div>
-        <div class="col position-relative" style="height: 470px; width: 50%;">
-            <img src="assets/images/landing/landing2.jpg" class="object-fit-cover w-100 h-100 position-absolute" alt="carImg" style="top: 80px;left: 60px;">
+        <div class="col position-relative" style="height: 470px; width: 50%">
+          <img
+            src="assets/images/landing/landing2.jpg"
+            class="object-fit-cover w-100 h-100 position-absolute d-none d-lg-block"
+            alt="carImg"
+            style="top: 80px; left: 60px; object-position: 0% 50%"
+          />
+          <img
+            src="assets/images/landing/landing2.jpg"
+            class="object-fit-cover w-100 h-100 position-absolute d-none d-md-block d-lg-none"
+            alt="carImg"
+            style="top: 80px; left: 60px; object-position: 20% 50%"
+          />
         </div>
       </div>
 
-      <div class="carouselMarcas row my-5 smoothScroll" style="padding: 120px 0px">
-        <owl-carousel-o [options]="brandsOption" class="events navs-carousel">
-          <ng-template carouselSlide>
-              <div class="item">
-                  <div class="client-images">
-                      <img src="assets/images/marcas/lambo.png" alt="client-img"
-                          class="mx-auto img-fluid d-block">
-                  </div>
-              </div>
-          </ng-template>
-          <ng-template carouselSlide>
-              <div class="item">
-                  <div class="client-images">
-                      <img src="assets/images/marcas/ferrari.png" alt="client-img"
-                          class="mx-auto img-fluid d-block">
-                  </div>
-              </div>
-          </ng-template>
-          <ng-template carouselSlide>
-              <div class="item">
-                  <div class="client-images">
-                      <img src="assets/images/marcas/porsche.png" alt="client-img"
-                          class="mx-auto img-fluid d-block">
-                  </div>
-              </div>
-          </ng-template>
-          <ng-template carouselSlide>
-              <div class="item">
-                  <div class="client-images">
-                      <img src="assets/images/marcas/bmw.png" alt="client-img"
-                          class="mx-auto img-fluid d-block">
-                  </div>
-              </div>
-          </ng-template>
-          <ng-template carouselSlide>
-              <div class="item">
-                  <div class="client-images">
-                      <img src="assets/images/marcas/mercedez.png" alt="client-img"
-                          class="mx-auto img-fluid d-block">
-                  </div>
-              </div>
-          </ng-template>
-          <ng-template carouselSlide>
-              <div class="item">
-                  <div class="client-images">
-                      <img src="assets/images/marcas/audi.png" alt="client-img"
-                          class="mx-auto img-fluid d-block">
-                  </div>
-              </div>
-          </ng-template>
-          <ng-template carouselSlide>
-              <div class="item">
-                  <div class="client-images">
-                      <img src="assets/images/marcas/tesla.png" alt="client-img"
-                          class="mx-auto img-fluid d-block">
-                  </div>
-              </div>
-          </ng-template>
+      <div class="text row d-flex d-md-none flex-row">
+        <div class="col">
+          <h1 class="fw-bold pt-3 px-3" style="font-size: calc(1.375rem + 2vw)">
+            PREMIUM CARS
+          </h1>
+          <p class="pt-4 px-3 pb-2 fs-3 m-0">
+            Exclusividade e luxo aos nossos clientes
+          </p>
+          <p class="pb-3 px-3 fs-3 m-0 fs-5">
+            Todos os carros são verificados e autenticados pelas marcas
+            originais.
+          </p>
+
+          <hr />
+
+          <div
+            class="btnHome pt-4 mx-3 position-relative"
+            style="height: 220px"
+          >
+            <img
+              src="assets/images/landing/landing2.jpg"
+              class="object-fit-cover w-100 h-100 z-2"
+              alt="carImg"
+              style="object-position: 0% 71%"
+            />
+            <button
+              type="button"
+              class="btn btn-dark px-4 py-3 fs-4 z-3 position-absolute d-none d-md-block"
+              style="left: 70%; top: 60%"
+              routerLink="/showroom"
+            >
+              Ver carros
+            </button>
+            <button
+              type="button"
+              class="btn btn-dark px-3 py-2 fs-5 z-3 position-absolute d-none d-sm-block d-md-none"
+              style="left: calc(100% - 140px); top: 70%"
+              routerLink="/showroom"
+            >
+              Ver carros
+              <i class="bi bi-arrow-right-short align-middle"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-dark px-3 py-2 fs-5 d-sm-none w-100 rounded-0"
+              routerLink="/showroom"
+            >
+              ver carros
+              <i class="bi bi-arrow-right-short align-middle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <owl-carousel-o
+        [options]="brandsOption"
+        class="events navs-carousel position-relative mt-5"
+        style="padding: calc(40px + 5vw) 0px"
+      >
+        <ng-template carouselSlide>
+          <div class="item">
+            <div
+              class="client-images d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="assets/images/marcas/lambo.png"
+                alt="client-img"
+                class="mx-auto img-fluid d-block"
+              />
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="item">
+            <div
+              class="client-images d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="assets/images/marcas/ferrari.png"
+                alt="client-img"
+                class="mx-auto img-fluid d-block"
+              />
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="item">
+            <div
+              class="client-images d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="assets/images/marcas/porsche.png"
+                alt="client-img"
+                class="mx-auto img-fluid d-block"
+              />
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="item">
+            <div
+              class="client-images d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="assets/images/marcas/bmw.png"
+                alt="client-img"
+                class="mx-auto img-fluid d-block"
+              />
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="item">
+            <div
+              class="client-images d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="assets/images/marcas/mercedez.png"
+                alt="client-img"
+                class="mx-auto img-fluid d-block"
+              />
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="item h-100">
+            <div
+              class="client-images d-flex justify-content-center align-items-center h-100"
+            >
+              <img
+                src="assets/images/marcas/audi.png"
+                alt="client-img"
+                class="mx-auto img-fluid d-block"
+              />
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="item">
+            <div
+              class="client-images d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="assets/images/marcas/tesla.png"
+                alt="client-img"
+                class="mx-auto img-fluid d-block"
+              />
+            </div>
+          </div>
+        </ng-template>
       </owl-carousel-o>
-      </div>
 
-      <div class="text row d-flex flex-row">
-         <div class="col position-relative" style="height: 470px; width: 50%;">
-            <img src="assets/images/landing/findCar.png" class="object-fit-cover w-100 h-100 position-absolute" alt="carImg" style="top: -60px;left: -40px;">
+      <div class="text row d-none d-md-flex flex-row">
+        <div class="col position-relative" style="height: 470px; width: 50%">
+          <img
+            src="assets/images/landing/findCarFull.png"
+            class="object-fit-cover w-100 h-100 position-absolute"
+            alt="carImg"
+            style="top: -60px; left: -40px"
+          />
         </div>
 
         <div class="col">
-            <h1 class="fw-bold pt-3 ps-3 text-end" style="font-size: 56px;">FIND CARS</h1>
-            <p class="pt-5 pb-3 ps-3 fs-3 m-0 text-end">Utilize nossa plataforma FIND CARS para encontrar a loja mais perto de você</p>
-            
-            <hr>
+          <h1 class="fw-bold pt-3 ps-3 text-end" style="font-size: 56px">
+            FIND CARS
+          </h1>
+          <p class="pt-5 pb-3 ps-3 fs-3 m-0 text-end">
+            Utilize nossa plataforma FIND CARS para encontrar a loja mais perto
+            de você
+          </p>
 
-            <div class="btnHome ps-3 pt-4 d-flex justify-content-end">
-                <button type="button" class="btn btn-dark px-4 py-3 fs-4" routerLink="/stores">Encontrar</button>
-            </div>
+          <hr />
+
+          <div class="btnHome ps-3 pt-4 d-flex justify-content-end">
+            <button
+              type="button"
+              class="btn btn-dark px-4 py-3 fs-4"
+              routerLink="/stores"
+            >
+              Encontrar
+            </button>
+          </div>
         </div>
-       
+      </div>
+
+      <div
+        class="text row d-flex d-md-none flex-row justify-content-end position-relative"
+      >
+        <div class="col pe-3 z-1">
+          <h1 class="fw-bold text-end" style="font-size: calc(1.375rem + 2vw)">
+            FIND CARS
+          </h1>
+          <p class="py-3 fs-3 m-0 text-end">
+            Utilize nossa plataforma FIND CARS - encontre a loja mais perto de
+            você
+          </p>
+
+          <hr />
+
+          <div
+            class="btnHome pt-3 d-flex flex-column justify-content-end position-relative d-none d-sm-block d-md-none"
+            style="height: 200px"
+          >
+            <img
+              src="assets/images/landing/findCarFull.png"
+              class="object-fit-cover h-100 w-100"
+              alt="carImg"
+              style="object-position: 50% 56%"
+            />
+            <button
+              type="button"
+              class="btn btn-dark px-3 py-2 fs-5 position-absolute"
+              style="left: calc(100% - 160px); top: 70%"
+              routerLink="/stores"
+            >
+              Encontrar
+              <i class="bi bi-search align-middle"></i>
+            </button>
+          </div>
+
+          <div
+            class="btnHome pt-3 d-flex flex-column justify-content-end position-relative d-sm-none"
+            style="height: 150px"
+          >
+            <img
+              src="assets/images/landing/findCarFull.png"
+              class="object-fit-cover h-100 w-100"
+              alt="carImg"
+              style="top: 0%; left: 0%; object-position: 50% 56%"
+            />
+            <button
+              type="button"
+              class="btn btn-dark px-3 py-2 fs-5"
+              routerLink="/stores"
+            >
+              Encontrar
+              <i class="bi bi-search align-middle fs-6"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
 </div>
 <app-footer-default></app-footer-default>

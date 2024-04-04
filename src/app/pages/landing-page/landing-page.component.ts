@@ -32,9 +32,10 @@ export class LandingPageComponent {
     margin: 24,
     nav: false,
     dots: false,
+    autoHeight: false,
     stagePadding: 0,
     responsive: {
-      672: {
+      0: {
         items: 4
       },
       912: {
