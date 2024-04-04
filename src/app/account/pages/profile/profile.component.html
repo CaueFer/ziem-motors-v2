@@ -11,9 +11,6 @@
         class="sidebar-brand d-flex align-items-center justify-content-center"
         routerLink="/"
       >
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
         <div class="sidebar-brand-text mx-3">ZiemMotors</div>
       </a>
 
@@ -135,7 +132,10 @@
                 aria-labelledby="alertsDropdown"
               >
                 <h6 class="dropdown-header">Notificações Recentes</h6>
-                <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)">
+                <a
+                  class="dropdown-item d-flex align-items-center"
+                  href="javascript:void(0)"
+                >
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="bi bi-car-front-fill text-white fs-4"></i>
@@ -185,7 +185,11 @@
                 }}</span>
                 <img
                   class="img-profile rounded-circle"
-                  [src]="imgUser ? imgUser : 'assets/images/profile/undraw_profile_2.svg'"
+                  [src]="
+                    imgUser
+                      ? imgUser
+                      : 'assets/images/profile/undraw_profile_2.svg'
+                  "
                 />
               </a>
               <!-- Dropdown - User Information -->
@@ -301,27 +305,44 @@
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body"  style="height: 390px;">
+                <div class="card-body" style="height: 390px">
                   <div class="card-body text-center">
                     <img
-                      [src]="imgUser ? imgUser : 'assets/images/profile/undraw_profile_2.svg'"
+                      [src]="
+                        imgUser
+                          ? imgUser
+                          : 'assets/images/profile/undraw_profile_2.svg'
+                      "
                       alt="avatar"
                       class="rounded-circle img-fluid"
-                      style="width: 150px; height: 150px;"
+                      style="width: 150px; height: 150px"
                     />
-                    <h5 class="my-3">{{  userModel && userModel.name ? userModel.name.charAt(0).toUpperCase() + userModel.name.slice(1) : ''  }}</h5>
+                    <h5 class="my-3">
+                      {{
+                        userModel && userModel.name
+                          ? userModel.name.charAt(0).toUpperCase() +
+                            userModel.name.slice(1)
+                          : ""
+                      }}
+                    </h5>
                     <p class="text-muted mb-4">{{ userModel.email }}</p>
                     <div class="d-flex justify-content-center mb-2">
                       <button
                         type="button"
                         class="btn btn-outline-primary ms-1"
-                        style="box-shadow: none!important;"
+                        style="box-shadow: none !important"
                         (click)="fileInput.click()"
                       >
                         Editar foto
                         <i class="bi bi-pencil-square ms-2"></i>
                       </button>
-                      <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+                      <input
+                        type="file"
+                        (change)="onFileSelected($event)"
+                        accept="image/*"
+                        style="display: none"
+                        #fileInput
+                      />
                     </div>
                   </div>
                 </div>
@@ -338,22 +359,40 @@
                   <h6 class="m-0 font-weight-bold text-primary">Informações</h6>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body" style="height: 390px;">
-                  <div class="chart-area">  
+                <div class="card-body" style="height: 390px">
+                  <div class="chart-area">
                     <div class="card-body">
                       <form [formGroup]="userInfos">
                         <div class="row position-relative">
                           <div class="col-sm-3">
                             <p class="mb-0">Nome</p>
                           </div>
-                          <div class="col-sm-9 position-relative d-flex flex-row justify-content-between align-middle">
+                          <div
+                            class="col-sm-9 position-relative d-flex flex-row justify-content-between align-middle"
+                          >
                             <input
                               type="text"
                               class="form-control"
-                              formControlName="name" 
+                              formControlName="name"
                             />
-                            <span *ngIf="inputsChanged['name']" class="bi bi-cloud-download fs-5 position-absolute" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
-                            <span *ngIf="successAtt" class="bi bi-check2 fs-5 position-absolute text-success" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
+                            <span
+                              *ngIf="inputsChanged['name']"
+                              class="bi bi-cloud-download fs-5 position-absolute"
+                              style="
+                                left: 92%;
+                                top: 50%;
+                                transform: translateY(-50%);
+                              "
+                            ></span>
+                            <span
+                              *ngIf="successAtt"
+                              class="bi bi-check2 fs-5 position-absolute text-success"
+                              style="
+                                left: 92%;
+                                top: 50%;
+                                transform: translateY(-50%);
+                              "
+                            ></span>
                           </div>
                         </div>
                         <hr />
@@ -361,14 +400,32 @@
                           <div class="col-sm-3">
                             <p class="mb-0">Email</p>
                           </div>
-                          <div class="col-sm-9 position-relative d-flex flex-row justify-content-between align-middle">
+                          <div
+                            class="col-sm-9 position-relative d-flex flex-row justify-content-between align-middle"
+                          >
                             <input
                               type="email"
                               class="form-control"
                               formControlName="email"
                             />
-                            <span *ngIf="inputsChanged['email']" class="bi bi-cloud-download fs-5 position-absolute" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
-                            <span *ngIf="successAtt" class="bi bi-check2 fs-5 position-absolute text-success" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
+                            <span
+                              *ngIf="inputsChanged['email']"
+                              class="bi bi-cloud-download fs-5 position-absolute"
+                              style="
+                                left: 92%;
+                                top: 50%;
+                                transform: translateY(-50%);
+                              "
+                            ></span>
+                            <span
+                              *ngIf="successAtt"
+                              class="bi bi-check2 fs-5 position-absolute text-success"
+                              style="
+                                left: 92%;
+                                top: 50%;
+                                transform: translateY(-50%);
+                              "
+                            ></span>
                           </div>
                         </div>
                         <hr />
@@ -376,15 +433,33 @@
                           <div class="col-sm-3">
                             <p class="mb-0">Telefone</p>
                           </div>
-                          <div class="col-sm-9 position-relative d-flex flex-row justify-content-between align-middle">
+                          <div
+                            class="col-sm-9 position-relative d-flex flex-row justify-content-between align-middle"
+                          >
                             <input
                               type="tel"
                               class="form-control"
                               formControlName="telefone"
                               mask="(00) 0000-0000||(00) 0 0000-0000"
                             />
-                            <span *ngIf="inputsChanged['telefone']" class="bi bi-cloud-download fs-5 position-absolute" style="left: 92%; top: 50%; transform: translateY(-50%);"></span>
-                            <span *ngIf="successAtt" class="bi bi-check2 fs-5 position-absolute text-success" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
+                            <span
+                              *ngIf="inputsChanged['telefone']"
+                              class="bi bi-cloud-download fs-5 position-absolute"
+                              style="
+                                left: 92%;
+                                top: 50%;
+                                transform: translateY(-50%);
+                              "
+                            ></span>
+                            <span
+                              *ngIf="successAtt"
+                              class="bi bi-check2 fs-5 position-absolute text-success"
+                              style="
+                                left: 92%;
+                                top: 50%;
+                                transform: translateY(-50%);
+                              "
+                            ></span>
                           </div>
                         </div>
                         <hr />
@@ -392,19 +467,42 @@
                           <div class="col-sm-3">
                             <p class="mb-0">Endereço</p>
                           </div>
-                          <div class="col-sm-9 position-relative d-flex flex-row justify-content-between align-middle">
+                          <div
+                            class="col-sm-9 position-relative d-flex flex-row justify-content-between align-middle"
+                          >
                             <input
                               type="text"
                               class="form-control"
                               formControlName="endereco"
                             />
-                            <span *ngIf="inputsChanged['endereco']" class="bi bi-cloud-download fs-5 position-absolute" style="left: 92%; top: 50%; transform: translateY(-50%);"></span>
-                            <span *ngIf="successAtt" class="bi bi-check2 fs-5 position-absolute text-success" style="left: 92%;  top: 50%; transform: translateY(-50%);"></span>
+                            <span
+                              *ngIf="inputsChanged['endereco']"
+                              class="bi bi-cloud-download fs-5 position-absolute"
+                              style="
+                                left: 92%;
+                                top: 50%;
+                                transform: translateY(-50%);
+                              "
+                            ></span>
+                            <span
+                              *ngIf="successAtt"
+                              class="bi bi-check2 fs-5 position-absolute text-success"
+                              style="
+                                left: 92%;
+                                top: 50%;
+                                transform: translateY(-50%);
+                              "
+                            ></span>
                           </div>
-                        </div>  
+                        </div>
                       </form>
                     </div>
-                    <span *ngIf="getInputsChangedLength() > 0" class="fs-5 position-absolute z-3 text-gray-600" style="left: 0%;  top: 95%; padding-left: 20px;">Dados alterados, lembre-se de salvar.</span>
+                    <span
+                      *ngIf="getInputsChangedLength() > 0"
+                      class="fs-5 position-absolute z-3 text-gray-600"
+                      style="left: 0%; top: 95%; padding-left: 20px"
+                      >Dados alterados, lembre-se de salvar.</span
+                    >
                   </div>
                 </div>
               </div>
@@ -481,28 +579,34 @@
     </div>
   </ng-template>
   <!-- Infos Modal-->
-  
+
   <!-- saveInfos Modal-->
   <ng-template #saveInfosModal>
-      <div class="modal-body d-flex flex-column justify-content-center align-items-center fs-5 p-4 py-5" id="saveInfosModal">
-        <button
-          type="button"
-          class="close position-absolute" style="top: 10%; left: 93%;"
-          aria-label="Close"
-          (click)="modalRef.hide()"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <section *ngIf="isLoading" class="dots-container mb-3">
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-        </section>
-        <section *ngIf="!isLoading" class="containerCheck mb-3">
-          <div class="checkmark d-flex justify-content-center align-items-center"><i class="bi bi-check2 align-middle"></i></div>
-        </section>
-        salvando suas informações
-      </div>
+    <div
+      class="modal-body d-flex flex-column justify-content-center align-items-center fs-5 p-4 py-5"
+      id="saveInfosModal"
+    >
+      <button
+        type="button"
+        class="close position-absolute"
+        style="top: 10%; left: 93%"
+        aria-label="Close"
+        (click)="modalRef.hide()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <section *ngIf="isLoading" class="dots-container mb-3">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </section>
+      <section *ngIf="!isLoading" class="containerCheck mb-3">
+        <div class="checkmark d-flex justify-content-center align-items-center">
+          <i class="bi bi-check2 align-middle"></i>
+        </div>
+      </section>
+      salvando suas informações
+    </div>
   </ng-template>
   <!-- saveInfos Modal-->
 </section>
