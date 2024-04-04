@@ -39,7 +39,7 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/geral.scss",
-              "node_modules/animate.css/animate.min.css",
+              "./node_modules/animate.css/animate.min.css",
               "./node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [],
