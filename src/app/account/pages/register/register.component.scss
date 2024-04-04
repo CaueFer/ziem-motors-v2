@@ -49,7 +49,7 @@
 
 #formRegister {
   position: absolute;
-  width: 530px;
+  max-width: 530px;
   top: 25%;
   left: 0;
   right: 0;
@@ -62,7 +62,7 @@
 
   @media (max-width: 515px) {
     #formRegister{
-      width: 100%;
+      width: 100%!important;
     }
   }
 }

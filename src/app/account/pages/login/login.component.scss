@@ -48,9 +48,7 @@
 
 #formLogin {
   position: absolute;
-
-  width: 530px;
-
+  max-width: 530px;
   top: 25%;
   left: 0;
   right: 0;
@@ -59,12 +57,11 @@
   z-index: 1000;
 }
 
-
 .account-pages{
 
   @media (max-width: 515px) {
     #formLogin{
-      width: 100%;
+      width: 100%!important;
     }
   }
 }
