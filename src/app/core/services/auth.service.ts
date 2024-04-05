@@ -8,8 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  //readonly url = 'http://localhost:5050/api/ziemmotors/';
-  readonly url = 'https://ziem-motors-v2-production.up.railway.app/api/ziemmotors/';
+  readonly url = 'http://localhost:5050/api/ziemmotors/';
   //readonly url = 'https://c925-181-221-7-242.ngrok-free.app/api/ziemmotors/';
 
   private jwtToken!: string;
