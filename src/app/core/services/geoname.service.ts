@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LatLng, latLng } from 'leaflet';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -11,7 +10,7 @@ export class GeonameService {
   constructor(private http: HttpClient) { }
 
 
-  getCities(cityName: string): Observable<{ name: string, location: LatLng }[]> {
+  getCities(cityName: string): Observable<{ name: string}[]> {
     return this.http.get<any>(`http://api.geonames.org/searchJSON?name_startsWith=${cityName}&country=BR&maxRows=10&username=cauezk`)
       .pipe(
         map((data: any) => {
@@ -19,7 +18,7 @@ export class GeonameService {
             .filter((city: any) => city.fcl === "P" && city.fcode === "PPL")
             .map((city: any) => ({
               name: `${city.name}, ${city.adminCodes1.ISO3166_2}`,
-              location: latLng(city.lat, city.lng)
+
             }));
         })
       );

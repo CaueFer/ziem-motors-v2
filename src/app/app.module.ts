@@ -9,7 +9,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AuthInterceptor } from './core/services/auth.interceptor';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
