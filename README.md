@@ -24,4 +24,4 @@ Execute `ng e2e` para executar os testes end-to-end através de uma plataforma d
 
 ## Saber mais
 
-Visite meu portfolio para ver mais projetos como esse, [LINK].
+Visite meu portfolio para ver mais projetos como esse.
