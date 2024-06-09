@@ -16,7 +16,7 @@ export class ShowroomComponent implements OnInit {
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0, 0]);
 
-    afterNextRender(() => {
+    setTimeout(() => {
       const selects = document.querySelectorAll('.form-select');
 
       if (selects) {
@@ -28,11 +28,13 @@ export class ShowroomComponent implements OnInit {
 
             if (selectElement.value !== '0') {
               this.renderer.addClass(parentElement, 'active');
-            } else this.renderer.removeClass(parentElement, 'active');
+            } else {
+              this.renderer.removeClass(parentElement, 'active');
+            }
           });
         });
       }
-    });
+    }, 0); 
   }
 
   showLoader(evetEmit: boolean) {
