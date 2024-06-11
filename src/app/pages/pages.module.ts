@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowroomComponent } from './showroom/showroom.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ScrollToModule } from '@andrei4ik/ngx-scroll-to';
+import { BsDropdownModule,BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 
 
 @NgModule({
@@ -25,9 +26,10 @@ import { ScrollToModule } from '@andrei4ik/ngx-scroll-to';
     ReactiveFormsModule,
     NgxSkeletonLoaderModule,
     ScrollToModule,
+    BsDropdownModule
   ],
   providers: [
-
+    BsDropdownConfig
   ]
 })
 export class PagesModule { }

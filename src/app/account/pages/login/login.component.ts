@@ -7,9 +7,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit, OnDestroy{
+export class LoginComponent implements OnInit, OnDestroy {
   year: number = new Date().getFullYear();
   users: any = [];
 
@@ -26,87 +26,100 @@ export class LoginComponent implements OnInit, OnDestroy{
 
   continueLogged: boolean = false;
 
-  constructor( private _authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
-
+  constructor(
+    private _authService: AuthService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.email, Validators.required]],
       password: ['', Validators.required],
-    })
+    });
   }
-  get f() { return this.loginForm.controls};
+  
+  get f() {
+    return this.loginForm.controls;
+  }
 
   ngOnDestroy(): void {
     this.authenticatedSub.unsubscribe();
   }
 
-  ngOnInit() { 
-
+  ngOnInit() {
     // this.isAuthenticated = this._authService.getIsAutheticated();
     // if(this.isAuthenticated){
     //   this.router.navigate(['profile']);
     // }
-    this.authenticatedSub = this._authService.getAuthentication().subscribe(data => {
-      if(data){
-        this.isAuthenticated = data;
-        this.router.navigate(['profile']);
-      }
-    })
+    this.authenticatedSub = this._authService
+      .getAuthentication()
+      .subscribe((data) => {
+        if (data) {
+          this.isAuthenticated = data;
+          this.router.navigate(['profile']);
+        }
+      });
 
     this._authService.authFromLocalStorage();
-  };
+  }
 
   windowScroll() {
     const navbar = document.getElementById('bgSectionMask');
 
-    if(navbar){
-      if (document.body.scrollTop >= 50 || document.documentElement.scrollTop >= 50) {
-        navbar.classList.add('full')
+    if (navbar) {
+      if (
+        document.body.scrollTop >= 50 ||
+        document.documentElement.scrollTop >= 50
+      ) {
+        navbar.classList.add('full');
         this.scroolled = true;
       } else {
-        navbar.classList.remove('full')
+        navbar.classList.remove('full');
         this.scroolled = false;
       }
     }
-  };
+  }
 
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
-  };
+  }
 
   getInputType() {
     return this.hidePassword ? 'password' : 'text';
-  };
-  
+  }
+
   resetForms() {
     this.loginForm.reset();
-  };
+  }
 
-
-  submitLogin(){
+  submitLogin() {
     this.isSubmited = true;
 
-    if(this.loginForm.invalid){
+    if (this.loginForm.invalid) {
       this.errormsg = 'Campos invalidos.';
 
       return;
     }
 
-    if(this.loginForm.valid){
-      
-      this._authService.loginUser(this.f['email'].value, this.f['password'].value, this.continueLogged)
-      .subscribe({
-        next: (data) =>{
-          //console.log(data);
-        },
-        error: (error) =>{
-          if(error.message) this.errormsg = error.message;
-        }
-      });
+    if (this.loginForm.valid) {
+      this._authService
+        .loginUser(
+          this.f['email'].value,
+          this.f['password'].value,
+          this.continueLogged
+        )
+        .subscribe({
+          next: (data) => {
+            //console.log(data);
+          },
+          error: (error) => {
+            if (error.message) this.errormsg = error.message;
+          },
+        });
     }
-  };
+  }
 
-  checkBoxInput(target: any){
+  checkBoxInput(target: any) {
     let isChecked = target.checked;
-    isChecked ? this.continueLogged = true: this.continueLogged = false;
+    isChecked ? (this.continueLogged = true) : (this.continueLogged = false);
   }
 }

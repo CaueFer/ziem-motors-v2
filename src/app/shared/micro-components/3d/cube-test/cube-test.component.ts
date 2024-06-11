@@ -34,7 +34,7 @@ export class CubeTestComponent {
   public camera!: THREE.PerspectiveCamera;
   public scene!: THREE.Scene;
   public orbitControls!: OrbitControls;
-  
+
   constructor() {
     afterNextRender(() => {
       this.threeJs();
@@ -53,6 +53,8 @@ export class CubeTestComponent {
       this.camera,
       this.renderer.domElement
     );
+
+    if (width <= 500) this.orbitControls.enableRotate = false;
 
     // RENDER
     this.renderer.setSize(width, height);
@@ -232,9 +234,11 @@ export class CubeTestComponent {
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(window.innerWidth, window.innerHeight);
-    };
 
-    animate();
+      const width = window.innerWidth;
+      if (width <= 500) this.orbitControls.enableRotate = false;
+      else this.orbitControls.enableRotate = true;
+    };
 
     window.addEventListener('resize', function () {
       resizeTela();
@@ -248,6 +252,8 @@ export class CubeTestComponent {
         this.scene.remove();
       }
     };
+
+    animate();
   }
 
   private scrollDownAnimation(startAnimation: boolean): void {
