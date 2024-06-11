@@ -40,31 +40,45 @@
             class="d-flex align-items-center gap-1 text-center fs-5 text-white"
           >
             <span class="">Procurar</span>
-            <i class="bi bi-arrow-90deg-down iconCenter" style="transform: scaleX(-1) translateY(20%); font-size: 1rem;"></i>
+            <i
+              class="bi bi-arrow-90deg-down iconCenter"
+              style="transform: scaleX(-1) translateY(20%); font-size: 1rem"
+            ></i>
           </div>
-          <div class="input input-group d-flex flex-row">
+          <div
+            class="input input-group d-flex flex-row"
+            dropdown
+            [autoClose]="true"
+            [insideClick]="true"
+          >
             <input
               type="text"
               class="form-control"
-              aria-expanded="false"
               formControlName="cityName"
               id="cidadeInput"
               (input)="onInput($event)"
               placeholder="digite a cidade..."
               autocomplete="off"
-              style="width: calc(100% - 42px);"
+              style="width: calc(100% - 42px)"
+              bsDropdownToggle
+              [value]="this.selectedCity"
             />
-            <div class="dropdown-menu mt-5" id="dropdownCidadeinput">
-              <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0"
-                >Nenhum encontrado.</span
-              >
-              <a
-                class="dropdown-item text-black"
+            <ul
+              *dropdownMenu
+              class="dropdown-menu mt-2"
+              id="dropdownCidadeinput"
+            >
+              <li class="dropdown-item" *ngIf="returnedCitys.length === 0">
+                Nenhum encontrado.
+              </li>
+              <li
                 *ngFor="let item of returnedCitys"
-                (click)="onSelectCity($event)"
-                >{{ item }}</a
+                class="dropdown-item"
+                (click)="onSelectCity(item)"
               >
-            </div>
+                {{ item }}
+              </li>
+            </ul>
             <i
               class="bi bi-search input-group-text"
               style="
@@ -117,6 +131,59 @@
       </div>
     </div>
     <div class="formLojas col-7 ps-3 position-relative" style="height: auto">
+      <div
+        class="bg-dark-subtle h-100 position-absolute z-0"
+        style="width: calc(100% - 16px)"
+      >
+        <iframe
+          *ngIf="
+            selectedCity !== 'Petrópolis, RJ' &&
+            selectedCity !== 'Joinville, SC' &&
+            selectedCity !== 'Campinas, SP'
+          "
+          width="100%"
+          height="100%"
+          frameborder="0"
+          class="z-2"
+          style="border: 0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58460.520532547986!2d-46.633382783417774!3d-23.550650939481745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce58c5ba9025f7%3A0x9ba5df79933f9683!2sS%C3%A3o%20Paulo%2C%20State%20of%20S%C3%A3o%20Paulo%2C%20Brazil!5e0!3m2!1sen!2sus!4v1631822247217!5m2!1sen!2sus"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+
+        <iframe
+          *ngIf="selectedCity === 'Petrópolis, RJ'"
+          width="100%"
+          height="100%"
+          frameborder="0"
+          style="border: 0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14760.82960633608!2d-43.17594084603628!3d-22.514876894726334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd52ee4ab1271%3A0x863686b6feadd548!2sPetr%C3%B3polis%2C%20RJ!5e0!3m2!1sen!2sbr!4v1631823184308!5m2!1sen!2sbr"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+
+        <iframe
+          *ngIf="selectedCity === 'Joinville, SC'"
+          width="100%"
+          height="100%"
+          frameborder="0"
+          style="border: 0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23099.00555121396!2d-48.8372626463326!3d-26.301741839808358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94df0c119bd2f64b%3A0xecd46862419bd2fc!2sJoinville%2C%20SC!5e0!3m2!1sen!2sbr!4v1631823228192!5m2!1sen!2sbr"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+
+        <iframe
+          *ngIf="selectedCity === 'Campinas, SP'"
+          width="100%"
+          height="100%"
+          frameborder="0"
+          style="border: 0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58497.74476062015!2d-47.08493891519085!3d-22.905971317244546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c89a57b4b883c7%3A0x3a70e3c85346e07f!2sCampinas%2C%20SP!5e0!3m2!1sen!2sbr!4v1631831359360!5m2!1sen!2sbr"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
     </div>
   </div>
   <!-- FIND CAR END ============================= -->
@@ -139,9 +206,14 @@
             class="d-flex align-items-center gap-1 text-center fs-5 text-white"
           >
             <span class="">Procurar</span>
-            <i class="bi bi-arrow-90deg-down iconCenter" style="transform: scaleX(-1) translateY(20%); font-size: 1rem;"></i>
+            <i
+              class="bi bi-arrow-90deg-down iconCenter"
+              style="transform: scaleX(-1) translateY(20%); font-size: 1rem"
+            ></i>
           </div>
-          <div class="input input-group d-flex flex-row w-100 position-relative">
+          <div
+            class="input input-group d-flex flex-row w-100 position-relative"
+          >
             <input
               type="text"
               class="form-control"
@@ -151,7 +223,7 @@
               (input)="onInput($event)"
               placeholder="digite a cidade..."
               autocomplete="off"
-              style="width: calc(100%-42px);"
+              style="width: calc(100%-42px)"
             />
             <i
               class="bi bi-search input-group-text"
@@ -190,7 +262,7 @@
         <p
           class="fs-5 text-black d-flex align-items-center gap-1 pt-3 text-white"
         >
-          Recomendações 
+          Recomendações
         </p>
         <div class="recomendItems ps-2 d-flex flex-row gap-3">
           <p
@@ -217,8 +289,7 @@
         </div>
       </div>
     </div>
-    <div class="formLojas py-3 position-relative" style="height: 350px">
-    </div>
+    <div class="formLojas py-3 position-relative" style="height: 350px"></div>
   </div>
   <!-- FIND CAR END ============================= -->
 
@@ -240,31 +311,45 @@
             class="d-flex align-items-center gap-1 text-center fs-5 text-white"
           >
             <span class="">Procurar</span>
-            <i class="bi bi-arrow-90deg-down iconCenter" style="transform: scaleX(-1) translateY(20%); font-size: 1rem;"></i>
+            <i
+              class="bi bi-arrow-90deg-down iconCenter"
+              style="transform: scaleX(-1) translateY(20%); font-size: 1rem"
+            ></i>
           </div>
-          <div class="input input-group d-flex flex-row">
+          <div
+            class="input input-group d-flex flex-row"
+            dropdown
+            [autoClose]="true"
+            [insideClick]="true"
+          >
             <input
               type="text"
               class="form-control"
-              aria-expanded="false"
               formControlName="cityName"
               id="cidadeInput"
               (input)="onInput($event)"
               placeholder="digite a cidade..."
               autocomplete="off"
-              style="width: calc(100% - 42px);"
+              style="width: calc(100% - 42px)"
+              bsDropdownToggle
+              [value]="this.selectedCity"
             />
-            <div class="dropdown-menu mt-5" id="dropdownCidadeinput">
-              <span class="fs-6 px-2" *ngIf="returnedCitys.length === 0"
-                >Nenhum encontrado.</span
-              >
-              <a
-                class="dropdown-item text-black"
+            <ul
+              *dropdownMenu
+              class="dropdown-menu mt-2"
+              id="dropdownCidadeinput"
+            >
+              <li class="dropdown-item" *ngIf="returnedCitys.length === 0">
+                Nenhum encontrado.
+              </li>
+              <li
                 *ngFor="let item of returnedCitys"
-                (click)="onSelectCity($event)"
-                >{{ item }}</a
+                class="dropdown-item"
+                (click)="onSelectCity(item)"
               >
-            </div>
+                {{ item }}
+              </li>
+            </ul>
             <i
               class="bi bi-search input-group-text"
               style="
@@ -323,6 +408,59 @@
       </div>
     </div>
     <div class="formLojas py-3 position-relative" style="height: 350px">
+      <div
+        class="bg-dark-subtle h-100 position-absolute z-0"
+        style="width: calc(100% - 16px)"
+      >
+        <iframe
+          *ngIf="
+            selectedCity !== 'Petrópolis, RJ' &&
+            selectedCity !== 'Joinville, SC' &&
+            selectedCity !== 'Campinas, SP'
+          "
+          width="100%"
+          height="100%"
+          frameborder="0"
+          class="z-2"
+          style="border: 0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58460.520532547986!2d-46.633382783417774!3d-23.550650939481745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce58c5ba9025f7%3A0x9ba5df79933f9683!2sS%C3%A3o%20Paulo%2C%20State%20of%20S%C3%A3o%20Paulo%2C%20Brazil!5e0!3m2!1sen!2sus!4v1631822247217!5m2!1sen!2sus"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+
+        <iframe
+          *ngIf="selectedCity === 'Petrópolis, RJ'"
+          width="100%"
+          height="100%"
+          frameborder="0"
+          style="border: 0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14760.82960633608!2d-43.17594084603628!3d-22.514876894726334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd52ee4ab1271%3A0x863686b6feadd548!2sPetr%C3%B3polis%2C%20RJ!5e0!3m2!1sen!2sbr!4v1631823184308!5m2!1sen!2sbr"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+
+        <iframe
+          *ngIf="selectedCity === 'Joinville, SC'"
+          width="100%"
+          height="100%"
+          frameborder="0"
+          style="border: 0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23099.00555121396!2d-48.8372626463326!3d-26.301741839808358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94df0c119bd2f64b%3A0xecd46862419bd2fc!2sJoinville%2C%20SC!5e0!3m2!1sen!2sbr!4v1631823228192!5m2!1sen!2sbr"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+
+        <iframe
+          *ngIf="selectedCity === 'Campinas, SP'"
+          width="100%"
+          height="100%"
+          frameborder="0"
+          style="border: 0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58497.74476062015!2d-47.08493891519085!3d-22.905971317244546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c89a57b4b883c7%3A0x3a70e3c85346e07f!2sCampinas%2C%20SP!5e0!3m2!1sen!2sbr!4v1631831359360!5m2!1sen!2sbr"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
     </div>
   </div>
   <!-- FIND CAR END ============================= -->

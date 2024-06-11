@@ -2,39 +2,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
     <!-- Sidebar -->
-    <ul
-      class="navbar-nav bg-gradient-dark sidebar-dark accordion position-relative"
-      id="accordionSidebar"`
-    >
-      <!-- Sidebar - Brand -->
-      <a
-        class="sidebar-brand d-flex align-items-center justify-content-center"
-        routerLink="/"
-      >
-        <div class="sidebar-brand-text mx-3">ZiemMotors</div>
-      </a>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0" />
-
-      <!-- Heading -->
-      <div class="sidebar-heading">Menu</div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
-        <a
-          class="nav-link collapsed d-flex flex-row justify-content-between align-items-center align-middle"
-          href="javascript:void(0)"
-          aria-expanded="true"`
-        >
-          <span>Perfil</span>
-          <i class="bi bi-arrow-right-short fs-4"></i>
-        </a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider" />
-    </ul>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -238,47 +206,6 @@
             </div>
           </div>
 
-          <!-- Content Row -->
-          <div class="row">
-            <!-- Earnings (Monthly) Card Example -->
-            <!-- <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Earnings (Monthly)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-
-            <!-- Earnings (Monthly) Card Example -->
-            <!-- <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Earnings (Annual)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-          </div>
-
-          <!-- Content Row -->
-
           <div class="row">
             <!-- Pie Chart -->
             <div class="col-xl-4 col-lg-5">
@@ -361,7 +288,7 @@
                               formControlName="name"
                             />
                             <span
-                              *ngIf="inputsChanged['name']"
+                              *ngIf="userInfos.get('name')!.dirty"
                               class="bi bi-cloud-download fs-5 position-absolute"
                               style="
                                 left: 92%;
@@ -394,7 +321,7 @@
                               formControlName="email"
                             />
                             <span
-                              *ngIf="inputsChanged['email']"
+                              *ngIf="userInfos.get('email')!.dirty"
                               class="bi bi-cloud-download fs-5 position-absolute"
                               style="
                                 left: 92%;
@@ -428,7 +355,7 @@
                               mask="(00) 0000-0000||(00) 0 0000-0000"
                             />
                             <span
-                              *ngIf="inputsChanged['telefone']"
+                              *ngIf="userInfos.get('telefone')!.dirty"
                               class="bi bi-cloud-download fs-5 position-absolute"
                               style="
                                 left: 92%;
@@ -461,7 +388,7 @@
                               formControlName="endereco"
                             />
                             <span
-                              *ngIf="inputsChanged['endereco']"
+                              *ngIf="userInfos.get('endereco')!.dirty"
                               class="bi bi-cloud-download fs-5 position-absolute"
                               style="
                                 left: 92%;
@@ -483,7 +410,7 @@
                       </form>
                     </div>
                     <span
-                      *ngIf="getInputsChangedLength() > 0"
+                      *ngIf="userInfos.dirty"
                       class="fs-5 position-absolute z-3 text-gray-600"
                       style="left: 0%; top: 90%; padding-left: 20px"
                       >Dados alterados, lembre-se de salvar.</span

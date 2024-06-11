@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   userInfos: FormGroup;
   imgUser!: string;
-  inputsChanged: { [key: string]: boolean } = {};
   successAtt: boolean = false;
   isLoading: boolean = false;
 
@@ -34,14 +33,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       telefone: ['', Validators.required],
       endereco: ['', Validators.required],
       image: ['']
-    });
-
-    this.userInfos.valueChanges.subscribe(() => {
-      Object.keys(this.userInfos.controls).forEach(key => {
-        if (this.userInfos.controls[key].dirty) {
-          this.inputsChanged[key] = true;
-        }
-      });
     });
 
    }
@@ -74,7 +65,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.openModal('saveinfos');
       if(res){
-        this.clearObjectsOfInputs();
 
         setTimeout(() => { this.isLoading = false; }, 1500);
         setTimeout(() => { this.modalRef.hide(); }, 2000);
@@ -105,20 +95,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
     this.imgUser = this.userInfos.value.image;
   }
-
-  getInputsChangedLength(): number {
-    let i = 0;
-    Object.keys(this.inputsChanged).forEach(key => {
-      if(this.inputsChanged[key] === true) i++;
-    });
-    return i;
-  };
-
-  clearObjectsOfInputs(){
-    Object.keys(this.inputsChanged).forEach(key => {
-      this.inputsChanged[key] = false;
-    });
-  };
 
   async onFileSelected(event: any): Promise<void> {
     const selectedFile: File = event.target.files[0];
