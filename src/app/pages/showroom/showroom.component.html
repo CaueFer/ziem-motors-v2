@@ -1,13 +1,13 @@
 <app-nav-default [variant]="[]"></app-nav-default>
 <section class="" id="showroom" (window:scroll)="windowScroll()">
-  <div id="showroomCar" style="height: 99vh; width: 100%;">
+  <div id="showroomCar" style="height: 100vh; width: 100vw" class="position-relative">
     <div
       class="w-100 h-100 bg-black position-absolute z-3 d-flex justify-content-center align-items-center"
       style="top: 0; left: 0"
       id="loadingDiv"
     >
       <div class="loader">
-        <div class="loader-square"></div>
+        <div class="loader-square"></div> 
         <div class="loader-square"></div>
         <div class="loader-square"></div>
         <div class="loader-square"></div>
@@ -16,7 +16,7 @@
         <div class="loader-square"></div>
       </div>
     </div>
-    >
+    <div class="bg-transparent h-100 w-100 position-absolute top-0 left-0"></div>
   </div>
 
   <div class="section position-relative">
@@ -33,13 +33,14 @@
           ></span>
           <select
             class="form-select p-3 z-3 bg-transparent"
+            style="color: transparent !important"
             aria-label=""
             id="selectMotor"
           >
-            <option value="0" selected></option>
-            <option value="1">Combustão</option>
-            <option value="2">Híbrido</option>
-            <option value="3">Elétrico</option>
+            <option value="0" class="text-black" selected></option>
+            <option value="1" class="text-black">Combustão</option>
+            <option value="2" class="text-black">Híbrido</option>
+            <option value="3" class="text-black">Elétrico</option>
           </select>
         </div>
 
@@ -54,13 +55,14 @@
           ></span>
           <select
             class="form-select p-3 z-3 bg-transparent w-100 bg-danger"
+            style="color: transparent !important"
             aria-label=""
             id="selectCambio"
           >
-            <option value="0" selected></option>
-            <option value="1">Manual</option>
-            <option value="2">Automático</option>
-            <option value="3">Sequencial</option>
+            <option value="0" class="text-black" selected></option>
+            <option value="1" class="text-black">Manual</option>
+            <option value="2" class="text-black">Automático</option>
+            <option value="3" class="text-black">Sequencial</option>
           </select>
         </div>
         <div
@@ -74,13 +76,14 @@
           ></span>
           <select
             class="form-select p-3 z-3 bg-transparent"
+            style="color: transparent !important"
             aria-label=""
             id="selectKm"
           >
             <option value="0" selected></option>
-            <option value="1">0 km</option>
-            <option value="2">Semi-novo</option>
-            <option value="3">Usado</option>
+            <option value="1" class="text-black">0 km</option>
+            <option value="2" class="text-black">Semi-novo</option>
+            <option value="3" class="text-black">Usado</option>
           </select>
         </div>
         <div
