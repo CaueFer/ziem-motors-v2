@@ -55,6 +55,7 @@ export class CubeTestComponent {
     );
 
     if (width <= 500) this.orbitControls.enableRotate = false;
+    else this.orbitControls.enableRotate = true;
 
     // RENDER
     this.renderer.setSize(width, height);
