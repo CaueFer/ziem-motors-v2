@@ -1,5 +1,5 @@
-import { ViewportScroller } from '@angular/common';
-import { Component, OnInit, Renderer2, afterNextRender } from '@angular/core';
+import { ViewportScroller, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID, Renderer2, afterNextRender } from '@angular/core';
 @Component({
   selector: 'app-showroom',
   templateUrl: './showroom.component.html',
@@ -10,31 +10,33 @@ export class ShowroomComponent implements OnInit {
 
   constructor(
     private viewportScroller: ViewportScroller,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
     this.viewportScroller.scrollToPosition([0, 0]);
 
-    setTimeout(() => {
-      const selects = document.querySelectorAll('.form-select');
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        const selects = document.querySelectorAll('.form-select');
 
-      if (selects) {
-        selects.forEach((select) => {
-          select.addEventListener('change', (event) => {
-            const selectElement = event.target as HTMLSelectElement;
-            const parentElement =
-              selectElement.previousElementSibling as HTMLElement;
+        if (selects) {
+          selects.forEach((select) => {
+            select.addEventListener('change', (event) => {
+              const selectElement = event.target as HTMLSelectElement;
+              const parentElement = selectElement.previousElementSibling as HTMLElement;
 
-            if (selectElement.value !== '0') {
-              this.renderer.addClass(parentElement, 'active');
-            } else {
-              this.renderer.removeClass(parentElement, 'active');
-            }
+              if (selectElement.value !== '0') {
+                this.renderer.addClass(parentElement, 'active');
+              } else {
+                this.renderer.removeClass(parentElement, 'active');
+              }
+            });
           });
-        });
-      }
-    }, 0); 
+        }
+      }, 0);
+    }
   }
 
   showLoader(evetEmit: boolean) {
