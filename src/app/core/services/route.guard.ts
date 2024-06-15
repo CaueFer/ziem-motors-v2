@@ -16,8 +16,4 @@ export class RouteGuard implements CanActivate{
         return isAutheticated;
     }
 
-
-
-
-
 }
