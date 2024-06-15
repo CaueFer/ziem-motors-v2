@@ -6,7 +6,8 @@ Projeto realizado com a ideia de desenvolver skills com Angular CLI & MongoDB co
 - 
 - [MongoDB]((https://www.mongodb.com/docs/)) version 7.2.0.
 
-Live Demo 👉 ([ziem-motors-v2](https://ziem-motors-v2.netlify.app/home))
+
+Live Demo 👉 [ziem-motors-v2](https://ziem-motors-v2.netlify.app)
 ## Como usar
 
 Abra a pasta a qual voce deseja salvar o projetor no vscode.
