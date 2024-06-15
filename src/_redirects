@@ -8,5 +8,5 @@
 
 
 
-
-/* /index.html 200
+/* Todas as requisições direcionadas para index.html */
+/ * @app /index.html
